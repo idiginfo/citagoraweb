@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * Citagora Web/Service Layer Configuration File
+ *
+ * Copy this file to config.php during installation
+ *
+ * @package Citagora
+ * @subpackage Citagora Web Service
+ * @author Casey McLaughlin
+ * @copyright (c) 2012 Florida State University
+ */
+
+/* EOF: config.php.sample */
