@@ -1,0 +1,55 @@
+{
+    "hash": "0d7dbb3c87cfe47d1e6fb101b1a6c1b0",
+    "packages": [
+        {
+            "package": "caseyamcl/Devtoolbar",
+            "version": "dev-master",
+            "source-reference": "87bfe9b29bbb3c4d66d63a57d594914615197750",
+            "commit-date": "1338910058"
+        },
+        {
+            "package": "caseyamcl/MongoRecord",
+            "version": "dev-master",
+            "source-reference": "66efc05bb769426a4aec9934085a5d803dd8a1eb",
+            "commit-date": "1344266578"
+        },
+        {
+            "package": "caseyamcl/configula",
+            "version": "dev-master",
+            "source-reference": "b3bcefbcdee3f68c76f24068d0274c584bb5f9bf",
+            "commit-date": "1342114622"
+        },
+        {
+            "package": "mlehner/gelf-php",
+            "version": "v1.0"
+        },
+        {
+            "package": "monolog/monolog",
+            "version": "1.1.0"
+        },
+        {
+            "package": "pimple/pimple",
+            "version": "dev-master",
+            "source-reference": "db836b8cfadc0f39dacafa2bf311a1ab603600bb",
+            "commit-date": "1343051648"
+        },
+        {
+            "package": "slim/slim",
+            "version": "dev-release-1.6.5",
+            "source-reference": "b8d26e7161523fba86d8a50848644307098ee53d",
+            "commit-date": "1343736747"
+        }
+    ],
+    "packages-dev": null,
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "slim/slim": 20,
+        "pimple/pimple": 20,
+        "caseyamcl/mongorecord": 20,
+        "caseyamcl/configula": 20,
+        "caseyamcl/devtoolbar": 20
+    }
+}
