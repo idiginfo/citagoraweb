@@ -57,3 +57,21 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+
+# FOS User Configuration
+fos_user:
+    db_driver: mongodb # other valid values are 'orm', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Citagora\WebBundle\Document\User
+
+# Doctrine MongoDB Configuration
+doctrine_mongodb:
+    connections:
+        default:
+            server: %mongodb_uri%
+            options:
+                connect: true
+    default_database: %mongodb_dbname%
+    document_managers:
+        default:
+            auto_mapping: true

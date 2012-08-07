@@ -1,5 +1,5 @@
 {
-    "hash": "2c0ad4beaacc810752764681fc5067a8",
+    "hash": "745b27914e4d56a47dd6c771920170eb",
     "packages": [
         {
             "package": "doctrine/common",
@@ -20,10 +20,30 @@
             "commit-date": "1343657020"
         },
         {
+            "package": "doctrine/mongodb",
+            "version": "1.0.0-BETA1"
+        },
+        {
+            "package": "doctrine/mongodb-odm",
+            "version": "1.0.0-BETA5"
+        },
+        {
+            "package": "doctrine/mongodb-odm-bundle",
+            "version": "dev-master",
+            "source-reference": "ecbbdc19220e5f1e1d990563213a19e8b3b01a0d",
+            "commit-date": "1344369132"
+        },
+        {
             "package": "doctrine/orm",
             "version": "2.3.x-dev",
             "source-reference": "17862d9a2a38bf801e564d09a26eea8503621ae0",
             "commit-date": "1343850025"
+        },
+        {
+            "package": "friendsofsymfony/user-bundle",
+            "version": "dev-master",
+            "source-reference": "7a9d20e69ac0363432fae86523776b14592993d7",
+            "commit-date": "1343834547"
         },
         {
             "package": "jms/aop-bundle",
@@ -156,9 +176,7 @@
             "commit-date": "1343464333"
         }
     ],
-    "packages-dev": [
-
-    ],
+    "packages-dev": null,
     "aliases": [
 
     ],
