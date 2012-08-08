@@ -4,12 +4,8 @@ CitagoraWebBundle_frontpage:
 
 CitagoraWebBundle_search:
     pattern: /search/{query}
-    defaults: { _controller: CitagoraWebBundle:Papers:searchPage, query: null }
+    defaults: { _controller: CitagoraWebBundle:Documents:search, query: null }
 
 CitagoraWebBundle_papers:
     pattern: /papers/{id}/{subinfo}
-    defaults: { _controller: CitagoraWebBundle:Papers:paperInfo, id: null, subinfo: null }
-
-CitagoraWebBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: CitagoraWebBundle:Hello:index }
+    defaults: { _controller: CitagoraWebBundle:Documents:paper, id: null, subinfo: null }
