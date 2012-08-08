@@ -13,8 +13,7 @@ if (!function_exists('intl_get_error_code')) {
 
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
-//Added per:
-//  https://groups.google.com/forum/?fromgroups#!topic/symfony2/DUWmv-SwTuc
+//Added per: https://groups.google.com/forum/?fromgroups#!topic/symfony2/DUWmv-SwTuc
 Doctrine\ODM\MongoDB\Mapping\Driver\AnnotationDriver::registerAnnotationClasses();
 
 return $loader;
