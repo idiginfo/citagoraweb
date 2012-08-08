@@ -8,3 +8,12 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^(.*)$ app.php [QSA,L]
 </IfModule>
+
+# Extra security for app_dev.php and config.php
+<filesMatch "/^[app_dev\.php|config\.php|\.]/">
+order deny,allow
+deny from all
+allow from 127.0.0.1
+allow from 213.xx.xx.xx
+require valid-user
+</filesMatch>
