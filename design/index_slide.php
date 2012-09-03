@@ -46,8 +46,7 @@ display_header($vars); # FORMING PAGE
 		<li>Etc</li>
 		</ul>
 		
-		<p class="contact">Want Citagora to search your API? 
-		<br /><a href="">Let us know</a></p>
+		<p>Want Citagora to search your API? <a href="">Let us know</a></p>
 		
 		</span>
 		
@@ -56,7 +55,7 @@ display_header($vars); # FORMING PAGE
 		
 	</div>
 		
-	<div class="two-thirds column" id="pane-results">
+	<div class="two-thirds column" id="pane">
 	
 	<h2>Latest Activity</h2>
 	
@@ -65,54 +64,28 @@ display_header($vars); # FORMING PAGE
 	require '_inc/simplepie.inc';  
 	$feed = new SimplePie('feed.xml.rss');  
 	$feed->handle_content_type();  
-	$i = 0;
+
 	?>
 	
-	  
-            <?php foreach($feed->get_items(0, 10) as $item) : ?> 
-            <?php if ($i&1) { echo '<div class="row odd">'; } else { echo '<div class="row even">'; } ?> 
-            
-                <?php 
-                #echo $item->get_description(); 
-                ?>  
-                <div class="activity">
+	<ul id="widget">  
+            <?php foreach($feed->get_items(0, 15) as $item) : ?>  
+            <li> <div class="paper-record"> 
+                <?php #echo $item->get_description(); ?>  
+                <div class="paper">
                 <p class="activity"><?php echo $item->get_description(); ?> by <a href=""><?php if ($author = $item->get_author())
 	{
 		echo $author->get_email();
-	} ?></a>
-		<br /><span class="date"><?php echo $item->get_date(); ?></span>
-                </p>
-                </div> 
-                
-                <div class="record">
+	} ?></a>		
+				: <span class="date"><?php echo $item->get_date(); ?></span>
+                </p> 
                 <h4><a href="<?php echo $item->get_permalink(); ?>"><?php echo $item->get_title(); ?></a></h4> 
                 <p class="authors">Jones, D., Smith, A. <span class="publication">Journal of Applied Journals, 2011</span></p> 
                 </div>
-                
-                <div class="share-bear">
-                	<div class="cites share">
-                	<img src="_img/icon_small_comments.png" alt="" border="0" />
-                	<p><a href="#dialog" name="modal">Comments</a> (5)</p>
-                	</div>
-                	<div class="ratings share">
-                	<img src="_img/icon_small_ratings.png" alt="" border="0" />
-                	<p><a href="#dialog" name="modal">Ratings</a> (11)</p>
-                	</div>
-                	<div class="share-this share">
-                	<p>Share This Plugin</p>
-                	</div>
-                	<div class="export share">
-                	<p>Export</p>
-                	<a href=""><img src="_img/icon_small_mendeley.png" alt="" border="0" /></a>
-                	<a href=""><img src="_img/icon_small_zotero.png" alt="" border="0" /></a>
-                	</div>
-                </div>
-            
-            </div> 
-            
-            <?php $i++; ?> 
+                <a href="#dialog" name="modal"><img src="_img/share-bear.jpg" alt="" border="0" style="margin-top: 3px;" /></a>
+                </div> 
+            </li>  
             <?php endforeach; ?>  
-      
+        </ul>  
         
 	
 	</div>

@@ -36,14 +36,14 @@ display_header($vars); # FORMING PAGE
                   
                <h4>Suicide risk and precipitating circumstances among young, middle-aged, and older male veterans</h4> 
                 
-                <p class="authors">Roy R. Reeves, PD ; Janet T. Laizer, MD</p> 
+                <p class="authors"><a href="">Roy R. Reeves, PD</a> ; <a href="">Janet T. Laizer, MD</a></p> 
                 
-                <p><span class="text-label">Published in:</span> Journal of Psychosocial Nursing and Mental Health Services
+                <p><span class="text-label">Published in:</span> <a href="">Journal of Psychosocial Nursing and Mental Health Services</a>
 <br /><span class="text-label">Publication Type</span> Journal Article
 <br /><span class="text-label">Year of Publication</span> 2012
 <br /><span class="text-label">Pagination:</span> 32-38
-<br /><span class="text-label">DOI</span> 10.3928/02793695-20120207-02 
-<br /><span class="text-label">PubMed ID:</span> 22 329 620</p>
+<br /><span class="text-label">DOI</span> <a href="">10.3928/02793695-20120207-02</a>
+<br /><span class="text-label">PubMed ID:</span> <a href="">22 329 620</a></p>
 
       
                 
@@ -59,10 +59,10 @@ display_header($vars); # FORMING PAGE
 		</ul>
 		<div id="ratings" class="content">
 			<h4>Ratings</h4>
-			<hr style="width: 579px;" />
+			<hr class="tab-rule" />
             <p><strong>15</strong> Citagora users have rated this paper
         	<br />
-        	<table width="579" cellpadding="0" cellspacing="0" border="0">
+        	<table class="tab-table" cellpadding="0" cellspacing="0" border="0">
         	<tr valign="top">
         	<td width="25%"><span class="rating-group">Overall:  </span></td>
         	<td width="25%"><span class="rating-group">Readability: </span></td>
@@ -84,14 +84,14 @@ display_header($vars); # FORMING PAGE
 		</div>
 		<div id="comments" class="content">
 			<h4>Comments</h4>
-			 <hr style="width: 579px;" />
-            <img src="_img/disqus.jpg" border="0" />
+			 <hr class="tab-rule" />
+            <img src="_img/disqus.jpg" border="0" style="width: auto;" />
 			
 		</div>
 
 		<div id="citations" class="content">
 			<h4>Cited Works</h4>
-             <hr style="width: 579px;" />
+             <hr class="tab-rule" />
                   <h6><a href="http://www.clientwebstage.com/msrc/citagora/detail.php">Suicide risk and precipitating circumstances among young, middle-aged, and older male veterans</a></h6> 
                 <p class="authors">Jones, D., Smith, A.</p> 
                 <h6><a href="http://www.clientwebstage.com/msrc/citagora/detail.php">Treatment of posttraumatic stress disorder in military and veteran populations</a></h6> 
@@ -105,7 +105,7 @@ display_header($vars); # FORMING PAGE
 
 		<div id="export" class="content">
 			<h4>Export this record</h4>
-             <hr style="width: 579px;" />
+             <hr class="tab-rule" />
              <input type="checkbox" />Include cited works
              <br /><br />
              Destination: <input type="checkbox" />Mendeley

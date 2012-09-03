@@ -21,17 +21,18 @@ body {
 	background: #f6f6f7 url(../_img/background_noise.jpg) top left;
 	}
 	
+html, body {
+	height: 100%;
+	min-height: 100%;
+}
+	
 h1 {
 	font-family: 'Trocchi', serif;
 	font-weight: normal;
 	color: #fff;
 	text-shadow:0px -1px 1px #ccc;
 	}
-	
-.green {
-	color: #8dc63f;
-	text-shadow:0px -1px 1px #999;
-	}
+
 
 h2 {
 	font-family: 'Trocchi', serif;
@@ -46,89 +47,13 @@ h2.top {
 	width: 150px;
 	}
 	
-#shim {
-	margin: 50px 0 0 250px; 
-	border: 1px solid #ccc;
+.contact {
+	border-top: 1px solid #ddd;
+	margin-top: 40px;
+	margin-right: 20px;
+	padding-top: 20px;
 	}
 	
-#rule {
-	clear: both;
-	margin: 0px 0 5px 0;
-	height: 2px;
-	width: 100%;
-	float: left;
-	background: #ccc;
-	border-bottom: 1px solid #fff;
-	}
-	
-.views-row {
-	padding: 10px;
-	}
-	
-.views-row-even { background: #fff; }
-.views-row-odd { background: #fafafa; }
-
-
-
-html, body {
-	height: 100%;
-	min-height: 100%;
-}
-
-.block {
-	background: #fff;
-	padding: 0px;
-	border: 1px solid #ddd;
-	-moz-box-shadow:     0 0 10px #ddd;
-   -webkit-box-shadow:  0 0 10px #ddd;
-   box-shadow:          0 0 10px #ddd;
-	font-family: 'Signika', sans-serif;
-	font-weight: 300;
-	line-height: 18px;
-	font-size: 13px;
-	margin: 0 0 10px 0;
-}
-
-
-.block p {
-	margin: 5px 0;
-	padding: 5px 10px;
-	}
-
-.block h5 {
-	background: #c00;
-	color: #999;
-	padding: 5px 0 5px 10px;
-	font-size: 12px;
-	line-height: 14px;
-	text-transform: uppercase;
-	font-family: 'Signika', sans-serif;
-	font-weight: 700;
-	margin: 0px;
-	-moz-box-shadow:     0px 1px 2px #ccc;
-   -webkit-box-shadow:  0px 1px 2px #ccc;
-   box-shadow:          0px 1px 2px #ccc;
-	background: #eee;
-	background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ddd));
-	background: -moz-linear-gradient(top,  #eee,  #ddd);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eee', endColorstr='#ddd');
-	}
-	
-.block h5 .timestamp {
-	font-weight: 400;
-	padding: 0 0 0 40px;
-	}
-	
-#pane {
-	background: #fff;
-	border: 1px solid #eee;
-	width: 598px;
-	padding: 0 10px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  }
-  
 #toolbar {
 	width: 100%;
 	margin: 0;
@@ -139,6 +64,13 @@ html, body {
 	-moz-box-shadow:     0px 1px 2px #ccc;
    -webkit-box-shadow:  0px 1px 2px #ccc;
    box-shadow:          0px 1px 2px #ccc;
+   
+   background-color: #ddd;
+   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ddd), to(#c6c5c7));
+   background-image: -webkit-linear-gradient(top, #ddd, #c6c5c7); 
+   background-image:    -moz-linear-gradient(top, #ddd, #c6c5c7);
+   background-image:     -ms-linear-gradient(top, #ddd, #c6c5c7);
+   background-image:      -o-linear-gradient(top, #ddd, #c6c5c7);
 	}
 	
 #toolbar a {
@@ -165,116 +97,108 @@ html, body {
 	float: left;
 	margin: 0;
 	}
-	
 
-#widget {
-overflow: hidden;
-padding: 0;
-height: 700px; /* You should adjust this height for your project. */
-position: relative;
-float: left;
-width: 100%;
-}
 
-#results #widget, .detail #widget {
-height: auto;
-}
 
-#widget li  {
-padding: 0px;
-clear: left;
-overflow: hidden;
-position: relative;
-top: 0;
-margin: 0;
-height: 140px; /* Change this to fit your needs. The plugin will access this value if you don't pass a parameter in when you call it. */
-}
 
-#results #widget li  {
-height: 110px;
-}
 
-#results #widget li div.paper-record {
-height: 100px;
-}
+/* #Result Rows
+================================================== */
 
-.detail #widget li {
-height: auto;
-}
-
-.detail #widget li div.paper-record {
-height: auto;
-}
-
-.detail #widget li p {
-	margin: 0 5px;
-	}
-	
-.text-label {
-	width: 120px;
-	font-style: italic;
-	display: block;
-	float: left;
-	}
-
-#widget li div.paper-record {
-background: #fff;
+#pane-results {
+	border: 0px solid #eee;
+	width: 620px;
+	padding: 0 0px;
+  }
+  
+.row {
 	padding: 0px;
-	border-bottom: 1px solid #999;
-	font-family: 'Signika', sans-serif;
-	font-weight: 300;
-	line-height: 18px;
-	font-size: 13px;
 	margin: 0 0 10px 0;
-	clear: left;
-overflow: hidden;
-position: relative;
-top: 0;
-height: 120px; /* Change this to fit your needs. The plugin will access this value if you don't pass a parameter in when you call it. */
-}
+	-moz-box-shadow:     0px 0px 3px #ddd;
+   -webkit-box-shadow:  0px 0px 3px #ddd;
+   box-shadow:          0px 0px 3px #ddd;
+	}
+	
+.even { background: #fff; }
+.odd { background: #fff; }
+
+.odd:hover, .even:hover { background: #f3edf6; }
+
+.record { padding: 10px;  }
+
 
 h4 a {
-font-family: 'Signika', sans-serif;
+	font-family: 'Signika', sans-serif;
 	color: #6d2780;
-	text-decoration: underline;
-	font-weight: 300;
-font-size: 16px;
-margin: 0 5px;
-padding-top: 5px;
-display: block;
-line-height: 18px;
+	text-decoration: none;
+	font-weight: 400;
+	font-size: 16px;
+	margin: 0;
+	padding: 0;
+	display: block;
+	line-height: 18px;
 }
 
 .class-detail h4 {
-font-family: 'Signika', sans-serif;
-color: #6d2780;
+	font-family: 'Signika', sans-serif;
+	color: #6d2780;
 	font-size: 20px;
-line-height: 20px;
-margin: 0 0 20px 0; 
-padding: 10px 0 0 0;
-font-weight: 400;
-text-decoration: none;
+	line-height: 20px;
+	margin: 0 0 20px 0; 
+	padding: 10px 0 0 0;
+	font-weight: 400;
+	text-decoration: none;
 }
 
-.paper {
-height: 80px;
-border-bottom: 1px dashed #ccc;
-}
-
+h4 a:hover {
+	color: #6d2780;
+	text-decoration: underline; 
+	}
+	
 .authors {
-	margin: 0 5px;
+	margin: 0;
 	font-style: italic;
 	line-height: 14px;
 	}
 	
-.class-detail .authors {
-	margin: 0 0 5px 0;
-	color: #000;
-	}
+.share-bear { background: #f2f0f0; font-size: 11px; height: 22px; line-height: 11px; padding: 3px 5px; }
 
-li p.activity {
-color: #474747;
-margin: 0;
+.row:hover .share-bear { background: #fff; }
+
+.share {
+	float: left;
+	margin: 0px;
+	padding: 3px;
+	width: 100px;
+	}
+	
+.share img { float: left; margin: 0 5px 0 0; }
+
+.export p { float: left; width: 50px; }	
+
+.share p { padding: 0; margin: 0; }
+	
+.share a { display: inline !important; text-decoration: none; color: #333; }	
+
+.ratings {
+	border-right: 1px solid #fff;
+	}
+	
+.export {
+	border-left: 1px solid #f2f0f0;
+	padding-left: 10px;
+	}
+	
+.share-this {
+	border-left: 1px solid #f2f0f0;
+	border-right: 1px solid #fff;
+	padding: 3px 10px;
+	}
+	
+
+p.activity {
+	color: #474747;
+	margin: 0px 0 0 0;
 	float: right;
 	width: 140px;
 	color: #666;
@@ -284,28 +208,51 @@ margin: 0;
 	text-transform: uppercase;
 	font-family: 'Signika', sans-serif;
 	font-weight: 700;
-	margin: 0px 0 0 5px;
-	border: 1px dashed #ccc;
-	background: #ffe;
+	-moz-box-shadow:     -1px 1px 3px #ddd;
+   -webkit-box-shadow:  -1px 1px 3px #ddd;
+   box-shadow:          -1px 1px 3px #ddd;
+   background-color: #ffe;
+   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffee), to(#ffffcc));
+   background-image: -webkit-linear-gradient(top, #ffffee, #ffffcc); 
+   background-image:    -moz-linear-gradient(top, #ffffee, #ffffcc);
+   background-image:     -ms-linear-gradient(top, #ffffee, #ffffcc);
+   background-image:      -o-linear-gradient(top, #ffffee, #ffffcc);
+   -webkit-border-bottom-left-radius: 10px;
 	
-}	
+}
+
+
+
+/* DETAILS */
+
+
+
+#pane {
+	background: #fff;
+	width: 598px;
+	padding: 0 10px 20px 10px;
+	-moz-box-shadow:     0px 0px 3px #ddd;
+   -webkit-box-shadow:  0px 0px 3px #ddd;
+   box-shadow:          0px 0px 3px #ddd;
+  }
+
+
+.text-label {
+	width: 120px;
+	font-style: italic;
+	display: block;
+	float: left;
+	}
+
+
 
 	
-	
-.new-comment .comment {
-	background: #fcf9f9;
-	display: block;
-	padding: 3px;
-	font-style: italic;
+.class-detail .authors {
+	margin: 0 0 5px 0;
+	color: #000;
 	}
-	
-.new-tweet .tweet {
-	background: #f9f9fc;
-	display: block;
-	padding: 3px;
-	font-style: italic;
-	}
-	
+
+		
 .date {
 	font-weight: 300;
 	}
@@ -316,21 +263,21 @@ margin: 0;
 	text-transform: none;
 	}
 	
-.title a {
-	color: #003471;
-	text-decoration: none;
-	font-weight: 400;
-	}
-.title a:hover {
-	background: #ffc;
-	}	
-
 .doi a {
 	color: #003471;
 	text-decoration: none;
 	font-weight: 400;
 	}
-	
+
+
+hr.tab-rule { width: 579px; }	
+table.tab-table { width: 579px; }
+
+
+
+
+
+
 
 #footer {
     background: #efedea;
@@ -347,6 +294,7 @@ margin: 0;
 #mask{position:absolute;left:0;top:0;z-index:9000;background-color:#000;display:none;}
 #boxes .window{position:fixed;left:0;top:0;width:440px;height:200px;display:none;z-index:9999;padding:20px;}
 #boxes #dialog{width:375px;height:203px;padding:10px;background-color:#ffffff;}
+
 
 .rated {
 	margin: 2px 2px 0 0;
@@ -397,25 +345,32 @@ margin: 0;
 	/* Tablet Portrait size to standard 960 (devices and browsers) */
 	@media only screen and (min-width: 768px) and (max-width: 959px) {
 	
-	#pane { width: 470px; }
+	#pane, #pane-results { width: 470px; }
 	#login { height: 400px; }
-	
+	hr.tab-rule { width: 449px; }	
+	table.tab-table { width: 449px; }
 	
 	}
 
 	/* All Mobile Sizes (devices and browser) */
 	@media only screen and (max-width: 767px) {
 	
-	#pane { width: 278px; }
+	#pane, #pane-results { width: 278px; }
 	.knockout { display: none; }
+	hr.tab-rule { width: 259px; }	
+	table.tab-table { width: 259px; }
 	
 	}
 
 	/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
 	@media only screen and (min-width: 480px) and (max-width: 767px) {
 	
-	#pane { width: 398px; }
+	#pane, #pane-results { width: 398px; }
 	.knockout { display: none; }
+	.share-bear { height: 44px; }
+	.share-this { clear: left; }
+	hr.tab-rule { width: 379px; }	
+	table.tab-table { width: 379px; }
 	
 	}
 
@@ -423,6 +378,7 @@ margin: 0;
 	@media only screen and (max-width: 479px) { 
 	#social-login { text-align: center; }
 	#social-login a { margin: 0 auto; display: inline; }
+	.share-bear { height: 44px; }
 	}
 
 

@@ -9,7 +9,7 @@ $vars = array (
 	'login'        => FALSE,
 	'section'      => 'Document Discovery',
 	'subsection'   => '',
-	'body'         => 'home',
+	'body'         => 'results',
 	'gallery'  => TRUE
 );
 display_header($vars); # FORMING PAGE
@@ -29,27 +29,24 @@ display_header($vars); # FORMING PAGE
 	
 	<div class="container" id="boxes">
 		<div class="one-third column">
-		<h2>Find a Scientific Document</h2>
+		<input type="button" value="Export all these results" />
+	
+		<h2>Filter these results</h2>
+		
+		<form>
+		<select><option>Ratings</option></select>
+		<select><option>Comments</option></select>
+		<select><option>Year Published</option></select>
+		
+		</form>
+		
+		<h2>Find another Document</h2>
 		
 		<form method="post" action="results.php">
 		<input type="text" name="identifier" size="30" placeholder="Enter a DOI, URI, Title, author or keyword" />
 		<input type="submit" value="go" />
 		</form>
 		
-		<span class="knockout">
-		
-		<h2>Currently Searching:</h2>
-		
-		<ul class="disc">
-		<li>Web of Science</li>
-		<li>Wiley</li>
-		<li>Etc</li>
-		</ul>
-		
-		<p class="contact">Want Citagora to search your API? 
-		<br /><a href="">Let us know</a></p>
-		
-		</span>
 		
 		
 		
@@ -58,8 +55,12 @@ display_header($vars); # FORMING PAGE
 		
 	<div class="two-thirds column" id="pane-results">
 	
-	<h2>Latest Activity</h2>
-	
+		
+		<p style="float: right; width: 300px; padding: 0px 0; margin: 0; text-align: right;">Sort by: <select><option> -- Select --</option><option>Title</option><option>Author</option><option>Etc</option></select></p>
+		
+		<p><em>Showing 1-10 of 24,034</em></p>
+		
+		
 	
 	<?php
 	require '_inc/simplepie.inc';  
@@ -75,15 +76,6 @@ display_header($vars); # FORMING PAGE
                 <?php 
                 #echo $item->get_description(); 
                 ?>  
-                <div class="activity">
-                <p class="activity"><?php echo $item->get_description(); ?> by <a href=""><?php if ($author = $item->get_author())
-	{
-		echo $author->get_email();
-	} ?></a>
-		<br /><span class="date"><?php echo $item->get_date(); ?></span>
-                </p>
-                </div> 
-                
                 <div class="record">
                 <h4><a href="<?php echo $item->get_permalink(); ?>"><?php echo $item->get_title(); ?></a></h4> 
                 <p class="authors">Jones, D., Smith, A. <span class="publication">Journal of Applied Journals, 2011</span></p> 
@@ -114,7 +106,7 @@ display_header($vars); # FORMING PAGE
             <?php endforeach; ?>  
       
         
-	
+			1 2 3
 	</div>
 	
 	</div>
