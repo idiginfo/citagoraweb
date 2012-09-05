@@ -1,7 +1,9 @@
 <?php
 ####################################################################################################
 # FORM THE PAGE BASED UPON THE FOLLOWING PARAMETERS
-require_once($_SERVER['DOCUMENT_ROOT'].'/msrc/citagora2/_inc/layout.php');
+error_reporting(E_ALL ^ E_DEPRECATED);
+require_once(__DIR__ . '/_inc/layout.php');
+
 $vars = array (
 	'db_connect'   => FALSE,
 	'session'      => FALSE,
