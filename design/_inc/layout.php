@@ -232,6 +232,7 @@ function initialize()
 	</div>
 	</div>
 
+    <div id="content">
 	
 	
 	
