@@ -1,7 +1,7 @@
 <?php
 ####################################################################################################
 # FORM THE PAGE BASED UPON THE FOLLOWING PARAMETERS
-require_once(dirname(__FILE___) .'/_inc/layout.php');
+require_once(dirname(__FILE__) .'/_inc/layout.php');
 $vars = array (
 	'db_connect'   => FALSE,
 	'session'      => FALSE,
