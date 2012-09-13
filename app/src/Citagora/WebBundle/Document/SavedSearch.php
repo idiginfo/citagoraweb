@@ -1,6 +1,4 @@
-
 <?php
-// src/CitagoraWebBundle/Entities/User.php
 
 namespace Citagora\WebBundle\Document;
 
@@ -17,12 +15,12 @@ class SavedSearch
     protected $id;
 
     /**
-     * @String
+     * @MongoDB\String
      */
     protected $searchQuery;
 
     /**
-     * @ReferenceOne(targetDocument="User")
+     * @MongoDB\ReferenceOne(targetDocument="User")
      */
     protected $userID;
 
@@ -34,7 +32,7 @@ class SavedSearch
     public function __construct()
     {
         parent::__construct();
-        
+
         //Logic heres
     }
 }
