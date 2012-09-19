@@ -2,7 +2,7 @@
 
 namespace Citagora\WebBundle\Model;
 
-interface PaperSetInterface
+class CitagoraDocSet
 {
-    
+
 }

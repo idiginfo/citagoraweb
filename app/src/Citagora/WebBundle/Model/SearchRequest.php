@@ -2,7 +2,7 @@
 
 namespace Citagora\WebBundle\Model;
 
-/** 
+/**
  * Class parses and defines search requests
  *
  * @TODO: Flesh this out based on the search API for the Java
@@ -89,7 +89,7 @@ class SearchRequest
         $facets = array();
         $keywords = array();
 
-        //Step One -- Look for known regex patterns
+        //Step One -- Look for known regex patterns like DOI
         $regexMatch = $this->regexMatch($rawString);
         $rawString = $regexMatch ?: $rawString;
 
