@@ -1,0 +1,52 @@
+{# src/Front/CitagoraWebBundle/Resources/views/Front/index.html.twig #}
+{% extends 'CitagoraWebBundle::base.html.twig' %}
+{% block body %}
+ 
+<h2>Search Form Scaffolding</h2>
+
+{# Todo Make this better #}
+<form method='post' action=''>
+
+    <fieldset>
+        <label for='form_query'>Search Query</label>
+        <input type='text' id='form_query' name='query' value='' placeholder='Enter Query, Keywords, or DOI' />
+    </fieldset>
+
+    <fieldset>
+        <legend>Get Records From</legend>
+        <input type='radio' name='source_selection' id='form_source_selection_all' value='all' checked='checked' />
+        <label for='form_source_selection_all'>All</label>
+
+        <input type='radio' name='source_selection' id='form_source_selection_choose' value='choose' />
+        <label for='form_source_selection_choose'>Choose</label>
+        
+        <fieldset>
+            <input type='checkbox' name='sources[microsoft]' id='checkbox_sources_microsoft' />
+            <label for='checkbox_sources_microsoft'>Microsoft</label>
+
+            <input type='checkbox' name='sources[springer]' id='checkbox_sources_springer' />
+            <label for='checkbox_sources_springer'>Springer</label>
+
+            <input type='checkbox' name='sources[msrc_annotate]' id='checkbox_sources_msrc_annotate' />
+            <label for='checkbox_sources_msrc_annotate'>MSRC Annotate</label>            
+        </fieldset>
+    </fieldset>
+
+    <fieldset>
+        <legend>Facets</legend>
+
+        <label>Authors</label>
+        <input name='author[]' id='form_author_1' />
+        <input name='author[]' id='form_author_1' />
+        <input name='author[]' id='form_author_1' />
+        <input name='author[]' id='form_author_1' />
+
+    </fieldset>
+
+    <fieldset>
+        <button type='submit'>Submit</button>
+    </fieldset>
+</form>
+
+
+{% endblock %}

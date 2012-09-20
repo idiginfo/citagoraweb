@@ -1,0 +1,7 @@
+parameters:
+#    citagora_web.example.class: Citagora\WebBundle\Example
+
+services:
+#    citagora_web.example:
+#        class: %citagora_web.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
