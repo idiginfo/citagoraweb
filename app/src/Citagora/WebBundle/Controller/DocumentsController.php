@@ -26,9 +26,12 @@ class DocumentsController extends Controller
     {
         //If form was submitted, attempt to build a query
         $queryString = $request->request->get('query') ?: $query;
+
         if ($queryString) {
 
-            var_dump($queryString); die();
+            $searchReq = $this->get('citagora_web.search_request');
+            $searchStrings = $searchReq->parse($queryString);
+            var_dump($searchStrings); die();
         }
 
         //Render the view

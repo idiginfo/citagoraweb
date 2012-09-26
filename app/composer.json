@@ -19,8 +19,15 @@
         "jms/security-extra-bundle": "1.2.*",
         "jms/di-extra-bundle": "1.1.*",
         "friendsofsymfony/user-bundle": "*",
-        "doctrine/mongodb-odm-bundle": "*"
+        "doctrine/mongodb-odm-bundle": "*",
+        "danbettles/sequin": "dev-master"
     },
+    "repositories": [
+        {
+          "type": "vcs",
+          "url": "http://github.com/caseyamcl/sequin"
+        }
+    ],    
     "scripts": {
         "post-install-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
