@@ -1,16 +1,17 @@
+#
+# Hawk .htaccess File
+#
+# If using NGINX, then...
+#
 <IfModule mod_rewrite.c>
-    RewriteEngine On
+    RewriteEngine on
+    RewriteCond $1 !^(index\.php|dev\.php|assets|humans\.txt|robots\.txt)
+    RewriteRule ^(.*)$ index.php/$1 [L]
 
-    #<IfModule mod_vhost_alias.c>
-    #    RewriteBase /
-    #</IfModule>
-
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ app.php [QSA,L]
 </IfModule>
 
-# Extra security for app_dev.php and config.php
-<filesMatch "/^[app_dev\.php|config\.php|\.]/">
+# Extra security for app_dev.php and hidden files
+<filesMatch "/^[dev\.php|\.]/">
 order deny,allow
 deny from all
 allow from 127.0.0.1

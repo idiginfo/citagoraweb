@@ -1,53 +1,51 @@
 {
-    "name": "symfony/framework-standard-edition",
-    "description": "The \"Symfony Standard Edition\" distribution",
-    "autoload": {
-        "psr-0": { "": "src/" }
-    },
-    "require": {
-        "php": ">=5.3.3",
-        "symfony/symfony": "2.1.*",
-        "doctrine/orm": ">=2.2.3,<2.4-dev",
-        "doctrine/doctrine-bundle": "1.0.*",
-        "twig/extensions": "1.0.*",
-        "symfony/assetic-bundle": "2.1.*",
-        "symfony/swiftmailer-bundle": "2.1.*",
-        "symfony/monolog-bundle": "2.1.*",
-        "sensio/distribution-bundle": "2.1.*",
-        "sensio/framework-extra-bundle": "2.1.*",
-        "sensio/generator-bundle": "2.1.*",
-        "jms/security-extra-bundle": "1.2.*",
-        "jms/di-extra-bundle": "1.1.*",
-        "friendsofsymfony/user-bundle": "*",
-        "doctrine/mongodb-odm-bundle": "*",
-        "danbettles/sequin": "dev-master"
-    },
-    "repositories": [
+    "name": "idiginfo/citagora",
+    "type": "library",
+    "description": "Agora for Citations - Online Citation Tool - Frontend",
+    "keywords": ["citation", "aggregator", "scholarly research"],
+    "homepage": "http://citagora.com",
+    "license": "Copyright (c) Florida State University - All Rights Reserved",
+    "authors":
+    [
         {
-          "type": "vcs",
-          "url": "http://github.com/caseyamcl/sequin"
+            "name":     "Alex Garcia Castro",
+            "email":    "alexgarciac@gmail.com",
+            "homepage": "http://www.alexandergarcia.name/",
+            "role":     "Lead / Chief Idea Architect / Data Modeling"
+        },
+        {
+            "name":     "Casey McLaughlin",
+            "email":    "caseyamcl@gmail.com",
+            "homepage": "http://caseymclaughlin.com",
+            "role":     "Developer"
+        },
+        {
+            "name":     "Jeremy Spinks",
+            "email":    "spinksjeremyspinks@gmail.com",
+            "role":     "Designer/Developer"
         }
-    ],    
-    "scripts": {
-        "post-install-cmd": [
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
-        ],
-        "post-update-cmd": [
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
-        ]
+          
+    ],
+    "autoload": {
+        "psr-0": { "Citagora": "src/" }
     },
-    "config": {
-        "bin-dir": "bin"
+    "minimum-stability": "beta",
+    "require": {
+        "silex/silex":          "1.0.x-dev",
+        "guzzle/guzzle":        "v2.5.0",
+        "twig/twig":            ">=1.8,<2.0-dev",
+        "symfony/twig-bridge":  "2.1.*",
+        "symfony/translation":  "2.1.*",        
+        "symfony/form":         "2.1.*",
+        "symfony/validator":    "2.1.*",
+        "symfony/config":       "2.1.*",
+        "doctrine/mongodb-odm": ">=1.0.0-BETA6",
+        "caseyamcl/Configula":  "dev-master",
+        "monolog/monolog":      ">=1.0.0"
     },
-    "minimum-stability": "dev",
-    "extra": {
-        "symfony-app-dir": "app",
-        "symfony-web-dir": "web"
+    "require-dev": {
+        "mockery/mockery": "dev-master",
+        "davedevelopment/hamcrest-php": "dev-master",
+        "firephp/firephp-core": "dev-master"
     }
 }

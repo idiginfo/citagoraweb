@@ -1,6 +1,0 @@
-parameters:
-#    citagora_web.example.class: Citagora\WebBundle\Example
-
-services:
-    citagora_web.search_request:
-        class: Citagora\WebBundle\Model\SearchRequest
