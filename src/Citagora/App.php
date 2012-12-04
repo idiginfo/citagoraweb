@@ -98,7 +98,8 @@ class App extends SilexApplication
 
         //Mount the controllers
         $this->mount('', new Controller\Front());
-        $this->mount('', new Controller\Papers());
+        $this->mount('', new Controller\Documents());
+        $this->mount('', new Controller\Users());
     }
 
     // --------------------------------------------------------------

@@ -115,13 +115,23 @@ abstract class Controller implements ControllerProviderInterface
     /**
      * Render
      *
-     * @param string $view
-     * @param string $template
-     * @param return string  The rendered output
+     * Uses twig to render, and also embeds the output in a template if desired
+     *
+     * @param string $view              View filename (in Views directory)
+     * @param string|boolean $template  Template filename (in Views directory) or false
+     * @param return string             The rendered output
      */
-    protected function render($view, $data = array())
+    protected function render($view, $data = array(), $template = 'base.html.twig')
     {
-        return $this->app['twig']->render($view, $data);
+        //Render in template, or render without template if none specified
+        if ($template) {
+            $content = $this->app['twig']->render($view, $data);
+            $data = array_merge($data, array('__content__' => $content));
+            return $this->app['twig']->render($template, $data);
+        }
+        else {
+            return $this->app['twig']->render($view, $data);
+        }        
     }
 
     // --------------------------------------------------------------    

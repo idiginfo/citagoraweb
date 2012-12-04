@@ -19,5 +19,4 @@ class Front extends Controller
     }
 }
 
-
 /* EOF: Front.php */

@@ -66,7 +66,7 @@
         </div>
 
         <div id="content">
-            {% block body %}{% endblock %}
+            {{ __content__ | raw }} {# always use the raw filter for content in a template #}
         </div>
 
         <div id="footer">
