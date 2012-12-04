@@ -1,11 +1,12 @@
 <?php
 
-namespace Citagora\Document;
+namespace Citagora\MongoDoc;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
  * @ODM\Document
  */
-class User extends AbstractDocument
+class User extends MongoDoc
 {
     /** 
      * @ODM\Id

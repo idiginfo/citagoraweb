@@ -19,6 +19,11 @@ class DummyDocuments extends Documents
      */
     private $dummyRecs = array();
 
+    /**
+     * @var int  Dummy IDs for dummy records
+     */
+    private $dummyId = 1000;
+
     // --------------------------------------------------------------
 
     /**
@@ -40,6 +45,19 @@ class DummyDocuments extends Documents
         }
 
         $this->dummyRecs = $jsonData;
+    }
+
+    // --------------------------------------------------------------
+
+    /**
+     * Get a single dummy document
+     *
+     * @param int $identifier
+     */
+    public function getDocument($identifer)
+    {
+        $key = array_rand($this->dummyRecs);
+        return $this->buildDummyRec($this->dummyRecs[$key]);
     }
 
     // --------------------------------------------------------------
@@ -95,6 +113,7 @@ class DummyDocuments extends Documents
 
         //Build new document
         $document = new Document();
+        $document->identifier = $this->getDummyId();
 
         //Basic Mappings
         foreach($basicMappings as $dest => $src) {
@@ -133,7 +152,39 @@ class DummyDocuments extends Documents
         $document->socialMetrics->numConnotea  = rand(1, 100);
         $document->socialMetrics->numDisqus    = rand(1, 100);
 
+        //Citations
+        $document->citations = new CitationCollection();
+        $numberOfCitations = rand(1, count($this->dummyRecs));
+        $tempDocs = $this->dummyRecs;
+        shuffle($tempDocs);
+        foreach(array_slice($tempDocs,0, $numberOfCitations) as $dummyDoc) {
+            $citationDoc = new Document();
+            $citationDoc->title = $dummyDoc->title;
+            $citationDoc->contributors = new ContributorCollection();
+            foreach($dummyDoc->authorList as $name) {
+                $contributor = new Contributor();
+                $contributor->surname = $name;
+                $citationDoc->contributors->add($contributor);
+            }
+            $document->citations->add($citationDoc);     
+        }
+
+
+
         return $document;
+    }
+
+    // --------------------------------------------------------------
+
+    /**
+     * Return a dummy identifier
+     *
+     * @return int
+     */
+    private function getDummyId()
+    {
+        $this->dummyId++;
+        return $this->dummyId;
     }
 }
 

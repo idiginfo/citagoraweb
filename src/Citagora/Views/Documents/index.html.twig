@@ -1,3 +1,8 @@
+{# Document Index View
+ #
+ # Available Variables:
+ #   docs  (DocumentCollection)
+ #}
 <div class="one-third column">
     <h2>Find a Scientific Document</h2>
     
@@ -36,7 +41,7 @@
             </div>
 
             <div class='record'>
-                <h4><a href=''>{{ doc.title }}</a></h4>
+                <h4><a href='{{ site_url }}/documents/{{ doc.identifier }}'>{{ doc.title }}</a></h4>
                 <p class='authors'>
                     {% for author in doc.contributors | slice(0,2) %} {# TODO: MAKE THIS SMARTER #}
                         <span class='author'>{{ author.surname }}</span>    

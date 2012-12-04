@@ -51,7 +51,8 @@ class Documents extends Controller
 
     public function single($id, $subinfo = null)
     {
-        return $this->render('Documents/single.html.twig');
+        $data['document'] = $this->documentsSvc->getDocument($id);
+        return $this->render('Documents/single.html.twig', $data);
     }
 
     // --------------------------------------------------------------

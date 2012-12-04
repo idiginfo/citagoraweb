@@ -6,6 +6,11 @@ use Citagora\Model\AbstractValueObject;
 class Document extends AbstractValueObject
 {
     /**
+     * @var int
+     */
+    protected $identifier;
+
+    /**
      * @var string
      */
     protected $title;
@@ -82,17 +87,31 @@ class Document extends AbstractValueObject
 
     // --------------------------------------------------------------
 
-    public function __get($item)
+    public function doiUrl()
     {
-        return $this->$item;
-    }
+        if ($this->doi) {
+
+            if (preg_match("/^http[s]?:\/\//i", $this->doi)) {
+                return $this->doi;
+            }
+            else {
+                return 'http://dx.doi.org/' . $this->doi;
+            }
+
+        }
+        else {
+            return null;
+        }
+    }    
 
     // --------------------------------------------------------------
 
-    public function __set($item, $value)
+    public function pmidUrl()
     {
-        $this->$item = $value;
-    }
+        return ($this->pmid)
+            ? 'http://www.ncbi.nlm.nih.gov/pubmed/' . $this->pmid
+            : null;
+    }    
 }
 
 /* EOF: Document.php */

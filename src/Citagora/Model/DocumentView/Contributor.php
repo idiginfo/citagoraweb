@@ -20,6 +20,16 @@ class Contributor extends AbstractValueObject
      */
     protected $type;
 
+    // --------------------------------------------------------------
+
+    public function __tostring()
+    {
+        $gn = ($this->givenname)
+            ? ', ' . $this->givenname
+            : null;
+
+        return $this->surname . $gn;
+    }
 }
 
 

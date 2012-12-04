@@ -162,6 +162,10 @@ class App extends SilexApplication
             $twig->addGlobal('asset',    $app['url.base'] . '/assets');
             $twig->addGlobal('site_url', $app['url.base']);
 
+            if ($app['debug'] == true) {
+                $twig->addExtension(new \Twig_Extension_Debug());
+            }
+
             return $twig;
         }));      
     }

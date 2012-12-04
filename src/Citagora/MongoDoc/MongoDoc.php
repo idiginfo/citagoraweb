@@ -1,8 +1,8 @@
 <?php
 
-namespace Citagora\Document;
+namespace Citagora\MongoDoc;
 
-abstract class AbstractDocument
+abstract class MongoDoc
 {    
     // --------------------------------------------------------------
 
@@ -58,4 +58,4 @@ abstract class AbstractDocument
         return $arr;
     }
 }
-/* EOF: AbstractDocument.php */
+/* EOF: AbstractMongoDoc.php */
