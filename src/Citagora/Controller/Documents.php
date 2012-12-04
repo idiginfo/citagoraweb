@@ -2,12 +2,30 @@
 
 namespace Citagora\Controller;
 use Citagora\Model\DocumentSearchRequest;
+use Citagora\Service\Documents as DocumentsService;
 
 /**
  * Documents Controller
  */
 class Documents extends Controller
 {
+    /**
+     * @var Citagora\Service\Documents
+     */
+    private $documentsSvc;
+
+    // --------------------------------------------------------------
+
+    /**
+     * Constructor
+     *
+     * @param Citagora\Service\Documents $documentsSvc
+     */
+    public function __construct(DocumentsService $documentsSvc)
+    {
+        $this->documentsSvc = $documentsSvc;
+    }
+
     // --------------------------------------------------------------
 
     protected function init()
@@ -15,15 +33,18 @@ class Documents extends Controller
         $this->addRoute('/documents/',            'index');
         $this->addRoute('/documents/{id}/',       'single');
         $this->addRoute('/documents/{id}/{sub}/', 'single');
-        $this->addRoute('/search/',            'search');
-        $this->addRoute('/search/{query}/',    'search');
+        $this->addRoute('/search/',               'search');
+        $this->addRoute('/search/{query}/',       'search');
     }
 
     // --------------------------------------------------------------
 
     public function index()
     {
-        return $this->render('Documents/index.html.twig');
+        //Get some documents
+        $data['docs'] = $this->documentsSvc->getDocuments(5);
+
+        return $this->render('Documents/index.html.twig', $data);
     }
 
     // --------------------------------------------------------------

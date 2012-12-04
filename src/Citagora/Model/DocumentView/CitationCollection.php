@@ -3,13 +3,21 @@
 namespace Citagora\Model\DocumentView;
 use Citagora\Model\AbstractCollectionObject;
 
-class CitationCollection extends AbstractCollectionObject
+class CitationCollection extends ArrayCollection
 {
-    protected function addItem(Citation $citation)
+    // --------------------------------------------------------------
+
+    public function add(Citatation $value)
     {
-        /* nuthin */
+        parent::add($value);
     }
 
+    // --------------------------------------------------------------
+
+    public function set($key, Citatation $value)
+    {
+        parent::set($key, $value);
+    }
 }
 
 /* EOF: CitationCollection.php */

@@ -8,67 +8,77 @@ class Document extends AbstractValueObject
     /**
      * @var string
      */
-    private $title;
+    protected $title;
 
     /**
-     * @var Citagora\DocumentView\ContributorCollection
+     * @var Citagora\Model\DocumentView\ContributorCollection
      */
-    private $contributors;
-
-    /**
-     * @var string
-     */
-    private $journal;
+    protected $contributors;
 
     /**
      * @var string
      */
-    private $publicationType;
+    protected $journal;
+
+    /**
+     * @var string
+     */
+    protected $publicationType;
 
     /**
      * @var int
      */
-    private $year;
+    protected $year;
 
     /**
      * @var string
      */
-    private $pagination;
+    protected $pagination;
 
     /**
      * @var string
      */
-    private $doi;
+    protected $doi;
 
     /**
      * @var string
      */
-    private $pmid;
+    protected $isbn;
 
     /**
      * @var string
      */
-    private $url;
+    protected $pmid;
 
     /**
      * @var string
      */
-    private $abstract;
+    protected $url;
 
     /**
-     * @var Citagora\DocumentView\Ratings
+     * @var string
      */
-    private $ratings;
+    protected $abstract;
 
     /**
-     * @var Citagora\DocumentView\CitationCollection
+     * @var Citagora\Model\DocumentView\Ratings
      */
-    private $citations;
+    protected $ratings;
 
     /**
-     * @var Citagora\DocumentView\SocialMetrics
+     * @var Citagora\Model\DocumentView\CitationCollection
      */
-    private $socialMetrics;
+    protected $citations;
+
+    /**
+     * @var Citagora\Model\DocumentView\SocialMetrics
+     */
+    protected $socialMetrics;
+
+    /**
+     * @var Citagora\Model\DocumentView\Meta
+     */
+    protected $meta;
 
     // --------------------------------------------------------------
 

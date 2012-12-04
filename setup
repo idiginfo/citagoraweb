@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+
+die("\nFail: Not implemented yet.\n");
+
+//Check prerequisites
+
+//Check configuration
+
+//If composer.phar not found, download it to temporary location
+
+//Passthru composer.phar install
+
+//Print out any final instructions
+
+/* EOF: setup.php */

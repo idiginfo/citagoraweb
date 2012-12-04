@@ -2,48 +2,86 @@
 
 namespace Citagora\Model;
 use Doctrine\Common\Collections\ArrayCollection;
+use ArrayAccess, IteratorAggregate, Countable;
 
-abstract class AbstractCollectionObject extends ArrayCollection
+class AbstractCollectionObject implements ArrayAccess, IteratorAggregate
 {
     /**
-     * Add Item Method used for object type constraint
-     *
-     * Meant to be overriden by accepting a single parameter,
-     * which it doesn't have to do anything with
-     *
-     * @param object $item
+     * @var Doctrine\Common\Collections\ArrayCollection
      */
-    protected abstract function addItem();
-
-    // --------------------------------------------------------------
+    private $collection;
 
     /**
-     * Adds/sets an element in the collection at the index / with the specified key.
-     *
-     * When the collection is a Map this is like put(key,value)/add(key,value).
-     * When the collection is a List this is like add(position,value).
-     *
-     * @param mixed $key
-     * @param mixed $value
+     * Override default ArrayCollection behavior by enabling typehinting
      */
-    public function set($key, $value)
+    public function __construct(array $elements = array())
     {
-        $this->addItem($value);
-        parent::set($key, $value);
+        $this->collection = new ArrayCollection();
+
+        foreach($elements as $k => $v) {
+            $this->set($k, $v);
+        }
     }
 
     // --------------------------------------------------------------
 
-    /**
-     * Adds an element to the collection.
-     *
-     * @param mixed $value
-     * @return boolean Always TRUE.
-     */
-    public function add($value)
+    public function add($element)
     {
-        $this->addItem($value);
-        parent::add($value);
+        $this->collection->add($element);
+    }
+
+    // --------------------------------------------------------------
+
+    public function set($key, $value)
+    {
+        $this->collection->set($key, $value);
+    }
+ 
+    // --------------------------------------------------------------
+
+    public function count()
+    {
+        return $this->collection->count();
+    }
+
+    public function getIterator()
+    {
+        return $this->collection->getIterator();
+    }
+
+    public function offsetExists($offset)
+    {
+        return $this->collection->offsetExists($offset);
+    }
+
+    public function offsetGet($offset)
+    {
+        return $this->collection->offsetGet($offset);
+    }
+
+    public function offsetSet($offset, $value)
+    {
+        return $this->collection->offsetSet($offset, $value);
+    }
+
+    public function offsetUnset($offset)
+    {
+        return $this->collection->offsetUnset($offset);
+    }
+ 
+    // --------------------------------------------------------------
+
+    public function __call($method, $arguments)
+    {
+        if (is_callable($this, $method)) {
+            return call_user_func_array(array($this, $method), $arguments);
+        }
+        elseif (is_callable($this->collection, $method)) {
+            return call_user_func_array(array($this->collection, $method), $arguments);   
+        }
+        else {
+            throw new \RuntimeException("Undefined method '$method'");
+        }
     }
 }
 

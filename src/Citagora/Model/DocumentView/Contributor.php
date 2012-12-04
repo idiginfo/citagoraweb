@@ -8,17 +8,17 @@ class Contributor extends AbstractValueObject
     /**
      * @var string
      */
-    private $givenname;
+    protected $givenname;
 
     /**
      * @var string
      */
-    private $surname;
+    protected $surname;
 
     /**
      * @var string
      */
-    private $type;
+    protected $type;
 
 }
 

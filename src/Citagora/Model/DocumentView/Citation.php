@@ -8,17 +8,17 @@ class Citation extends AbstractValueObject
     /**
      * @var string
      */
-    private $title;
+    protected $title;
 
     /**
      * @var ContributorCollection
      */
-    private $contributors;
+    protected $contributors;
 
     /**
      * @var string
      */
-    private $url;
+    protected $url;
 }
 
 /* EOF: Citation.php */

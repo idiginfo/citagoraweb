@@ -10,7 +10,7 @@ class Front extends Controller
     {
         $this->addRoute('/', 'index');
     }
-
+    
     // --------------------------------------------------------------
 
     public function index()

@@ -9,22 +9,27 @@ class Ratings extends AbstractValueObject
     /**
      * @param float  Overall rating summary
      */
-    private $overall;
+    protected $overall;
 
     /**
      * @var float  Readability summary
      */
-    private $readability;
+    protected $readability;
 
     /**
      * @var float  Accuracy summary
      */
-    private $accuracy;
+    protected $accuracy;
 
     /**
      * @var float  Originality summary
      */
-    private $orginiality;
+    protected $orginiality;
+
+    /**
+     * @var int  Total number of ratings given
+     */
+    protected $totalCount;
 
     // --------------------------------------------------------------
 

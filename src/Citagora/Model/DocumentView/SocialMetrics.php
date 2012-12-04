@@ -4,27 +4,32 @@ namespace Citagora\Model\DocumentView;
 use Citagora\Model\AbstractValueObject;
 use InvalidArgumentException;
 
-class SocialMetrics
+class SocialMetrics extends AbstractValueObject
 {
     /**
-     * @var float
+     * @var int
      */
-    private $numTweets;
+    protected $numTweets;
 
     /**
-     * @var float
+     * @var int
      */
-    private $numMendeley;
+    protected $numMendeley;
  
     /**
-     * @var float
+     * @var int
      */
-    private $numCiteulike;
+    protected $numCiteulike;
 
     /**
-     * @var float
+     * @var int
      */
-    private $numConnotea;
+    protected $numConnotea;
+
+    /**
+     * @var int
+     */
+    protected $numDisqus;
 }
 
 /* EOF: SocialMetrics.php */

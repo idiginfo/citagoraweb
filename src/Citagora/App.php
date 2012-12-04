@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\Request;
 use RuntimeException;
 use Configula\Config;
 
+/**
+ * Citagora Main Application and DiC Container
+ */
 class App extends SilexApplication
 {
     const DEVELOPMENT = 1;
@@ -34,12 +37,16 @@ class App extends SilexApplication
 
     public function __construct($mode = self::PRODUCTION)
     {
+        //
+        // Startup
+        //
+
         //Construct the parent
         parent::__construct();
 
         //Set Basepath and appath
-        $this->basepath = realpath(__DIR__ . '/../../');
-        $this->apppath  = realpath(__DIR__);
+        $this['basepath'] = realpath(__DIR__ . '/../../');
+        $this['srcpath']  = realpath(__DIR__);
 
         //Mode
         if ($mode == self::DEVELOPMENT) {
@@ -49,14 +56,20 @@ class App extends SilexApplication
         //Startup Check
         $this->startupCheck();
 
-        //$this['config']
-        $this['config'] = new Config($this->basepath . '/config');
+        //Load common libraries
+        $this->loadCommonLibraries();       
+    }
 
-        //$this['monolog']
-        $this->register(new Provider\Monolog(), array(
-            'monolog.file'   => $this['config']->log_file,
-            'monolog.emails' => (array) $this['config']->admin_emails
-        ));
+    // --------------------------------------------------------------
+
+    /**
+     * Web Run Method
+     */
+    public function run()
+    {
+        //
+        // Load web libraries
+        //
 
         //$this['session']
         $this->register(
@@ -68,12 +81,49 @@ class App extends SilexApplication
             new UrlGeneratorServiceProvider()
         );
 
+        //Form Provider
+        $this->register(new FormServiceProvider());
+
         //Notices Provider
         //Copy from HAWK if we want to
 
         //$this['twig']
         $this->register(new TwigServiceProvider(), array(
-            'twig.path' => $this->apppath . '/Views'
+            'twig.path' => $this['srcpath'] . '/Views'
+        ));
+
+        //Before Hook
+        $this->before(array($this, 'beforeHook'));
+
+        //Mount the controllers
+        $this->mount('', new Controller\Front());
+        $this->mount('', new Controller\Documents($this['dummydocs']));
+        $this->mount('', new Controller\Users()); 
+
+        parent::run();
+    }
+
+    // --------------------------------------------------------------
+
+    /**
+     * Load common libraries
+     */
+    private function loadCommonLibraries()
+    {
+        //
+        // Load common libraries
+        //
+
+        //Shortcut for lexical functions
+        $app =& $this;
+
+        //$this['config'] (1st)
+        $this['config'] = new Config($this['basepath'] . '/config');
+
+        //$this['monolog']
+        $this->register(new Provider\Monolog(), array(
+            'monolog.file'   => $this['config']->log_file,
+            'monolog.emails' => (array) $this['config']->admin_emails
         ));
 
         //Translation Service Provider (required by forms provider)
@@ -83,26 +133,18 @@ class App extends SilexApplication
 
         //$this['mongo']
         $this->register(new Provider\DoctrineMongo(), array(
-            'mongo.documents_path' => $this->apppath . '/Entities',
+            'mongo.documents_path' => $this['srcpath'] . '/Entities',
             'mongo.params'         => $this['config']->mongodb
         ));
 
-        //Validation Provider
+        //$this['dummydocs']
+        $this['dummydocs'] = $this->share(function() use ($app) {
+            return new Service\DummyDocuments($app['basepath'] . '/tests/fixtures/DocumentDummyRecs.json');
+        });
+
+        //$this['validation']
         $this->register(new ValidatorServiceProvider());
-
-        //Form Provider
-        $this->register(new FormServiceProvider());
-
-        //Before Hook
-        $this->before(array($this, 'beforeHook'));
-
-        //Mount the controllers
-        $this->mount('', new Controller\Front());
-        $this->mount('', new Controller\Documents());
-        $this->mount('', new Controller\Users());
     }
-
-    // --------------------------------------------------------------
 
     /**
      * Hook after request is generated but before controller is loaded
@@ -121,7 +163,7 @@ class App extends SilexApplication
             $twig->addGlobal('site_url', $app['url.base']);
 
             return $twig;
-        }));
+        }));      
     }
 
     // --------------------------------------------------------------
@@ -131,7 +173,7 @@ class App extends SilexApplication
      */
     private function startupCheck()
     {
-        if ( ! is_readable($this->basepath . '/config/config.yml')) {
+        if ( ! is_readable($this['basepath'] . '/config/config.yml')) {
             throw new RuntimeException("Missing config/config.yml!  Did you forget to set it up?");
         }
     }
