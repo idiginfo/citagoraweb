@@ -18,4 +18,10 @@ mongodb:
     connstring: mongodb://localhost:27017
     dbname:     citagora
 
+# Enable Dev Mode?
+#
+# Acceptable Values: true, false, local 
+# (if local, only localhost will allow dev mode)
+enable_devmode: local
+
 # EOF: config.yml
