@@ -20,7 +20,23 @@ class Users extends Controller
 
     public function login()
     {
-        return $this->render('Users/login.html.twig');
+        //Build a search form
+        $loginForm = $this->getForm('UserLogin');
+
+        //If the form was submitted, process it...
+        if ($this->formWasSubmitted($loginForm)) {
+
+            $this->log('debug', 'Form was submitted!', $this->getPostParams());
+
+        }
+
+        //Data to pass to the view
+        $data = array(
+            'loginForm' => $loginForm->createView()
+        );
+
+        //Render the view
+        return $this->render('Users/login.html.twig', $data);
     }
 
     // --------------------------------------------------------------

@@ -200,10 +200,10 @@ abstract class Controller implements ControllerProviderInterface
      * Get a form
      *
      * @param string $formName       Either fully-quaflified or simple classname
-     * @param object $object         Object to bind the form to
+     * @param object|array $data     Object or array to bind the form to
      * @param boolean $bindToRequest Auto-bind if necessary
      */
-    protected function getForm($formName, $object, $bindToRequest = true)
+    protected function getForm($formName, $data = array(), $bindToRequest = true)
     {
         //Check name
         if ( ! class_exists($formName)) {
@@ -214,8 +214,8 @@ abstract class Controller implements ControllerProviderInterface
             throw new \InvalidArgumentException("The form named: " . $formName . " does not exist");
         }
 
-        $form = new $formName($object);
-        $form = $this->app['form.factory']->create($form, $object);
+        $form = new $formName($data = array());
+        $form = $this->app['form.factory']->create($form, $data = array());
 
         if ($this->app['request']->isMethod('POST') && $bindToRequest) {
             $form->bind($this->app['request']);

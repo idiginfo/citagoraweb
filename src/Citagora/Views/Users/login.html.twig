@@ -1,1 +1,39 @@
-HELLO there logger-inner
+<div class="one-third column" id="social-login">
+        
+    <img src="{{ asset }}/_img/facebook_signin.png" alt="Signin with Facebook" style="margin-top: 12px;">
+    
+    <img src="{{ asset }}/_img/twitter_signin.png" alt="Signin with Twitter" style="margin-top: 4px;">
+    
+    <img src="{{ asset }}/_img/linkedin_signin.png" alt="Signin with LinkedIn" style="margin-top: 4px;">
+    
+    <img src="{{ asset }}/_img/google_signin.png" alt="Signin with Google" style="margin-top: 4px;">
+    
+    <img src="{{ asset }}/_img/openid_signin.png" alt="Signin with OpenID" style="margin-top: 4px;">        
+</div>
+
+<div class="two-thirds column" id="pane">
+    
+    <h2>Login to Citagora</h2>
+    <p>Login to Citagora to comment and rank documents, and to share and export content you find.</p>
+
+    {# Prints errors if they exist #}
+    {{ form_errors(loginForm) }}
+
+     <form method="post" action="results.php">
+        <p>
+            {{ form_label(loginForm.email) }}
+            {{ form_widget(loginForm.email) }}
+        </p>
+
+        <p>
+            {{ form_label(loginForm.password) }}
+            {{ form_widget(loginForm.password) }}
+        </p>
+        <p>
+            <input type="submit" value="Login">
+        </p>
+    </form>
+    
+    <p><a href="">Create an account</a> | <a href="">Forgot your password?</a></p>
+            
+</div>

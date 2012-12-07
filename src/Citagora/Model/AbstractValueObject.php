@@ -13,6 +13,12 @@ abstract class AbstractValueObject
 
     public function __set($item, $val)
     {
+        //Item must exist
+        $vars = array_keys(get_class_vars(get_called_class()));
+        if ( ! in_array($item, $vars)) {
+            throw new InvalidArgumentException("Non-existent class property: $item");
+        }
+
         $this->$item = $val;
     }
 
