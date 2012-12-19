@@ -1,8 +1,8 @@
 <?php
 
-$mode = 'development';
+$mode = 'maintenance';
 
 //Include index
 include(__DIR__ . '/index.php');
 
-/* EOF: dev.php */
+/* EOF: maint.php */

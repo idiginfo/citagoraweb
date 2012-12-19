@@ -45,7 +45,8 @@
         "caseyamcl/Configula":    "dev-master",
         "caseyamcl/Oauthsupport": "dev-master",
         "illuminate/hashing":     "v1.0.0",
-        "firephp/firephp-core":   "dev-master"
+        "firephp/firephp-core":   "dev-master",
+        "pear/Console_Table":     "dev-trunk"
     },
     "require-dev": {
         "mockery/mockery": "dev-master",

@@ -12,26 +12,31 @@ class Ratings extends Entity
 {
     /**
      * @param float  Overall rating summary
+     * @ODM\Float     
      */
     protected $overall;
 
     /**
      * @var float  Readability summary
+     * @ODM\Float     
      */
     protected $readability;
 
     /**
      * @var float  Accuracy summary
+     * @ODM\Float     
      */
     protected $accuracy;
 
     /**
      * @var float  Originality summary
+     * @ODM\Float     
      */
     protected $orginiality;
 
     /**
      * @var int  Total number of ratings given
+     * @ODM\Int
      */
     protected $totalCount;
 

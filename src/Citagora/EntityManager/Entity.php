@@ -5,11 +5,6 @@ use InvalidArgumentException;
 
 abstract class Entity
 {
-    /**
-     * @var Doctrine\ODM\MongoDB\DocumentManager
-     */
-    private static $dm;
-
     // --------------------------------------------------------------
 
     public function __set($item, $val)
@@ -17,7 +12,7 @@ abstract class Entity
         //Item must exist
         $vars = array_keys($this->toArray(true));
         if ( ! in_array($item, $vars)) {
-            throw new InvalidArgumentException("Invalid class property: $item");
+            throw new InvalidArgumentException("Invalid class property: '$item' in " . get_called_class());
         }
     
         if ($item == 'id') {

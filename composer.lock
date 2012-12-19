@@ -1,5 +1,5 @@
 {
-    "hash": "adbfb29789962f037dd8515eac270f65",
+    "hash": "35fbf4ada663bed8e7f42a4a5ee5b5e9",
     "packages": [
         {
             "name": "caseyamcl/Configula",
@@ -456,6 +456,62 @@
             "keywords": [
                 "log",
                 "logging"
+            ]
+        },
+        {
+            "name": "pear/Console_Table",
+            "version": "dev-trunk",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pear/Console_Table",
+                "reference": "Console_Table-1.1.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/pear/Console_Table/archive/Console_Table-1.1.5.zip",
+                "reference": "Console_Table-1.1.5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=4.0.0"
+            },
+            "suggest": {
+                "pear/Console_Color": ">=0.0.4"
+            },
+            "time": "2012-12-07 14:43:01",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "classmap": [
+                    "Table.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Schneider",
+                    "homepage": "http://pear.php.net/user/yunosh"
+                },
+                {
+                    "name": "Tal Peer",
+                    "homepage": "http://pear.php.net/user/tal"
+                },
+                {
+                    "name": "Xavier Noguer",
+                    "homepage": "http://pear.php.net/user/xnoguer"
+                },
+                {
+                    "name": "Richard Heyes",
+                    "homepage": "http://pear.php.net/user/richard"
+                }
+            ],
+            "description": "Class that makes it easy to build console style tables.",
+            "homepage": "https://github.com/pear/Console_Table",
+            "keywords": [
+                "console"
             ]
         },
         {
@@ -1364,6 +1420,7 @@
         "caseyamcl/configula": 20,
         "caseyamcl/oauthsupport": 20,
         "firephp/firephp-core": 20,
+        "pear/console_table": 20,
         "mockery/mockery": 20,
         "davedevelopment/hamcrest-php": 20
     }

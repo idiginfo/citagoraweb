@@ -3,6 +3,7 @@
 namespace Citagora\Entity\Document;
 use Citagora\EntityManager\Entity;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ODM\Document
@@ -18,6 +19,7 @@ class Document extends Entity
     /**
      * @var string
      * @ODM\String     
+     * @ODM\Index     
      */
     protected $title;
 
@@ -56,7 +58,8 @@ class Document extends Entity
 
     /**
      * @var string
-     * @ODM\String  
+     * @ODM\String
+     * @ODM\UniqueIndex
      */
     protected $doi;
 
@@ -68,13 +71,15 @@ class Document extends Entity
 
     /**
      * @var string
-     * @ODM\String       
+     * @ODM\String
+     * @ODM\UniqueIndex
      */
     protected $pmid;
 
     /**
      * @var string
-     * @ODM\String       
+     * @ODM\String  
+     * @ODM\UniqueIndex
      */
     protected $url;
 
@@ -94,7 +99,7 @@ class Document extends Entity
 
     /**
      * @var ArrayCollection
-     * @ODM\EmbedOne(
+     * @ODM\EmbedMany(
      *    targetDocument="Citation"
      * )
      */
@@ -102,21 +107,74 @@ class Document extends Entity
 
     /**
      * @var SocialMetrics
-     * @ODM\Embed
+     * @ODM\EmbedOne(
+     *    targetDocument="SocialMetrics"
+     * )
      */
     protected $socialMetrics;
 
     /**
      * @var Meta
-     * @ODM\Meta
+     * @ODM\EmbedOne(
+     *    targetDocument="Meta"
+     * )
      */
     protected $meta;
+
+    /**
+     * @var array
+     * @ODM\Collection
+     */
+    protected $keywords;
 
     // --------------------------------------------------------------
 
     public function __construct()
     {
-        $this->contributors = new ArrayCollection();
+        //Initialize Everything
+        $this->keywords      = array();
+        $this->contributors  = new ArrayCollection();
+        $this->citations     = new ArrayCollection();
+        $this->meta          = new Meta();
+        $this->socialMetrics = new SocialMetrics();
+        $this->ratings       = new Ratings();
+    }
+
+    // --------------------------------------------------------------
+
+    public function __set($item, $value)
+    {
+        switch ($item) {
+            case 'contributors':
+            case 'citations':
+                throw new \Exception("Cannot modify contributors or citations properties directly");
+            break;
+        }
+
+        parent::__set($item, $value);
+    }
+
+    // --------------------------------------------------------------
+
+    public function addContributor(Contributor $contributor)
+    {
+        $this->contributors->add($contributor);
+    }
+
+    // --------------------------------------------------------------
+
+    public function addCitation(Citation $citation)
+    {
+        $this->citations->add($citation);
+    }
+
+    // --------------------------------------------------------------
+
+    public function addKeyword($keyword)
+    {
+        if ( ! in_array($keyword, $this->keywords)) {
+            $this->keywords[] = $keyword;
+        }
     }
 
     // --------------------------------------------------------------
