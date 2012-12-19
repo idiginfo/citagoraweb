@@ -43,11 +43,18 @@ class Contributor extends Entity
 
     public function __tostring()
     {
-        $gn = ($this->givenname)
-            ? ', ' . $this->givenname
-            : null;
-
-        return $this->surname . $gn;
+        if ($this->surname && $this->givenname) {
+            return $this->surname . ', ' . $this->givenname;
+        }
+        elseif ($this->fullname) {
+            return $this->fullname;
+        }
+        elseif ($this->surname) {
+            return $this->surname;
+        }
+        else {
+            return '';
+        }
     }
 }
 

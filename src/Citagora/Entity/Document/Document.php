@@ -14,7 +14,7 @@ class Document extends Entity
      * @var int
      * @ODM\Id     
      */
-    protected $identifier;
+    protected $id;
 
     /**
      * @var string

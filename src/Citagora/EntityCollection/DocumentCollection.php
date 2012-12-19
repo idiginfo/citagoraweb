@@ -16,6 +16,17 @@ class DocumentCollection extends EntityCollection
     {
         return 'Document\Document';
     }
+
+    // --------------------------------------------------------------
+
+    public function getLatestDocuments($limit = 10)
+    {
+        $qb = $this->getQueryBuilder();
+        $qb->sort('meta.modified', 'desc');
+        $qb->limit($limit);
+
+        return $qb->getQuery()->execute();
+    }
 }
 
 /* EOF: DocumentCollection.php */

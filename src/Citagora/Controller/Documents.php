@@ -31,10 +31,8 @@ class Documents extends ControllerAbstract
 
     public function index()
     {
-        return $this->render('maint.html.twig', array(), null);
-
         //Get some documents
-        $data['docs'] = $this->documentsSvc->getDocuments(5);
+        $data['docs'] = $this->documentCollection->getLatestDocuments(10);
 
         return $this->render('Documents/index.html.twig', $data);
     }
@@ -43,7 +41,7 @@ class Documents extends ControllerAbstract
 
     public function single($id, $subinfo = null)
     {
-        $data['document'] = $this->documentsSvc->getDocument($id);
+        $data['document'] = $this->documentCollection->find($id);
         return $this->render('Documents/single.html.twig', $data);
     }
 

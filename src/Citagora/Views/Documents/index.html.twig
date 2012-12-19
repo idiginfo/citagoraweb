@@ -41,10 +41,10 @@
             </div>
 
             <div class='record'>
-                <h4><a href='{{ site_url }}/documents/{{ doc.identifier }}'>{{ doc.title }}</a></h4>
+                <h4><a href='{{ site_url }}/documents/{{ doc.id }}'>{{ doc.title }}</a></h4>
                 <p class='authors'>
                     {% for author in doc.contributors | slice(0,2) %} {# TODO: MAKE THIS SMARTER #}
-                        <span class='author'>{{ author.surname }}</span>    
+                        <span class='author'>{{ author.fullname }}</span>    
                     {% endfor %}
                     <span class='publication'>{{ doc.journal }}</span>
                 </p>
@@ -64,8 +64,8 @@
                 </div>
                 <div class="export share">
                 <p>Export</p>
-                <a href=""><img src="{{ asset }}/_img/icon_small_mendeley.png" alt="" border="0"></a>
-                <a href=""><img src="{{ asset }}/_img/icon_small_zotero.png" alt="" border="0"></a>
+                <a href=""><img src="{{ asset_url }}/_img/icon_small_mendeley.png" alt="" border="0"></a>
+                <a href=""><img src="{{ asset_url }}/_img/icon_small_zotero.png" alt="" border="0"></a>
                 </div>
             </div>
 
