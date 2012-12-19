@@ -74,8 +74,10 @@
             </div>            
 
             <div class="container" id="boxes">
-                {{ __content__ | raw }} {# always use the raw filter for content in a template #}
-            </div>
+                <h2>Maintenance</h2>
+                <p>We are sorry about this, but Citagora is current unavaliable due to scheduled maintenance.</p>
+                <p>{{ date() | date('Y M d')}}</p>
+             </div>
         </div>
 
         <div id="footer">
@@ -84,15 +86,5 @@
         </div>
         </div>
 
-        {# Javascript #}
-        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>    
-        <script src="{{ asset_url }}/_js/jquery.tabify.js" type="text/javascript" charset="utf-8"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                if ($('#tabs').length > 0) {
-                    $('#tabs').tabify();
-                }
-            });
-        </script>
     </body>
 </html>

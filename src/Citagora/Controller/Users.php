@@ -2,7 +2,7 @@
 
 namespace Citagora\Controller;
 
-class Users extends Controller
+class Users extends ControllerAbstract
 {
     // --------------------------------------------------------------
 

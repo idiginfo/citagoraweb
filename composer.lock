@@ -1,5 +1,5 @@
 {
-    "hash": "509b01e1e4b06692ca9d2d2bb4a83061",
+    "hash": "adbfb29789962f037dd8515eac270f65",
     "packages": [
         {
             "name": "caseyamcl/Configula",
@@ -57,18 +57,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/caseyamcl/Oauthsupport.git",
-                "reference": "2d382a681c6edc589d4a599be82e7a9d735efc39"
+                "reference": "51dba970bafb050496a9b9e7046e89fde055cf04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/caseyamcl/Oauthsupport/archive/2d382a681c6edc589d4a599be82e7a9d735efc39.zip",
-                "reference": "2d382a681c6edc589d4a599be82e7a9d735efc39",
+                "url": "https://github.com/caseyamcl/Oauthsupport/archive/51dba970bafb050496a9b9e7046e89fde055cf04.zip",
+                "reference": "51dba970bafb050496a9b9e7046e89fde055cf04",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-12-07 02:52:15",
+            "time": "2012-12-10 21:25:00",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -169,32 +169,25 @@
         },
         {
             "name": "doctrine/mongodb",
-            "version": "1.0.0-BETA3",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/mongodb",
-                "reference": "1.0.0-BETA3"
+                "reference": "1.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/doctrine/mongodb/archive/1.0.0-BETA3.zip",
-                "reference": "1.0.0-BETA3",
+                "url": "https://github.com/doctrine/mongodb/archive/1.0.0.zip",
+                "reference": "1.0.0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
-                "ext-mongo": ">=1.3.1,<1.4-dev",
-                "symfony/yaml": ">=2.0,<2.3-dev",
-                "symfony/console": ">=2.0,<2.3-dev",
+                "ext-mongo": ">=1.2.12,<1.4-dev",
                 "doctrine/common": ">=2.1.0,<2.5-dev"
             },
-            "time": "2012-12-05 16:15:17",
+            "time": "2012-12-19 01:44:45",
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
             "installation-source": "dist",
             "autoload": {
                 "psr-0": {
@@ -220,37 +213,48 @@
                     "name": "Kris Wallsmith",
                     "email": "kris.wallsmith@gmail.com",
                     "homepage": "http://kriswallsmith.net/"
+                },
+                {
+                    "name": "Jeremy Mikola",
+                    "email": "jmikola@gmail.com",
+                    "homepage": "http://jmikola.net"
                 }
             ],
             "description": "Doctrine MongoDB Abstraction Layer",
             "homepage": "http://www.doctrine-project.org",
             "keywords": [
+                "database",
                 "persistence",
                 "mongodb"
             ]
         },
         {
             "name": "doctrine/mongodb-odm",
-            "version": "1.0.0-BETA6",
+            "version": "1.0.0-BETA7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/mongodb-odm.git",
-                "reference": "1.0.0-BETA6"
+                "reference": "1.0.0-BETA7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/doctrine/mongodb-odm/zipball/1.0.0-BETA6",
-                "reference": "1.0.0-BETA6",
+                "url": "https://github.com/doctrine/mongodb-odm/archive/1.0.0-BETA7.zip",
+                "reference": "1.0.0-BETA7",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
-                "symfony/yaml": ">=2.0-dev,<2.2-dev",
-                "symfony/console": ">=2.0-dev,<2.2-dev",
+                "symfony/console": ">=2.0-dev,<2.3-dev",
                 "doctrine/common": ">=2.2.0,<2.5-dev",
-                "doctrine/mongodb": ">=1.0.0-beta1,<1.1-dev"
+                "doctrine/mongodb": "1.0.*"
             },
-            "time": "2012-10-12 13:32:39",
+            "require-dev": {
+                "symfony/yaml": ">=2.0-dev,<2.3-dev"
+            },
+            "suggest": {
+                "symfony/yaml": "Enables the YAML metadata mapping driver"
+            },
+            "time": "2012-12-19 02:24:49",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -280,14 +284,22 @@
                 },
                 {
                     "name": "Kris Wallsmith",
-                    "email": "kris@symfony.com"
+                    "email": "kris.wallsmith@gmail.com",
+                    "homepage": "http://kriswallsmith.net/"
+                },
+                {
+                    "name": "Jeremy Mikola",
+                    "email": "jmikola@gmail.com",
+                    "homepage": "http://jmikola.net"
                 }
             ],
             "description": "Doctrine MongoDB Object Document Mapper",
             "homepage": "http://www.doctrine-project.org",
             "keywords": [
+                "database",
                 "persistence",
-                "mongodb"
+                "mongodb",
+                "odm"
             ]
         },
         {
@@ -356,6 +368,40 @@
             ]
         },
         {
+            "name": "illuminate/hashing",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "http://github.com/illuminate/hashing",
+                "reference": "v1.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/illuminate/hashing/zipball/v1.0.0",
+                "reference": "v1.0.0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "time": "2012-08-09 18:10:44",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "description": "A password hashing library."
+        },
+        {
             "name": "monolog/monolog",
             "version": "1.2.1",
             "source": {
@@ -414,22 +460,22 @@
         },
         {
             "name": "pimple/pimple",
-            "version": "1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Pimple.git",
-                "reference": "v1.0.0"
+                "reference": "v1.0.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Pimple/zipball/v1.0.0",
-                "reference": "v1.0.0",
+                "url": "https://github.com/fabpot/Pimple/archive/v1.0.1.zip",
+                "reference": "v1.0.1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-05-08 06:57:24",
+            "time": "2012-11-11 08:32:34",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -465,12 +511,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Silex.git",
-                "reference": "7e5862934aa831ededc9ca188a56816dc46e70b4"
+                "reference": "bd523d5970bb093d1d2c709e91a7f72b70c39108"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Silex/archive/7e5862934aa831ededc9ca188a56816dc46e70b4.zip",
-                "reference": "7e5862934aa831ededc9ca188a56816dc46e70b4",
+                "url": "https://github.com/fabpot/Silex/archive/bd523d5970bb093d1d2c709e91a7f72b70c39108.zip",
+                "reference": "bd523d5970bb093d1d2c709e91a7f72b70c39108",
                 "shasum": ""
             },
             "require": {
@@ -505,7 +551,7 @@
                 "symfony/css-selector": ">=2.1,<2.3-dev",
                 "symfony/dom-crawler": ">=2.1,<2.3-dev"
             },
-            "time": "2012-12-02 18:04:58",
+            "time": "2012-12-18 11:32:45",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1317,8 +1363,8 @@
         "doctrine/mongodb-odm": 10,
         "caseyamcl/configula": 20,
         "caseyamcl/oauthsupport": 20,
+        "firephp/firephp-core": 20,
         "mockery/mockery": 20,
-        "davedevelopment/hamcrest-php": 20,
-        "firephp/firephp-core": 20
+        "davedevelopment/hamcrest-php": 20
     }
 }

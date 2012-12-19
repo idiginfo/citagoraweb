@@ -1,10 +1,14 @@
 <?php
 
-namespace Citagora\Model\DocumentView;
-use Citagora\Model\AbstractValueObject;
+namespace Citagora\Entity\Document;
+use Citagora\EntityManager\Entity;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use InvalidArgumentException;
 
-class Ratings extends AbstractValueObject
+/**
+ * @ODM\EmbeddedDocument
+ */
+class Ratings extends Entity
 {
     /**
      * @param float  Overall rating summary

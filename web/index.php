@@ -9,7 +9,7 @@ $runMode = (isset($devMode) && $devMode == true)
     : Citagora\App::PRODUCTION;
 
 //Run it
-$app = new Citagora\App($runMode);
+$app = new Citagora\WebApp($runMode);
 $app->run();
 
 /* EOF: index.php */

@@ -10,7 +10,7 @@ use Symfony\Component\Form\Form;
 /**
  * Abstract Controller for simplifying code in other controllers
  */
-abstract class Controller implements ControllerProviderInterface
+abstract class ControllerAbstract implements ControllerProviderInterface
 {
     const ALL = 1;
 
@@ -108,6 +108,37 @@ abstract class Controller implements ControllerProviderInterface
             ));
         }
         
+    }
+
+    // --------------------------------------------------------------
+
+    /**
+     * Shortcut for debugging
+     *
+     * @param mixed $item
+     * @param string $msg  Optional, if $item is not a string
+     */
+    protected function debug($item, $msg = null)
+    {
+        if (is_string($item)) {
+            return $this->log('debug', $item);
+        }
+        else {
+            return $this->log('debug', $msg ?: 'Debug', (array) $item);
+        }
+    }
+    
+    // --------------------------------------------------------------
+
+    /**
+     * Get an entity collection
+     *
+     * @param string 
+     * @return DL2SL\EntityManager\Collection
+     */
+    protected function getEntityCollection($entityName)
+    {
+        return $this->app['em']->getCollection($entityName);  
     }
 
     // --------------------------------------------------------------
@@ -235,6 +266,31 @@ abstract class Controller implements ControllerProviderInterface
     {
         return $form->isBound();
     }       
+
+    // --------------------------------------------------------------
+
+    /**
+     * Get the path requested
+     *
+     * @return string
+     */
+    protected function getPath()
+    {
+        return $this->app['request']->getPathInfo();
+    }
+
+    // --------------------------------------------------------------
+
+    /**
+     * Access session account manager
+     *
+     * @return Citagora\Tool\Account
+     */
+    protected function account()
+    {
+        return $this->app['account'];
+    }
+
 }
 
 /* EOF: Controller.php */

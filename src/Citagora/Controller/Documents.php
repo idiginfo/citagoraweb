@@ -7,24 +7,12 @@ use Citagora\Service\Documents as DocumentsService;
 /**
  * Documents Controller
  */
-class Documents extends Controller
+class Documents extends ControllerAbstract
 {
     /**
-     * @var Citagora\Service\Documents
+     * @var Citagora\EntityCollection\DocumentCollection
      */
-    private $documentsSvc;
-
-    // --------------------------------------------------------------
-
-    /**
-     * Constructor
-     *
-     * @param Citagora\Service\Documents $documentsSvc
-     */
-    public function __construct(DocumentsService $documentsSvc)
-    {
-        $this->documentsSvc = $documentsSvc;
-    }
+    private $documentCollection;
 
     // --------------------------------------------------------------
 
@@ -35,12 +23,16 @@ class Documents extends Controller
         $this->addRoute('/documents/{id}/{sub}/', 'single');
         $this->addRoute('/search/',               'search');
         $this->addRoute('/search/{query}/',       'search');
+
+        $this->documentCollection = $this->getEntityCollection('Document\Document');
     }
 
     // --------------------------------------------------------------
 
     public function index()
     {
+        return $this->render('maint.html.twig', array(), null);
+
         //Get some documents
         $data['docs'] = $this->documentsSvc->getDocuments(5);
 

@@ -1,89 +1,123 @@
 <?php
 
-namespace Citagora\Model\DocumentView;
-use Citagora\Model\AbstractValueObject;
+namespace Citagora\Entity\Document;
+use Citagora\EntityManager\Entity;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
-class Document extends AbstractValueObject
+/**
+ * @ODM\Document
+ */
+class Document extends Entity
 {
     /**
      * @var int
+     * @ODM\Id     
      */
     protected $identifier;
 
     /**
      * @var string
+     * @ODM\String     
      */
     protected $title;
 
     /**
-     * @var Citagora\Model\DocumentView\ContributorCollection
+     * @var ArrayCollection
+     * @ODM\ReferenceMany(
+     *     targetDocument="Contributor",
+     *     cascade={"persist","refresh","merge"}
+     * )
      */
     protected $contributors;
 
     /**
      * @var string
+     * @ODM\String       
      */
     protected $journal;
 
     /**
      * @var string
+     * @ODM\String       
      */
     protected $publicationType;
 
     /**
      * @var int
+     * @ODM\Int     
      */
     protected $year;
 
     /**
      * @var string
+     * @ODM\String       
      */
     protected $pagination;
 
     /**
      * @var string
+     * @ODM\String  
      */
     protected $doi;
 
     /**
      * @var string
+     * @ODM\String       
      */
     protected $isbn;
 
     /**
      * @var string
+     * @ODM\String       
      */
     protected $pmid;
 
     /**
      * @var string
+     * @ODM\String       
      */
     protected $url;
 
     /**
      * @var string
+     * @ODM\String            
      */
     protected $abstract;
 
     /**
-     * @var Citagora\Model\DocumentView\Ratings
+     * @var Ratings
+     * @ODM\EmbedOne(
+     *    targetDocument="Ratings"
+     * )
      */
     protected $ratings;
 
     /**
-     * @var Citagora\Model\DocumentView\CitationCollection
+     * @var ArrayCollection
+     * @ODM\EmbedOne(
+     *    targetDocument="Citation"
+     * )
      */
     protected $citations;
 
     /**
-     * @var Citagora\Model\DocumentView\SocialMetrics
+     * @var SocialMetrics
+     * @ODM\Embed
      */
     protected $socialMetrics;
 
     /**
-     * @var Citagora\Model\DocumentView\Meta
+     * @var Meta
+     * @ODM\Meta
      */
     protected $meta;
+
+    // --------------------------------------------------------------
+
+    public function __construct()
+    {
+        $this->contributors = new ArrayCollection();
+    }
 
     // --------------------------------------------------------------
 

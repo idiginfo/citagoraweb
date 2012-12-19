@@ -1,10 +1,13 @@
 <?php
 
-namespace Citagora\Model\DocumentView;
-use Citagora\Model\AbstractValueObject;
-use InvalidArgumentException;
+namespace Citagora\Entity\Document;
+use Citagora\EntityManager\Entity;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
-class SocialMetrics extends AbstractValueObject
+/**
+ * @ODM\EmbeddedDocument
+ */
+class SocialMetrics extends Entity
 {
     /**
      * @var int

@@ -2,7 +2,7 @@
 
 namespace Citagora\Controller;
 
-class Front extends Controller
+class Front extends ControllerAbstract
 {
     // --------------------------------------------------------------
 

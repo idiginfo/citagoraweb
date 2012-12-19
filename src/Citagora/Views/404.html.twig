@@ -74,8 +74,9 @@
             </div>            
 
             <div class="container" id="boxes">
-                {{ __content__ | raw }} {# always use the raw filter for content in a template #}
-            </div>
+                <h2>404 - Page Not Found</h2>
+                <p>The page or resource you are looking for could not be found.</p>
+             </div>
         </div>
 
         <div id="footer">
@@ -84,15 +85,5 @@
         </div>
         </div>
 
-        {# Javascript #}
-        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>    
-        <script src="{{ asset_url }}/_js/jquery.tabify.js" type="text/javascript" charset="utf-8"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                if ($('#tabs').length > 0) {
-                    $('#tabs').tabify();
-                }
-            });
-        </script>
     </body>
 </html>

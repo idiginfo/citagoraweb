@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * Console Interface for Citagora
+ *
+ * @package Citagora
+ * @author Casey McLaughlin
+ */
+
+//Autoloader
+require __DIR__ . '/../vendor/autoload.php';
+
+//Run it! Let's Go!
+\Citagora\CliApp::main();
+
+/* EOF: import */

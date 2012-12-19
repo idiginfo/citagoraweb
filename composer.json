@@ -39,10 +39,13 @@
         "symfony/form":           "2.1.*",
         "symfony/validator":      "2.1.*",
         "symfony/config":         "2.1.*",
-        "doctrine/mongodb-odm":   ">=1.0.0-BETA6",
+        "symfony/yaml":           ">=2.1.0",
+        "doctrine/mongodb-odm":   "1.0.0-BETA7",
         "monolog/monolog":        ">=1.0.0",
         "caseyamcl/Configula":    "dev-master",
-        "caseyamcl/Oauthsupport": "dev-master"
+        "caseyamcl/Oauthsupport": "dev-master",
+        "illuminate/hashing":     "v1.0.0",
+        "firephp/firephp-core":   "dev-master"
     },
     "require-dev": {
         "mockery/mockery": "dev-master",
