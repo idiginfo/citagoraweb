@@ -1,12 +1,13 @@
 <?php
 
 namespace Citagora\Controller;
+use Silex\Application;
 
 class Front extends ControllerAbstract
 {
     // --------------------------------------------------------------
 
-    protected function init()
+    protected function init(Application $app)
     {
         $this->addRoute('/', 'index');
     }

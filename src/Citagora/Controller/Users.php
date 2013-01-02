@@ -1,19 +1,30 @@
 <?php
 
 namespace Citagora\Controller;
+use Silex\Application;
 
+/**
+ * Users Controller
+ */
 class Users extends ControllerAbstract
 {
+    /**
+     * @var Citagora\EntityManager\Collection
+     */
+    private $users;
+
     // --------------------------------------------------------------
 
-    protected function init()
+    protected function init(Application $app)
     {
         $this->addRoute('/login',           'login');
         $this->addRoute('/login/{service}', 'svclogin');
         $this->addRoute('/logout',          'logout');
         $this->addRoute('/account',         'account');
         $this->addRoute('/forgot',          'forgot');
-        $this->addRoute('/register',        'register');        
+        $this->addRoute('/register',        'register');    
+
+        $this->users = $this->getEntityCollection('User');
     }
 
     // --------------------------------------------------------------
@@ -26,7 +37,19 @@ class Users extends ControllerAbstract
         //If the form was submitted, process it...
         if ($this->formWasSubmitted($loginForm)) {
 
-            $this->log('debug', 'Form was submitted!', $this->getPostParams());
+            $creds = $loginForm->getData();
+
+            //If credentials match, then login
+            if ($this->users->checkCredentials($creds['email'], $creds['password'])) {
+
+                $this->debug("LOGGED IN!");
+
+            }
+            else { //if not, then display notice
+
+                $this->setNotice('');
+
+            }
 
         }
 

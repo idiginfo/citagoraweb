@@ -3,6 +3,7 @@
 namespace Citagora\Controller;
 use Citagora\Model\DocumentSearchRequest;
 use Citagora\Service\Documents as DocumentsService;
+use Silex\Application;
 
 /**
  * Documents Controller
@@ -16,7 +17,7 @@ class Documents extends ControllerAbstract
 
     // --------------------------------------------------------------
 
-    protected function init()
+    protected function init(Application $app)
     {
         $this->addRoute('/documents/',            'index');
         $this->addRoute('/documents/{id}/',       'single');

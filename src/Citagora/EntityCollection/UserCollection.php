@@ -68,19 +68,6 @@ class UserCollection extends EntityCollection
     // --------------------------------------------------------------
 
     /**
-     * Check if a user exists (uses email as unique identifier checker)
-     *
-     * @param string $email
-     * @return User|boolean
-     */
-    public function checkUserExists(User $user)
-    {
-        return $this->getUserByEmail($user->email);
-    }
-
-    // --------------------------------------------------------------
-
-    /**
      * Check user via email/password
      *
      * @param string $email

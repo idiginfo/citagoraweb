@@ -1,14 +1,24 @@
 <div class="one-third column" id="social-login">
-        
-    <img src="{{ asset }}/_img/facebook_signin.png" alt="Signin with Facebook" style="margin-top: 12px;">
     
-    <img src="{{ asset }}/_img/twitter_signin.png" alt="Signin with Twitter" style="margin-top: 4px;">
+    <a href='{{ site_url }}/login/facebook' title='Signin with Facebook'>    
+        <img src="{{ asset_url }}/_img/facebook_signin.png" alt="Signin with Facebook" style="margin-top: 12px;">
+    </a>
     
-    <img src="{{ asset }}/_img/linkedin_signin.png" alt="Signin with LinkedIn" style="margin-top: 4px;">
+    <a href='{{ site_url }}/login/twitter' title='Signin with Twitter'>
+        <img src="{{ asset_url }}/_img/twitter_signin.png" alt="Signin with Twitter" style="margin-top: 4px;">
+    </a>
     
-    <img src="{{ asset }}/_img/google_signin.png" alt="Signin with Google" style="margin-top: 4px;">
+    <a href='{{ site_url }}/login/linkedin' title='Signin with LinkedIn'>    
+        <img src="{{ asset_url }}/_img/linkedin_signin.png" alt="Signin with LinkedIn" style="margin-top: 4px;">
+    </a>
+
+    <a href='{{ site_url }}/login/google' title='Signin with Google'>
+        <img src="{{ asset_url }}/_img/google_signin.png" alt="Signin with Google" style="margin-top: 4px;">
+    </a>
     
-    <img src="{{ asset }}/_img/openid_signin.png" alt="Signin with OpenID" style="margin-top: 4px;">        
+    <a href='{{ site_url }}/login/openid' title='Signin with OpenID'>
+        <img src="{{ asset_url }}/_img/openid_signin.png" alt="Signin with OpenID" style="margin-top: 4px;">        
+    </a>
 </div>
 
 <div class="two-thirds column" id="pane">
@@ -19,7 +29,7 @@
     {# Prints errors if they exist #}
     {{ form_errors(loginForm) }}
 
-     <form method="post" action="results.php">
+    <form id='login' action="{{ site_url }}/login" method="post" {{ form_enctype(loginForm) }}>
         <p>
             {{ form_label(loginForm.email) }}
             {{ form_widget(loginForm.email) }}
@@ -34,6 +44,9 @@
         </p>
     </form>
     
-    <p><a href="">Create an account</a> | <a href="">Forgot your password?</a></p>
+    <p>
+        <a href="{{ site_url }}/register">Create an account</a>
+        | <a href="{{ site_url }}/forgot">Forgot your password?</a>
+    </p>
             
 </div>

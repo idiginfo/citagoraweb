@@ -28,12 +28,12 @@ class WebApp extends App
             //Load the controllers
             $this['controller_front']     = new Controller\Front();
             $this['controller_documents'] = new Controller\Documents();
-            //$this['controller_users']     = new Controller\Users();
+            $this['controller_users']     = new Controller\Users();
             
             //Mount the controllers
             $this->mount('', $this['controller_front']);             
             $this->mount('', $this['controller_documents']);   
-            //$this->mount('', $this['controller_users']);   
+            $this->mount('', $this['controller_users']);   
         }
 
         //Go
@@ -59,17 +59,14 @@ class WebApp extends App
         ));
 
         //$this['url_generator']
-        $this->register(
-            new UrlGeneratorServiceProvider()
-        );
+        $this->register(new UrlGeneratorServiceProvider());
 
         //Form Provider
         $this->register(new FormServiceProvider());
 
         //$this['twig']
         $this->register(new TwigServiceProvider(), array(
-            'twig.path'           => $this['srcpath'] . '/Views',
-            'twig.form.templates' => array('form_div_layout.html.twig', 'forms.html.twig')
+            'twig.path'           => $this['srcpath'] . '/Views'
         ));
 
         //Load account manager (relies on session)

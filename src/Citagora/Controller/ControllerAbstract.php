@@ -38,7 +38,7 @@ abstract class ControllerAbstract implements ControllerProviderInterface
         $this->routes = $app['controllers_factory'];
 
         //Run the child method
-        $this->init();
+        $this->init($app);
 
         return $this->routes;
     }
@@ -51,7 +51,7 @@ abstract class ControllerAbstract implements ControllerProviderInterface
      * Should load $this->addRoute() for whatever
      * routes to register with the controller and do any other runtime setup
      */
-    abstract protected function init();
+    abstract protected function init(Application $app);
 
     // --------------------------------------------------------------
 
@@ -290,6 +290,20 @@ abstract class ControllerAbstract implements ControllerProviderInterface
     {
         return $this->app['account'];
     }
+
+    // --------------------------------------------------------------
+
+    /**
+     * Set a notice
+     *
+     * @param string $notice
+     * @param string $level
+     * @param string $scope
+     */
+    protected function setNotice($message, $type = 'info', $scope = 'global')
+    {
+        $this->app['notices']->add($message, $type, $scope);
+    }      
 
 }
 
