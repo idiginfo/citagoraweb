@@ -1,5 +1,5 @@
 {
-    "hash": "db721c926923a91302070d5ceb7d4f17",
+    "hash": "b04dc4826bce71d0e456b837cf60b4c7",
     "packages": [
         {
             "name": "caseyamcl/Configula",
@@ -137,6 +137,61 @@
                 "Harvester",
                 "OAI-PMH"
             ]
+        },
+        {
+            "name": "caseyamcl/tasktracker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "http://github.com/caseyamcl/tasktracker",
+                "reference": "2cf9230d2b9ab095e6c4d3466685476c100fdd08"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/caseyamcl/tasktracker/zipball/2cf9230d2b9ab095e6c4d3466685476c100fdd08",
+                "reference": "2cf9230d2b9ab095e6c4d3466685476c100fdd08",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.1"
+            },
+            "require-dev": {
+                "symfony/console": ">=2.1.0",
+                "monolog/monolog": ">=1.3.x-dev"
+            },
+            "time": "2012-10-26 14:28:15",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "TaskTracker": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Casey McLaughlin",
+                    "email": "caseyamcl@gmail.com",
+                    "homepage": "http://caseymclaughlin.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A PHP library for keeping track of progress and stats for long running tasks",
+            "homepage": "http://github.com/caseyamcl/tasktracker",
+            "keywords": [
+                "task",
+                "asynchronous",
+                "negotiation",
+                "progress",
+                "report",
+                "cli"
+            ],
+            "support": {
+                "source": "https://github.com/caseyamcl/tasktracker/tree/master",
+                "issues": "https://github.com/caseyamcl/tasktracker/issues"
+            }
         },
         {
             "name": "doctrine/common",
@@ -1426,6 +1481,7 @@
         "caseyamcl/phpoaipmh": 20,
         "firephp/firephp-core": 20,
         "pear/console_table": 20,
+        "caseyamcl/tasktracker": 20,
         "mockery/mockery": 20,
         "davedevelopment/hamcrest-php": 20
     }

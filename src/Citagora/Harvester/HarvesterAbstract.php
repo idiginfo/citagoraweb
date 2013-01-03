@@ -4,6 +4,8 @@ namespace Citagora\Harvester;
 use Citagora\Entity\Document\Document;
 use Citagora\EntityCollection\DocumentCollection;
 use Citagora\EntityManager\Manager as EntityManager;
+
+use TaskTracker\Tracker;
 use RuntimeException;
 
 /**
@@ -20,6 +22,15 @@ abstract class HarvesterAbstract
      * @var Citagora\EntityCollection\DocumentCollection
      */
     private $collection;
+
+
+    // --------------------------------------------------------------
+
+    public function __construct(EntityManager $em)
+    {
+        $this->em = $em;
+        $this->collection = $em->getCollection('Document\Document');
+    }
 
     // --------------------------------------------------------------
 
@@ -71,37 +82,30 @@ abstract class HarvesterAbstract
     // --------------------------------------------------------------
 
     /**
-     * Set the Document Collection
-     *
-     * @param Citagora\EntityCollection\DocumentCollection
-     */
-    public function setEntityManager(EntityManager $em)
-    {
-        $this->em = $em;
-        $this->collection = $em->getCollection('Document\Document');
-    }
-
-    // --------------------------------------------------------------
-
-    /**
      * Harvest
      *
      * @param  DocumentCollection  The collection in which to save records
-     * @param  array $options
-     * @param  int   $limit    0 or null for no limit
-     * @return int   Number of documents harvested
+     * @param  array    $options
+     * @param  int      $limit    0 or null for no limit
+     * @param  Tracker  $tracker  Task Tracker
+     * @return int      Number of documents harvested
      */
-    public function harvest(array $options, $limit = null)
+    public function harvest(array $options, $limit = null, Tracker $tracker = null)
     {
+        //Ensure collection is configured
         if ( ! $this->collection) {
             throw new RuntimeException("Cannot harvest without having set entity manager.  Use setEntityManager() method");
         }
 
-        //Keep track
+        //Total number
         $count = 0;
 
         //Connect to the source
         $this->connectToSource($options);
+
+        if ($tracker) {
+            $tracker->start();
+        }
 
         //While we have documents and we are beneath our limit, keep harvesting
         while($sourceDoc = $this->retrieveNextDocument($options)) {
@@ -118,10 +122,19 @@ abstract class HarvesterAbstract
             $citagoraDoc = $this->mapDocument($sourceDoc, $citagoraDoc);
 
             //Save it
-            $this->saveDocument($citagoraDoc);
+            $result = $this->saveDocument($citagoraDoc);
 
             //Increment counter
             $count++;
+
+            //Tick
+            if ($tracker) {
+                $tracker->tick("Importing from " . $this->getName(), $result);
+            }
+        }
+
+        if ($tracker) {
+            $tracker->finish();
         }
 
         return $count;

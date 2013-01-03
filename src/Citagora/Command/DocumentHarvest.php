@@ -12,6 +12,9 @@ use Citagora\EntityCollection\DocumentCollection;
 use Citagora\Harvester\HarvesterAbstract as Harvester;
 use RuntimeException;
 
+use TaskTracker\OutputHandler\SymfonyConsole as TrackerConsoleHandler;
+use TaskTracker\Tracker;
+
 /**
  * Document Harvest Command
  */
@@ -26,6 +29,11 @@ class DocumentHarvest extends CommandAbstract
      * @var array  Array of Harvester objects
      */
     private $harvesters;
+
+    /**
+     * @var TaskTracker\Tracker
+     */
+    private $tracker;
 
     // --------------------------------------------------------------
 
@@ -92,14 +100,20 @@ class DocumentHarvest extends CommandAbstract
                 $harvester->getDescription()
             ));
 
-            $this->importFromSource($harvester, $options, $limit);
+            $this->importFromSource($harvester, $output, $options, $limit);
         }
     }
 
     // --------------------------------------------------------------
 
-    private function importFromSource(Harvester $harvester, $options, $limit = null)
+    private function importFromSource(Harvester $harvester, $output, $options, $limit = null)
     {
+        //Set Tracker
+        $tracker = new Tracker(
+            new TrackerConsoleHandler($output), 
+            $limit ?: Tracker::UNKNOWN
+        );
+
         //Build the options to send
         $harvestOptions = array();
         foreach($harvester->getOptions() as $opt => $optInfo) {
@@ -109,7 +123,7 @@ class DocumentHarvest extends CommandAbstract
         }
 
         //Do it
-        $harvester->harvest($harvestOptions, $limit);
+        $harvester->harvest($harvestOptions, $limit, $tracker);
     }
 
     // --------------------------------------------------------------

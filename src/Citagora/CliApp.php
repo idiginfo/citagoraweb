@@ -52,9 +52,6 @@ class CliApp extends App
             $this['harvesters'] = array();
         }
 
-        //Prepare
-        $harvester->setEntityManager($this['em']);
-
         //Add it
         $this['harvesters'] = array_merge(
             $this['harvesters'],
@@ -69,8 +66,9 @@ class CliApp extends App
         $app =& $this;
 
         //Harvesters
-        $this->addHarvester(new Harvester\DummyRecords());
+        $this->addHarvester(new Harvester\DummyRecords($this['em']));
         $this->addHarvester(new Harvester\Arxiv(
+            $this['em'],
             new \Phpoaipmh\Endpoint(new \Phpoaipmh\Client('', new \Phpoaipmh\Http\Guzzle()))
         ));
     }    

@@ -30,8 +30,9 @@ class Arxiv extends HarvesterAbstract
 
     // --------------------------------------------------------------
 
-    public function __construct(Endpoint $endpoint)
+    public function __construct(EntityManager $em, Endpoint $endpoint)
     {
+        parent::__construct($em);
         $this->endpoint = $endpoint;
     }
 

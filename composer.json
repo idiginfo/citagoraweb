@@ -47,11 +47,18 @@
         "caseyamcl/phpoaipmh":    "dev-master",
         "illuminate/hashing":     "v1.0.0",
         "firephp/firephp-core":   "dev-master",
-        "pear/Console_Table":     "dev-trunk"
+        "pear/Console_Table":     "dev-trunk",
+        "caseyamcl/tasktracker":  "dev-master"
     },
     "require-dev": {
         "mockery/mockery": "dev-master",
         "davedevelopment/hamcrest-php": "dev-master",
         "firephp/firephp-core": "dev-master"
-    }
+    },
+    "repositories": [
+        {
+            "type" : "vcs",
+            "url"  : "http://github.com/caseyamcl/tasktracker"
+        }
+    ]    
 }
