@@ -9,6 +9,15 @@
 # Log File
 log_file: /tmp/citagora.log
 
+# API Keys
+api_keys:
+    altmetrics:
+        key:    KEY_HERE
+    mendeley:
+        key:    KEY_HERE
+        secret: SEC_HERE
+    # etc...
+
 # Administrator Emails receive critical alerts and errors
 admin_emails:
     - root@localhost
@@ -23,5 +32,6 @@ mongodb:
 # Acceptable Values: true, false, local 
 # (if local, only localhost will allow dev mode)
 enable_devmode: local
+
 
 # EOF: config.yml

@@ -2,26 +2,24 @@
 
 namespace Citagora\Harvester;
 use Citagora\Entity\Document\Document;
+use Citagora\EntityCollection\DocumentCollection;
 use Citagora\EntityManager\Manager as EntityManager;
+use RuntimeException;
 
+/**
+ * Havest Documents
+ */
 abstract class HarvesterAbstract
 {
     /**
-     * @var Citagora\EntityManager\Manager
+     * @var Citagora\EntityManager\Manager;
      */
     private $em;
 
-    // --------------------------------------------------------------
-
     /**
-     * Constructor
-     *
-     * @param Citagora\EntityManager\Manager $em
+     * @var Citagora\EntityCollection\DocumentCollection
      */
-    public function __construct(EntityManager $em)
-    {
-        $this->em = $em;
-    }
+    private $collection;
 
     // --------------------------------------------------------------
 
@@ -73,14 +71,32 @@ abstract class HarvesterAbstract
     // --------------------------------------------------------------
 
     /**
+     * Set the Document Collection
+     *
+     * @param Citagora\EntityCollection\DocumentCollection
+     */
+    public function setEntityManager(EntityManager $em)
+    {
+        $this->em = $em;
+        $this->collection = $em->getCollection('Document\Document');
+    }
+
+    // --------------------------------------------------------------
+
+    /**
      * Harvest
      *
+     * @param  DocumentCollection  The collection in which to save records
      * @param  array $options
      * @param  int   $limit    0 or null for no limit
      * @return int   Number of documents harvested
      */
     public function harvest(array $options, $limit = null)
     {
+        if ( ! $this->collection) {
+            throw new RuntimeException("Cannot harvest without having set entity manager.  Use setEntityManager() method");
+        }
+
         //Keep track
         $count = 0;
 
@@ -96,7 +112,7 @@ abstract class HarvesterAbstract
             }
 
             //Build a new empty Citagora document to be populated
-            $citagoraDoc = $this->buildEntity('Document\Document');
+            $citagoraDoc = $this->collection->factory();
 
             //Map it
             $citagoraDoc = $this->mapDocument($sourceDoc, $citagoraDoc);
@@ -114,14 +130,14 @@ abstract class HarvesterAbstract
     // --------------------------------------------------------------
 
     /**
-     * Build a new Entity of a specified type
-     *
+     * Build an entity
+     * 
      * @param string
-     * @return Citagora\EntityManager\Entity;
+     * @return Entity
      */
-    protected function buildEntity($entityName)
+    protected function buildEntity($name)
     {
-        return $this->em->getCollection($entityName)->factory();
+        return $this->em->getCollection($name)->factory();
     }
 
     // --------------------------------------------------------------
@@ -134,11 +150,9 @@ abstract class HarvesterAbstract
      */
     private function saveDocument(Document $document)
     {
-        $docCollection = $this->em->getCollection('Document\Document');
-
         //@TODO: Check if document exists already
 
-        $docCollection->save($document);
+        $this->collection->save($document);
         return true;
     }
 }

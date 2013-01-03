@@ -3,6 +3,7 @@
 namespace Citagora;
 use Symfony\Component\Console\Application as ConsoleApp;
 use Citagora\Command\CommandAbstract as CitagoraCommand;
+use Citagora\Harvester\HarvesterAbstract;
 use RuntimeException, Exception;
 
 class CliApp extends App
@@ -44,24 +45,34 @@ class CliApp extends App
 
     // --------------------------------------------------------------
 
+    private function addHarvester(HarvesterAbstract $harvester)
+    {
+        //Prep array
+        if ( ! isset($this['harvesters'])) {
+            $this['harvesters'] = array();
+        }
+
+        //Prepare
+        $harvester->setEntityManager($this['em']);
+
+        //Add it
+        $this['harvesters'] = array_merge(
+            $this['harvesters'],
+            array($harvester->getName() => $harvester)
+        );
+    }
+
+    // --------------------------------------------------------------
+
     protected function loadCliLibraries()
     {
         $app =& $this;
 
         //Harvesters
-        $this['harvesters'] = $this->share(function($app) {
-
-            $harvesters = array(
-                new Harvester\DummyRecords($app['em'])
-                //add harvesters...
-            );
-            
-            foreach($harvesters as $k => $cls) {
-                $harvesters[$cls->getName()] = $cls;
-                unset($harvesters[$k]);
-            }
-            return $harvesters;
-        });
+        $this->addHarvester(new Harvester\DummyRecords());
+        $this->addHarvester(new Harvester\Arxiv(
+            new \Phpoaipmh\Endpoint(new \Phpoaipmh\Client('', new \Phpoaipmh\Http\Guzzle()))
+        ));
     }    
 }
 

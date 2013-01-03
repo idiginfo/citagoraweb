@@ -5,7 +5,7 @@ use Citagora\EntityManager\Entity;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
- * @ODM\Document
+ * @ODM\Document(collection="DocumentContributor")
  */
 class Contributor extends Entity
 {

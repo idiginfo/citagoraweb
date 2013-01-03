@@ -146,6 +146,9 @@ class DocumentHarvest extends CommandAbstract
 
     // --------------------------------------------------------------
 
+    /**
+     * Compile sources
+     */
     private function compileSources(InputInterface $input)
     {
         //If netiher -a or -s, fail

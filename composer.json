@@ -32,7 +32,7 @@
     "minimum-stability": "beta",
     "require": {
         "silex/silex":            "1.0.x-dev",
-        "guzzle/guzzle":          "v2.5.0",
+        "guzzle/guzzle":          ">=3.0.0",
         "twig/twig":              ">=1.8,<2.0-dev",
         "symfony/twig-bridge":    "2.1.*",
         "symfony/translation":    "2.1.*",        
@@ -44,6 +44,7 @@
         "monolog/monolog":        ">=1.0.0",
         "caseyamcl/Configula":    "dev-master",
         "caseyamcl/Oauthsupport": "dev-master",
+        "caseyamcl/phpoaipmh":    "dev-master",
         "illuminate/hashing":     "v1.0.0",
         "firephp/firephp-core":   "dev-master",
         "pear/Console_Table":     "dev-trunk"
