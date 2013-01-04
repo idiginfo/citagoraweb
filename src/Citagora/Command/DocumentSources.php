@@ -11,7 +11,6 @@ use Silex\Application;
 use RuntimeException, InvalidArgumentException;
 use Console_Table;
 
-
 /**
  * Document Harvest Command
  */
@@ -20,23 +19,22 @@ class DocumentSources extends CommandAbstract
     /** 
      * @var array  Array of Harvester Objects
      */
-    private $harvesters;
-
-    // --------------------------------------------------------------
-
-    public function __construct(array $harvesters)
-    {
-        parent::__construct();
-        $this->harvesters = $harvesters;
-    }
+    private $dataSources;
 
     // --------------------------------------------------------------
 
     protected function configure()
     {
         $this->setName('docs:sources');
-        $this->setDescription('Harvest Records from a configured sources');
+        $this->setDescription('List available Data Sources');
         $this->addArgument('source', InputArgument::OPTIONAL, 'Which source (leave empty for summary)', null);
+    }
+
+    // --------------------------------------------------------------
+
+    public function init(Application $app)
+    {
+        $this->dataSources = $app['data_sources'];
     }
 
     // --------------------------------------------------------------
@@ -55,29 +53,29 @@ class DocumentSources extends CommandAbstract
 
     protected function listSingleSource($name, $input, $output)
     {
-        if ( ! isset($this->harvesters[$name])) {
-            throw new InvalidArgumentException("Harvester does not exist: " . $name);            
+        if ( ! isset($this->dataSources[$name])) {
+            throw new InvalidArgumentException("Data Source does not exist: " . $name);            
         }
 
-        $harvester = $this->harvesters[$name];
-        $options   = $harvester->getOptions();
+        $dataSource = $this->dataSources[$name];
+        $params     = $dataSource->getAvailableParams();
 
-        $output->writeln("\nHarvester: " . $name);
-        $output->writeln($harvester->getName() . ' - ' . $harvester->getDescription());
+        $output->writeln("\ndataSource: " . $name);
+        $output->writeln($dataSource->getSlug() . ' - ' . $dataSource->getName());
 
-        if (count($options) > 0) {
+        if (count($params) > 0) {
 
             $table = new Console_Table();
             $table->setHeaders(array('Option', 'Default', 'Description'));
 
-            foreach($options as $optname => $items) {
-                $table->addRow(array($optname, $items['default'], $items['description']));
+            foreach($params as $opt) {
+                $table->addRow(array($opt->name, $opt->default ?: "<none>", $opt->description));
             }
 
             $output->writeln("\n" . $table->getTable());
         }
         else {
-            $output->writeln("This harvester has no options");
+            $output->writeln("This Data Source has no params");
         }    
     }
    
@@ -85,27 +83,28 @@ class DocumentSources extends CommandAbstract
 
     protected function listAllSources($input, $output)
     {
-        if (count($this->harvesters) > 0) {
+        if (count($this->dataSources) > 0) {
 
             $table = new Console_Table();
             $table->setHeaders(array('Name', 'Description', 'Has Options?'));
 
-            foreach($this->harvesters as $harvester) {
+            foreach($this->dataSources->keys() as $k) {
 
-                $numOptions = count($harvester->getOptions());
+                $dataSource = $this->dataSources[$k];
+                $numParams = count($dataSource->getAvailableParams());
 
                 $table->addRow(array(
-                    $harvester->getName(),
-                    $harvester->getDescription(),
-                    ($numOptions > 0) ? sprintf('Yes (%s)', $numOptions) : "No"
+                    $dataSource->getSlug(),
+                    $dataSource->getName(),
+                    ($numParams > 0) ? sprintf('Yes (%s)', $numParams) : "No"
                 ));
             }
 
-            $output->writeln("Available Harvesters:");
+            $output->writeln("Available Data Sources:");
             $output->writeln($table->getTable());
         }
         else {
-            $output->writeln("No harvesters exist");
+            $output->writeln("No Data Sources exist");
         }
     }
 }

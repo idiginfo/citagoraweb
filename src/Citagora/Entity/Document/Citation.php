@@ -1,6 +1,7 @@
 <?php
 
 namespace Citagora\Entity\Document;
+
 use Citagora\EntityManager\Entity;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace Citagora\Entity\Document;
+
 use Citagora\EntityManager\Entity;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
@@ -10,8 +11,8 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 class Meta extends Entity
 {
     /**
-     * @var array
-     * @ODM\Collection
+     * @var array  Key is DataSource slug, value is identifier at that datasource
+     * @ODM\Hash  
      */
     protected $sources;
 
@@ -32,6 +33,42 @@ class Meta extends Entity
      * @ODM\Timestamp
      */
     protected $modified;
+
+    // --------------------------------------------------------------
+
+    public function __construct()
+    {
+        $this->sources = array();
+    }
+
+    // --------------------------------------------------------------
+
+    public function __set($item, $value)
+    {
+        switch ($item) {
+            case 'sources':
+            case 'created':
+            case 'modified':
+                throw new \Exception("Cannot modify {$item} directly");
+        }
+
+        return parent::__set($item, $value);
+    }
+
+    // --------------------------------------------------------------
+
+    /**
+     * Add a source for this record
+     *
+     * @param string $sourceName
+     * @param string $sourceIdentifier
+     */
+    public function addSource($sourceName, $sourceIdentifier)
+    {
+        if ( ! in_array($sourceName, $this->sources)) {
+            $this->sources[$sourceName] = $sourceIdentifier;
+        }
+    }
 
     // --------------------------------------------------------------
 

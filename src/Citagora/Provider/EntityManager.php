@@ -1,9 +1,9 @@
 <?php
 
 namespace Citagora\Provider;
+
 use Silex\Application;
 use Silex\ServiceProviderInterface;
-
 use Citagora\EntityManager\Manager;
 
 /**

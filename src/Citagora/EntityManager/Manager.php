@@ -1,6 +1,7 @@
 <?php
 
 namespace Citagora\EntityManager;
+
 use Doctrine\ODM\MongoDB\DocumentManager;
 use RuntimeException;
 

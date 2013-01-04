@@ -2,15 +2,14 @@
 
 namespace Citagora\Command;
 
+use Silex\Application;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use Silex\Application;
-use Citagora\EntityCollection\DocumentCollection;
-use Citagora\Harvester\HarvesterAbstract as Harvester;
-use RuntimeException;
+use RuntimeException, Console_table;
+use Citagora\Harvester\CliTracker;
 
 use TaskTracker\OutputHandler\SymfonyConsole as TrackerConsoleHandler;
 use TaskTracker\Tracker;
@@ -21,28 +20,24 @@ use TaskTracker\Tracker;
 class DocumentHarvest extends CommandAbstract
 {
     /**
-     * @var RecordCollection
+     * @var Harvester
      */
-    private $documentCollection;
+    private $harvester;
 
     /**
-     * @var array  Array of Harvester objects
+     * @var Pimple  DiC Container with Data Sources in it
      */
-    private $harvesters;
+    private $dataSources;
 
     /**
-     * @var TaskTracker\Tracker
+     * @var EntityManager  Used for clobbering, if desired
      */
-    private $tracker;
+    private $em;
 
-    // --------------------------------------------------------------
-
-    public function __construct(DocumentCollection $documentCollection, array $harvesters)
-    {
-        parent::__construct();
-        $this->documentCollection = $documentCollection;
-        $this->harvesters = $harvesters;
-    }
+    /**
+     * @var EventDispatcher
+     */
+    private $dispatcher;
 
     // --------------------------------------------------------------
 
@@ -50,19 +45,32 @@ class DocumentHarvest extends CommandAbstract
     {
         $this->setName('docs:harvest');
         $this->setDescription('Harvest Records from a configured sources');
-        $this->addOption('clobber', 'c', InputOption::VALUE_NONE,     'If specified, this command will clobber all records');
-        $this->addOption('limit',   'l', InputOption::VALUE_REQUIRED, 'Optionally specify a limit of records to import');
-        $this->addOption('auto',    'a', InputOption::VALUE_NONE,     'Reads from config/harvest.yml to harvest from multiple sources');
-        $this->addOption('source',  's', InputOption::VALUE_REQUIRED, 'Harvest records from specified source (overrides -a)');
-        $this->addOption('options', 'o', InputOption::VALUE_REQUIRED, 'If using -s, specify options for that source with -o');
+        $this->AddArgument('source', InputArgument::REQUIRED, 'Harvest records from specified source');
+        $this->addOption('clobber',  'c', InputOption::VALUE_NONE,     'If specified, this command will clobber all records');
+        $this->addOption('limit',    'l', InputOption::VALUE_REQUIRED, 'Optionally specify a limit of records to import per source');
+        $this->addOption('options',  'o', InputOption::VALUE_REQUIRED, 'If using -s, specify options for that source with -o');
+    }
+
+    // --------------------------------------------------------------
+
+    protected function init(Application $app)
+    {
+        $this->harvester   = $app['harvester'];
+        $this->dispatcher  = $app['dispatcher'];
+        $this->dataSources = $app['data_sources'];
+        $this->em          = $app['em'];
     }
 
     // --------------------------------------------------------------
 
     protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        //Get a list of sources to get records from
-        $sources = $this->compileSources($input);
+    {        
+        //Source
+        $source = $input->getArgument('source');
+        if ( ! isset($this->dataSources[$source])) {
+            throw new RuntimeException("Source '{$source}' does not exist.  Use docs:sources to see available sources");
+        }
+        $dataSource = $this->dataSources[$source];
 
         //If clobber
         if ($input->getOption('clobber')) {
@@ -74,56 +82,44 @@ class DocumentHarvest extends CommandAbstract
             }
         }
 
-        //Limit?
-        $limit = $input->getOption('limit');
-        
-        //Get options
-        if ($input->getOption('options')) {
-            $options = explode(',' , $input->getOption('options'));
-            foreach($options as $k => $option) {
-                list($optname, $value) = explode('=', $option);
-                $options[$optname] = $value;
-                unset($options[$k]);
-            }
-        }
-        else {
-            $options = array();
-        }
+        //Limit and options
+        $limit  = $input->getOption('limit');
+        $params = $this->readParams($input);
 
-        //Run the harvester with options
-        foreach($sources as $harvester) {
+        //Event Listnener
+        $listener = new CliTracker($this->dispatcher, $output);
 
-            //Message
-            $output->writeln(sprintf(
-                "Importing up to %s records from %s",
-                ($limit) ? number_format($limit, 0) : "as many as possible",
-                $harvester->getDescription()
-            ));
+        //Do it...
+        $count = $this->harvester->harvestFromSingle($dataSource, $params, $limit);
 
-            $this->importFromSource($harvester, $output, $options, $limit);
-        }
+        //Report
+        $output->writeln(sprintf(
+            "Imported %s records from %s",
+            number_format($count, 0),
+            $dataSource->getName()
+        ));
     }
 
     // --------------------------------------------------------------
 
-    private function importFromSource(Harvester $harvester, $output, $options, $limit = null)
+    /**
+     * Get parameters (called options in the CLI)
+     */
+    private function readParams(InputInterface $input)
     {
-        //Set Tracker
-        $tracker = new Tracker(
-            new TrackerConsoleHandler($output), 
-            $limit ?: Tracker::UNKNOWN
-        );
-
-        //Build the options to send
-        $harvestOptions = array();
-        foreach($harvester->getOptions() as $opt => $optInfo) {
-            $harvestOptions[$opt] = (isset($options[$opt])) 
-                ? $options[$opt]
-                : $optInfo['default'];
+        $params = array();     
+           
+        //Get params
+        if ($input->getOption('options')) {
+            $params = explode(',' , $input->getOption('params'));
+            foreach($params as $k => $param) {
+                list($pname, $value) = explode('=', $param);
+                $params[$pname] = $value;
+                unset($params[$k]);
+            }
         }
 
-        //Do it
-        $harvester->harvest($harvestOptions, $limit, $tracker);
+        return $params;
     }
 
     // --------------------------------------------------------------
@@ -142,50 +138,26 @@ class DocumentHarvest extends CommandAbstract
             return false;
         }
 
-        //Load the correct classes to do the clobber
-        $cName   = $this->documentCollection->getRepository()->getClassName();
-        $collObj = $this->documentCollection->getRepository()->getDocumentManager()->getDocumentCollection($cName);
+        //Clobber the Document and DocumentContributor collections
+        $toClobber = array('Document\Document', 'Document\Contributor');
         
-        $result = $collObj->drop();
+        foreach($toClobber as $clobber) {
+            $repo    = $this->em->getCollection($clobber)->getRepository()->getClassName();
+            $collObj = $this->em->getCollection($clobber)->getRepository()
+                        ->getDocumentManager()->getDocumentCollection($repo);
 
-        if ($result['ok'] == 1) {
-            $output->writeln("Dropped collection.");
-        }
-        else {
-            $output->writeln("No collection to drop. Moving on...");
+            //Do it
+            $result = $collObj->drop();
+            if ($result['ok']) {
+                $output->writeln("Dropped {$clobber} collection ({$repo})");
+            }
+            else {
+                $output->writeln("No {$clobber} collection to drop.  Moving on...");  
+            }
         }
 
         return true;
-    }
-
-    // --------------------------------------------------------------
-
-    /**
-     * Compile sources
-     */
-    private function compileSources(InputInterface $input)
-    {
-        //If netiher -a or -s, fail
-        if ( ! $input->getOption('auto') && ! $input->getOption('source')) {
-            throw new RuntimeException('You must specify either a source with -s or auto with -a');
-        }
-
-        $sourceList = array();
-
-        //Do the appropriate action depending on the source
-        if ($input->getOption('source')) {
-
-            $source = $input->getOption('source');
-            if ( ! isset($this->harvesters[$source])) {
-                throw new RuntimeException(sprintf("The source '%s' does not exist", $source));
-            }
-
-            return array($this->harvesters[$source]);   
-        }
-        else {
-            //Load from auto... @TODO THIS
-        }
-    }    
+    } 
 }
 
 /* EOF: RecordsHarvest.php */

@@ -1,6 +1,7 @@
 <?php
 
 namespace Citagora\Controller;
+
 use Silex\Application;
 
 /**

@@ -1,6 +1,7 @@
 <?php
 
 namespace Citagora;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Silex\Provider\TwigServiceProvider;
@@ -66,7 +67,7 @@ class WebApp extends App
 
         //$this['twig']
         $this->register(new TwigServiceProvider(), array(
-            'twig.path'           => $this['srcpath'] . '/Views'
+            'twig.path' => $this['srcpath'] . '/Views'
         ));
 
         //Load account manager (relies on session)

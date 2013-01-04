@@ -1,6 +1,7 @@
 <?php
 
 namespace Citagora\Controller;
+
 use Citagora\Model\DocumentSearchRequest;
 use Citagora\Service\Documents as DocumentsService;
 use Silex\Application;

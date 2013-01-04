@@ -1,9 +1,9 @@
 <?php
 
 namespace Citagora\Provider;
+
 use Silex\Application;
 use Silex\ServiceProviderInterface;
-
 use Monolog\Logger,
     Monolog\Handler\StreamHandler,
     Monolog\Handler\NativeMailerHandler,

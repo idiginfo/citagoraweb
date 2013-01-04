@@ -1,6 +1,7 @@
 <?php
 
 namespace Citagora\EntityManager;
+
 use InvalidArgumentException;
 
 abstract class Entity

@@ -1,6 +1,7 @@
 <?php
 
 namespace Citagora\Entity;
+
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Mapping\ClassMetadata;

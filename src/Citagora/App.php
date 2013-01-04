@@ -5,9 +5,11 @@ namespace Citagora;
 use Silex\Application as SilexApplication;
 use Silex\Provider\TranslationServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Illuminate\Hashing\BcryptHasher;
 use RuntimeException, Exception;
 use Configula\Config;
+use Pimple;
 
 /**
  * Main Citagora Application Library
@@ -71,6 +73,11 @@ abstract class App extends SilexApplication
         //Pointer for anonymous functions
         $app =& $this;
 
+        //$this['dispatcher']
+        $this['dispatcher'] = $this->share(function($app) {
+            return new EventDispatcher();
+        });
+
         //$this['monolog']
         $this->register(new Provider\Monolog(), array(
             'monolog.file'   => $this['config']->log_file,
@@ -108,10 +115,59 @@ abstract class App extends SilexApplication
             )
         ));
 
+        //$this['data_sources']
+        $this['data_sources'] = $this->loadDataSources();
+
+        //Document Factory
+        $this['document_factory'] = $this->share(function($app) {
+            return new Tool\DocumentFactory($app['em']);
+        });
+
+        //$this['harvester']
+        $this['harvester'] = $this->share(function($app) {
+            return new Harvester\Harvester($app['document_factory'], $app['em']->getCollection('Document\Document'));
+        });
+
         //$this['validation']
         $this->register(new ValidatorServiceProvider());
     }
 
+    // --------------------------------------------------------------
+
+    /**
+     * Load Data Sources
+     *
+     * In its own method to save complexity..
+     *
+     * @return Pimple
+     */
+    protected function loadDataSources()
+    {
+        //Reference
+        $app =& $this;
+
+        //Setup a Generic OAI-PMH endpoint we can clone for use in OAI Harvesters
+        $app['oai_endpoint'] = function($app) {
+            $client = new \Phpoaipmh\Client('', new \Phpoaipmh\Http\Guzzle());
+            return new \Phpoaipmh\Endpoint($client);
+        };
+
+        //Pimple Container for DataSources
+        $ds = new Pimple();
+
+        //For now, the keys should match the slug for each data source...
+        $ds['nature'] = $ds->share(function() use ($app) {
+            return new DataSource\Nature($app['oai_endpoint']);
+        });
+        $ds['arxiv'] = $ds->share(function() use ($app) {
+            return new DataSource\Arxiv($app['oai_endpoint']);
+        });
+        $ds['dummy'] = $ds->share(function() use ($app) {
+            return new DataSource\DummyRecs();
+        });
+
+        return $ds;
+    }
 }
 
 /* EOF: App.php */

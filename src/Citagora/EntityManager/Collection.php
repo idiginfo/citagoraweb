@@ -1,8 +1,8 @@
 <?php
 
 namespace Citagora\EntityManager;
-use ReflectionClass, Exception;
 
+use ReflectionClass, Exception;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
 use Doctrine\ODM\MongoDB\Events;
@@ -156,6 +156,22 @@ abstract class Collection
         if ($flush) {
             $this->dm->flush();
         }
+    }
+
+    // --------------------------------------------------------------
+
+    /**
+     * Save many records
+     *
+     * @param array|Iterator  Any iterable array or object with entities
+     */
+    public function saveMany($records)
+    {
+        foreach($records as $rec) {
+            $this->save($rec, false);
+        }
+
+        $this->dm->flush();
     }
 
     // --------------------------------------------------------------

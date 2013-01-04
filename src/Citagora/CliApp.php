@@ -1,6 +1,7 @@
 <?php
 
 namespace Citagora;
+
 use Symfony\Component\Console\Application as ConsoleApp;
 use Citagora\Command\CommandAbstract as CitagoraCommand;
 use Citagora\Harvester\HarvesterAbstract;
@@ -23,12 +24,9 @@ class CliApp extends App
         //Console app
         $this->consoleApp = new ConsoleApp('Citagora');
 
-        //Add Document Harvest Command
-        $docColl = $this['em']->getCollection('Document\Document');
-        $this->addCommand(new Command\DocumentHarvest($docColl, $this['harvesters']));
-
-        //Add Documetn Sources Command
-        $this->addCommand(new Command\DocumentSources($this['harvesters']));
+        //Add Commands
+        $this->addCommand(new Command\DocumentHarvest());
+        $this->addCommand(new Command\DocumentSources());
 
 
         //Run it
@@ -45,33 +43,12 @@ class CliApp extends App
 
     // --------------------------------------------------------------
 
-    private function addHarvester(HarvesterAbstract $harvester)
-    {
-        //Prep array
-        if ( ! isset($this['harvesters'])) {
-            $this['harvesters'] = array();
-        }
-
-        //Add it
-        $this['harvesters'] = array_merge(
-            $this['harvesters'],
-            array($harvester->getName() => $harvester)
-        );
-    }
-
-    // --------------------------------------------------------------
-
     protected function loadCliLibraries()
     {
         $app =& $this;
 
-        //Harvesters
-        $this->addHarvester(new Harvester\DummyRecords($this['em']));
-        $this->addHarvester(new Harvester\Arxiv(
-            $this['em'],
-            new \Phpoaipmh\Endpoint(new \Phpoaipmh\Client('', new \Phpoaipmh\Http\Guzzle()))
-        ));
-    }    
+        //Load stuff here...
+    }
 }
 
 /* EOF: CliApp.php */

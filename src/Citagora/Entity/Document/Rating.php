@@ -1,6 +1,7 @@
 <?php
 
 namespace Citagora\Entity\Document;
+
 use Citagora\EntityManager\Entity;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use InvalidArgumentException;
@@ -8,7 +9,7 @@ use InvalidArgumentException;
 /**
  * @ODM\EmbeddedDocument
  */
-class Ratings extends Entity
+class Rating extends Entity
 {
     /**
      * @param float  Overall rating summary
@@ -35,16 +36,16 @@ class Ratings extends Entity
     protected $orginiality;
 
     /**
-     * @var int  Total number of ratings given
-     * @ODM\Int
+     * @var string  User that made the rating
+     * @ODM\string
      */
-    protected $totalCount;
+    protected $user;
 
     // --------------------------------------------------------------
 
     public function __set($item, $value)
     {
-        if ( ! is_numeric($value)) {
+        if ($item != 'user' && ! is_numeric($value)) {
             throw new InvalidArgumentException("The {$item} must be numeric");
         }
 

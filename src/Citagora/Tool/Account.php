@@ -1,6 +1,7 @@
 <?php
 
 namespace Citagora\Tool;
+
 use Symfony\Component\HttpFoundation\Session\Session;
 use Citagora\EntityCollection\UserCollection;
 use Citagora\Entity\User;

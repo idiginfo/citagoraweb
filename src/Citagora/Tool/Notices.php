@@ -1,6 +1,7 @@
 <?php
 
 namespace Citagora\Tool;
+
 use Symfony\Component\HttpFoundation\Session\Session;
 
 /**

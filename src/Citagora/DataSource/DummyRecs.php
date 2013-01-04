@@ -1,12 +1,13 @@
 <?php
 
-namespace Citagora\Harvester;
+namespace Citagora\DataSource;
+
+use Type\NotImplementedException;
+use RuntimeException;
+use Citagora\Tool\DocumentFactory;
 use Citagora\Entity\Document\Document;
 
-/**
- * Import Dummy Records
- */
-class DummyRecords extends HarvesterAbstract
+class DummyRecs extends Type\Base
 {
     /**
      * @var array
@@ -20,65 +21,49 @@ class DummyRecords extends HarvesterAbstract
 
     // --------------------------------------------------------------
 
-    /**
-     * @return string
-     */
+    public function getSlug()
+    {
+        return 'dummy';
+    }
+
+    // --------------------------------------------------------------
+
     public function getName()
     {
-        return 'dummyrecs';
-    }  
-
-    // --------------------------------------------------------------
-
-    /**
-     * @return string
-     */
-    public function getDescription()
-    {
-        return "Dummy Records from JSON file";
+        return 'Dummy Records';
     }
 
     // --------------------------------------------------------------
 
-    /**
-     * @return array
-     */
-    public function getOptions()
+    public function getUrl()
     {
-        $options = array();
-
-        $options['filepath'] = array(
-            'default'    => null,
-            'description' => 'Full filepath to dummy records JSON file'
-        );
-
-        return $options;
+        return 'http://citagora.com/dev.php';
     }
 
     // --------------------------------------------------------------
 
-    protected function connectToSource(array $options)
+    public function connectToSource()
     {
         $filename = $options['filepath'];
 
         if ( ! is_readable($filename)) {
-            throw new InvalidOptionException("Cannot read from dummy records file: " . $filename);
+            throw new RuntimeException("Cannot read from dummy records file: " . $filename);
         }
 
         $rawData  = file_get_contents($filename);
         $jsonData = json_decode($rawData);
 
         if ( ! $jsonData) {
-            throw new HarvesterException("Error parsing dummy records from path: " . $filename);
+            throw new RuntimeException("Error parsing dummy records from path: " . $filename);
         }
 
         $this->records = $jsonData;
-        return true;
+        return true;        
     }
 
     // --------------------------------------------------------------
 
-    protected function retrieveNextDocument(array $options)    
+    public function getNextRecord()
     {
         if (isset($this->records[$this->pointer])) {
             $doc = $this->records[$this->pointer];
@@ -92,16 +77,35 @@ class DummyRecords extends HarvesterAbstract
 
     // --------------------------------------------------------------
 
-    /**
-     * Process the document
-     *
-     * @param mixed $sourceData
-     * @param  Citagora\Entity\Document\Document $document
-     * @return Citagora\Entity\Document\Document
-     */
-    protected function mapDocument($sourceData, Document $document)
+    public function getRecordIdentifier($sourceRecord)
     {
-        //Source to Document
+        return $sourceRecord->id;
+    }
+
+    // --------------------------------------------------------------
+
+    public function getSpecificRecord(Document $document)
+    {
+        if (isset($document->meta->sources['dummy'])) {
+            $id = $document->meta->sources['dummy'];
+
+            foreach($this->records as $rec) {
+                if ($rec->id == $id) {
+                    return $rec;
+                }
+            }
+
+        }
+
+        //If made it here
+        return false;
+    }
+
+    // --------------------------------------------------------------
+
+    public function mapRecord($sourceRecord, Document $document, DocumentFactory $df)
+    {
+       //Source to Document
         $mappings = array(
             'pmid'     => 'pmid',
             'year'     => 'year',
@@ -114,17 +118,17 @@ class DummyRecords extends HarvesterAbstract
         );
 
         //Title is required
-        $document->title = $sourceData->title;
+        $document->title = $sourceRecord->title;
 
         //Basic Mappings
         foreach($mappings as $source => $dest) {
-            if (isset($sourceData->$source)) {
-                $document->$dest = $sourceData->$source;
+            if (isset($sourceRecord->$source)) {
+                $document->$dest = $sourceRecord->$source;
             }
         }
 
         //Authors        
-        foreach($sourceData->authorList as $author) {
+        foreach($sourceRecord->authorList as $author) {
             $contributor = $this->buildEntity('Document\Contributor');
             $contributor->fullname = $author;
             $contributor->type     = 'Author';
@@ -132,15 +136,15 @@ class DummyRecords extends HarvesterAbstract
         }
 
         //Keywords
-        if (isset($sourceData->keywords)) {
-            foreach($sourceData->keywords as $kw) {
+        if (isset($sourceRecord->keywords)) {
+            foreach($sourceRecord->keywords as $kw) {
                 $document->addKeyword($kw);
             }
         }
 
         //Send it back
         return $document;
-    }  
+    }    
 }
 
-/* EOF: DummyRecords.php */
+/* EOF: DummyRecs.php */

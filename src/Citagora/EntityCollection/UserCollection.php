@@ -1,6 +1,7 @@
 <?php
 
 namespace Citagora\EntityCollection;
+
 use Illuminate\Hashing\HasherInterface;
 use Citagora\EntityManager\Collection as EntityCollection;
 use Citagora\Entity\User;

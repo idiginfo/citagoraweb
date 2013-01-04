@@ -1,10 +1,10 @@
 <?php
 
 namespace Citagora\Provider;
+
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 use Mongo;
-
 use Doctrine\Common\ClassLoader as MongoClassLoader,
     Doctrine\Common\Annotations\AnnotationReader,
     Doctrine\ODM\MongoDB\DocumentManager,

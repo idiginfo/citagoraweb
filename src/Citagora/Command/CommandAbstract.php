@@ -58,19 +58,6 @@ abstract class CommandAbstract extends SymfonyConsoleCommand
             ));
         }
     }
-
-    // --------------------------------------------------------------
-
-    /**
-     * Get an entity collection
-     *
-     * @param string 
-     * @return DL2SL\EntityManager\Collection
-     */
-    protected function getEntityCollection($entityName)
-    {
-        return $this->app['em']->getCollection($entityName);  
-    }
 }
 
 /* EOF: CommandAbstract.php */
