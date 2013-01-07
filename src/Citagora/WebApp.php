@@ -25,20 +25,15 @@ class WebApp extends App
             $this->doMaintenance();
         }
         else {
-
-            //Load the controllers
-            $this['controller_front']     = new Controller\Front();
-            $this['controller_documents'] = new Controller\Documents();
-            $this['controller_users']     = new Controller\Users();
             
             //Mount the controllers
-            $this->mount('', $this['controller_front']);             
-            $this->mount('', $this['controller_documents']);   
-            $this->mount('', $this['controller_users']);   
+            $this->mount('', new Controller\Front());             
+            $this->mount('', new Controller\Documents());   
+            $this->mount('', new Controller\Users());   
         }
 
         //Go
-        parent::run();        
+        parent::run();
     }
 
     // --------------------------------------------------------------

@@ -34,7 +34,7 @@ abstract class ControllerAbstract implements ControllerProviderInterface
     public function connect(Application $app)
     {
         //Setup the app as a controller variable
-        $this->app = $app;
+        $this->app    = $app;
         $this->routes = $app['controllers_factory'];
 
         //Run the child method

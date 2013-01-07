@@ -73,11 +73,6 @@ abstract class App extends SilexApplication
         //Pointer for anonymous functions
         $app =& $this;
 
-        //$this['dispatcher']
-        $this['dispatcher'] = $this->share(function($app) {
-            return new EventDispatcher();
-        });
-
         //$this['monolog']
         $this->register(new Provider\Monolog(), array(
             'monolog.file'   => $this['config']->log_file,
@@ -115,7 +110,6 @@ abstract class App extends SilexApplication
             )
         ));
 
-        //$this['data_sources']
         $this['data_sources'] = $this->loadDataSources();
 
         //Document Factory

@@ -53,7 +53,8 @@
     "require-dev": {
         "mockery/mockery": "dev-master",
         "davedevelopment/hamcrest-php": "dev-master",
-        "firephp/firephp-core": "dev-master"
+        "firephp/firephp-core": "dev-master",
+        "raveren/kint": "dev-master"
     },
     "repositories": [
         {

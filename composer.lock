@@ -1,5 +1,5 @@
 {
-    "hash": "b04dc4826bce71d0e456b837cf60b4c7",
+    "hash": "6e6bed6b5a2c0d90d6dec03d77fc2239",
     "packages": [
         {
             "name": "caseyamcl/Configula",
@@ -691,12 +691,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Silex.git",
-                "reference": "6c442081a2a0dbebb5cc04d1bf6404da8dca1897"
+                "reference": "7df600f14887b0342f2d4a90debd6c8e6b44ef7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Silex/archive/6c442081a2a0dbebb5cc04d1bf6404da8dca1897.zip",
-                "reference": "6c442081a2a0dbebb5cc04d1bf6404da8dca1897",
+                "url": "https://github.com/fabpot/Silex/archive/7df600f14887b0342f2d4a90debd6c8e6b44ef7b.zip",
+                "reference": "7df600f14887b0342f2d4a90debd6c8e6b44ef7b",
                 "shasum": ""
             },
             "require": {
@@ -731,7 +731,7 @@
                 "symfony/css-selector": ">=2.1,<2.3-dev",
                 "symfony/dom-crawler": ">=2.1,<2.3-dev"
             },
-            "time": "2013-01-03 17:40:36",
+            "time": "2013-01-04 16:54:30",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1468,7 +1468,183 @@
             ]
         }
     ],
-    "packages-dev": null,
+    "packages-dev": [
+        {
+            "name": "davedevelopment/hamcrest-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/davedevelopment/hamcrest-php.git",
+                "reference": "e4ffaf43b25065fe7d1e5fa173d271ca7e065ff0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/davedevelopment/hamcrest-php/archive/e4ffaf43b25065fe7d1e5fa173d271ca7e065ff0.zip",
+                "reference": "e4ffaf43b25065fe7d1e5fa173d271ca7e065ff0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "time": "2012-06-13 21:26:30",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Hamcrest": "hamcrest"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "description": "This is the PHP port of Hamcrest Matchers",
+            "keywords": [
+                "test"
+            ]
+        },
+        {
+            "name": "firephp/firephp-core",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RobLoach/firephp-core",
+                "reference": "c26d972dcb28fd483fa193512091df7b3c85e450"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/RobLoach/firephp-core/zipball/c26d972dcb28fd483fa193512091df7b3c85e450",
+                "reference": "c26d972dcb28fd483fa193512091df7b3c85e450",
+                "shasum": ""
+            },
+            "time": "2012-05-29 00:08:14",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "classmap": [
+                    "lib/FirePHPCore/FirePHP.class.php",
+                    "lib/FirePHPCore/fb.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Dorn",
+                    "email": "christoph@christophdorn.com",
+                    "homepage": "christophdorn.com"
+                }
+            ],
+            "description": "Traditional FirePHPCore library for sending PHP variables to the browser.",
+            "homepage": "https://github.com/firephp/firephp-core"
+        },
+        {
+            "name": "mockery/mockery",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/padraic/mockery.git",
+                "reference": "4a98af96454515d576eda64e3222efa71b2704c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/padraic/mockery/archive/4a98af96454515d576eda64e3222efa71b2704c6.zip",
+                "reference": "4a98af96454515d576eda64e3222efa71b2704c6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "hamcrest/hamcrest": "1.1.0"
+            },
+            "suggest": {
+                "Hamcrest": "1.0.0"
+            },
+            "time": "2012-12-10 22:45:03",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Mockery": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Pádraic Brady",
+                    "email": "padraic.brady@gmail.com",
+                    "homepage": "http://blog.astrumfutura.com"
+                }
+            ],
+            "description": "Mockery is a simple yet flexible PHP mock object framework for use in unit testing with PHPUnit, PHPSpec or any other testing framework. Its core goal is to offer a test double framework with a succint API capable of clearly defining all possible object operations and interactions using a human readable Domain Specific Language (DSL). Designed as a drop in alternative to PHPUnit's phpunit-mock-objects library, Mockery is easy to integrate with PHPUnit and can operate alongside phpunit-mock-objects without the World ending.",
+            "homepage": "http://github.com/padraic/mockery",
+            "keywords": [
+                "testing",
+                "library",
+                "BDD",
+                "TDD",
+                "test",
+                "mockery",
+                "mock",
+                "stub",
+                "test double",
+                "mock objects"
+            ]
+        },
+        {
+            "name": "raveren/kint",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/raveren/kint.git",
+                "reference": "f9a92137f39e16ec4c4e736aa733e746ee1cdeb0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/raveren/kint/archive/f9a92137f39e16ec4c4e736aa733e746ee1cdeb0.zip",
+                "reference": "f9a92137f39e16ec4c4e736aa733e746ee1cdeb0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "time": "2012-12-20 14:07:55",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "files": [
+                    "Kint.class.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rokas Šleinius",
+                    "homepage": "https://github.com/raveren"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/raveren/kint/contributors"
+                }
+            ],
+            "description": "Kint - debugging helper for PHP developers",
+            "homepage": "https://github.com/raveren/kint",
+            "keywords": [
+                "php",
+                "debug",
+                "kint"
+            ]
+        }
+    ],
     "aliases": [
 
     ],
@@ -1483,6 +1659,7 @@
         "pear/console_table": 20,
         "caseyamcl/tasktracker": 20,
         "mockery/mockery": 20,
-        "davedevelopment/hamcrest-php": 20
+        "davedevelopment/hamcrest-php": 20,
+        "raveren/kint": 20
     }
 }
