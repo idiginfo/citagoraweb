@@ -46,7 +46,9 @@ class Harvester
     // --------------------------------------------------------------
 
     /**
-     * Set optional event dispatcher
+     * Set optional event dispatcher to notify other objects of events
+     *
+     * This is used for logging or displaying output to a terminal..
      *
      * @param Symfony\Component\EventDispatcher\EventDispatcherInterface
      */
@@ -156,6 +158,7 @@ class Harvester
             $count++;
         }
 
+        $this->dispatch(Events::FINISHED_SOURCE, $count);
         return $count;
     }
 
@@ -171,7 +174,7 @@ class Harvester
     protected function dispatch($eventName, $subject, array $arguments = array())
     {
         if ($this->eventDispatcher) {
-            $event = new GenericEvent($subject, $context);
+            $event = new GenericEvent($subject, $arguments);
             $this->eventDispatcher->dispatch($eventName, $event);
         }
     }

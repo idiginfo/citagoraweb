@@ -119,7 +119,14 @@ abstract class App extends SilexApplication
 
         //$this['harvester']
         $this['harvester'] = $this->share(function($app) {
-            return new Harvester\Harvester($app['document_factory'], $app['em']->getCollection('Document\Document'));
+            
+            $hvstr = new Harvester\Harvester(
+                $app['document_factory'],
+                $app['em']->getCollection('Document\Document')
+            );
+
+            $hvstr->setEventDispatcher($app['dispatcher']);
+            return $hvstr;
         });
 
         //$this['validation']

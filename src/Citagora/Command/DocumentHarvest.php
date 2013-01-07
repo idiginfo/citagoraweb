@@ -11,9 +11,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use RuntimeException, Console_table;
 use Citagora\Harvester\CliTracker;
 
-use TaskTracker\OutputHandler\SymfonyConsole as TrackerConsoleHandler;
-use TaskTracker\Tracker;
-
 /**
  * Document Harvest Command
  */
