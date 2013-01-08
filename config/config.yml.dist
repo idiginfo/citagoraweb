@@ -10,7 +10,7 @@
 log_file: /tmp/citagora.log
 
 # Data Provder API Keys
-api_keys:
+datasource_keys:
     altmetrics:
         key:    KEY_HERE
     mendeley:
