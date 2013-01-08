@@ -9,14 +9,18 @@ use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\FormServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
 use Silex\Provider\SessionServiceProvider;
+use Citagora\Web\SilexProvider;
 use RuntimeException, Exception;
 
 class App extends CitagoraApp
 {
     public function run()
     {
+        //Load Libraries
+        $this->loadWebLibraries();
+
         //Before Hook
-        $this->before(array($this, 'loadWebLibraries'));
+        $this->before(array($this, 'doBefore'));
 
         //Error Hook
         $this->error(array($this, 'doError'));
@@ -31,6 +35,7 @@ class App extends CitagoraApp
             $this->mount('', new Controller\Front());             
             $this->mount('', new Controller\Documents());   
             $this->mount('', new Controller\Users());   
+            $this->mount('', new Controller\Dashboard());   
         }
 
         //Go
@@ -66,6 +71,12 @@ class App extends CitagoraApp
             'twig.path' => $this['srcpath'] . '/Web/Views'
         ));
 
+        //$this['oauth_clients']
+        $this->register(new SilexProvider\OauthClientProvider(), array(
+            'oauth_clients.config'      => $this['config']->oauth_keys,
+            'oauth_clients.state_store' => new Oauth\StateStore($this['session'])
+        ));
+
         //Load account manager (relies on session)
         $this['account'] = $this->share(function($app) {
             return new Library\Account(
@@ -77,33 +88,18 @@ class App extends CitagoraApp
         //Notices Provider
         $this['notices'] = $this->share(function($app) {
             return new Library\Notices($app['session']);
-        });
+        });    
+    }
+
+    // --------------------------------------------------------------
+
+    public function doBefore()
+    {
 
         //Some additional info about the path at runtime
         $this['url.base']     = $this['request']->getSchemeAndHttpHost() . $this['request']->getBasePath();
         $this['url.app']      = $this['request']->getSchemeAndHttpHost() . $this['request']->getBaseUrl();
         $this['url.current']  = $this['url.app'] . $this['request']->getPathInfo();
-
-        //Add OAuth Providers @TODO: Move this into a provider?
-        if ($this['config']->oauth) {
-            foreach($this['config']->oauth as $provider => $sp) {
-
-                $url = $this['url.app'] . '/login/' . strtolower($provider);
-
-                switch ($provider) {    
-                    case 'facebook':
-                        $svc = new \OAuth2\Client\Facebook($sp['key'], $sp['secret'], $url);
-                    break;
-                    case 'google':
-                        $svc = new \OAuth2\Client\Google($sp['key'], $sp['secret'], $url);
-                    break;
-                }
-
-                if (isset($svc)) {
-                    $this['controller_auth']->addOauthProvider($svc);
-                }            
-            }
-        }
 
         //Add additional information to Twig
         $this['twig'] = $this->share($this->extend('twig', function($twig, $app) {
@@ -126,7 +122,7 @@ class App extends CitagoraApp
             $twig->addGlobal('user', $app['account']);
 
             return $twig;
-        }));      
+        }));          
     }
 
     // --------------------------------------------------------------

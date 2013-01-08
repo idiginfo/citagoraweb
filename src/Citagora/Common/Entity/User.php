@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints as Assert;
 use Citagora\Common\EntityManager\Entity;
 use Illuminate\Hashing\HasherInterface;
+use Exception;
 
 /**
  * User Entity
@@ -31,6 +32,18 @@ class User extends Entity
      * @ODM\UniqueIndex
      */
     protected $email;
+
+    /**
+     * @var string
+     * @ODM\String
+     */
+    protected $firstName;
+
+    /**
+     * @var string
+     * @ODM\String
+     */
+    protected $lastName;
 
     /**
      * @var string
@@ -98,6 +111,8 @@ class User extends Entity
     {   
         switch ($item) {
 
+            case 'oauthServices':
+                throw new Exception("Cannot modify oauthServices property directly.  Use public methods");
             case 'password':
                 $val = ($this->hasher) ? $this->hasher->make($val) : $val;
             break;
@@ -116,6 +131,37 @@ class User extends Entity
     // -------------------------------------------------------------------------
 
     /**
+     * Remove an oauthService
+     *
+     * @param string $service  Service name
+     */
+    public function removeOauthService($service)
+    {
+        if (isset($this->oauthServices[$service])) {
+            unset($this->oauthServices[$service]);
+        }
+    }
+
+    // -------------------------------------------------------------------------
+
+    /**
+     * Add or update an OAuth service
+     *
+     * @param string $service      Service name
+     * @param string $id           User ID at the service
+     * @param string $accessToken  Optional
+     */
+    public function setOauthService($service, $id, $accessToken = null)
+    {
+        $this->oauthServices[$service] = array(
+            'id'          => $id, 
+            'accessToken' => $accessToken
+        );
+    }
+
+    // -------------------------------------------------------------------------
+
+    /**
      * Check a cleartext password to see if it matches this record
      *
      * @param string $password  Cleartext password
@@ -123,7 +169,12 @@ class User extends Entity
      */
     public function checkPassword($password)
     {
-        var_dump($this->hasher);
+        //Users can never authenticate against empty passwords
+        if (empty($password)) {
+            return false;
+        }
+
+        //If hasher, use that
         if ($this->hasher) {
             return ($this->hasher->check($password, $this->password));
         }

@@ -25,7 +25,7 @@ class Documents extends ControllerAbstract
         $this->addRoute('/search/',               'search');
         $this->addRoute('/search/{query}/',       'search');
 
-        $this->documentCollection = $this->getEntityCollection('Document\Document');
+        $this->documentCollection = $app['em']->getCollection('Document\Document');
     }
 
     // --------------------------------------------------------------

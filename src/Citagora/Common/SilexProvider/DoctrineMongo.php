@@ -1,6 +1,6 @@
 <?php
 
-namespace Citagora\Common\Provider;
+namespace Citagora\Common\SilexProvider;
 
 use Silex\Application;
 use Silex\ServiceProviderInterface;

@@ -1,5 +1,5 @@
 {
-    "hash": "3ae4ee2a3954f06cc0ea09f379130242",
+    "hash": "9486faf2496e55c0d551cdeeff9ef82a",
     "packages": [
         {
             "name": "caseyamcl/Configula",
@@ -484,13 +484,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "http://github.com/mastacheata/socialite",
-                "reference": "afd82c077ddad5c4f756d3d91547bb805a637b40"
+                "url": "http://github.com/caseyamcl/socialite",
+                "reference": "7170b7501b283ee3f15c58f4ecd6833799d73f82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mastacheata/socialite/zipball/afd82c077ddad5c4f756d3d91547bb805a637b40",
-                "reference": "afd82c077ddad5c4f756d3d91547bb805a637b40",
+                "url": "https://api.github.com/repos/caseyamcl/socialite/zipball/7170b7501b283ee3f15c58f4ecd6833799d73f82",
+                "reference": "7170b7501b283ee3f15c58f4ecd6833799d73f82",
                 "shasum": ""
             },
             "require": {
@@ -501,7 +501,7 @@
             "require-dev": {
                 "mockery/mockery": "0.7.*"
             },
-            "time": "2012-12-01 03:47:26",
+            "time": "2013-01-08 20:05:17",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -520,7 +520,7 @@
             ],
             "description": "A simple library for OAuth 2 authentication.",
             "support": {
-                "source": "https://github.com/mastacheata/socialite/tree/master"
+                "source": "https://github.com/caseyamcl/socialite/tree/master"
             }
         },
         {
@@ -1511,183 +1511,7 @@
             ]
         }
     ],
-    "packages-dev": [
-        {
-            "name": "davedevelopment/hamcrest-php",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git://github.com/davedevelopment/hamcrest-php.git",
-                "reference": "e4ffaf43b25065fe7d1e5fa173d271ca7e065ff0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/davedevelopment/hamcrest-php/archive/e4ffaf43b25065fe7d1e5fa173d271ca7e065ff0.zip",
-                "reference": "e4ffaf43b25065fe7d1e5fa173d271ca7e065ff0",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "time": "2012-06-13 21:26:30",
-            "type": "library",
-            "installation-source": "source",
-            "autoload": {
-                "psr-0": {
-                    "Hamcrest": "hamcrest"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD"
-            ],
-            "description": "This is the PHP port of Hamcrest Matchers",
-            "keywords": [
-                "test"
-            ]
-        },
-        {
-            "name": "firephp/firephp-core",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/RobLoach/firephp-core",
-                "reference": "c26d972dcb28fd483fa193512091df7b3c85e450"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/RobLoach/firephp-core/zipball/c26d972dcb28fd483fa193512091df7b3c85e450",
-                "reference": "c26d972dcb28fd483fa193512091df7b3c85e450",
-                "shasum": ""
-            },
-            "time": "2012-05-29 00:08:14",
-            "type": "library",
-            "installation-source": "source",
-            "autoload": {
-                "classmap": [
-                    "lib/FirePHPCore/FirePHP.class.php",
-                    "lib/FirePHPCore/fb.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Christoph Dorn",
-                    "email": "christoph@christophdorn.com",
-                    "homepage": "christophdorn.com"
-                }
-            ],
-            "description": "Traditional FirePHPCore library for sending PHP variables to the browser.",
-            "homepage": "https://github.com/firephp/firephp-core"
-        },
-        {
-            "name": "mockery/mockery",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git://github.com/padraic/mockery.git",
-                "reference": "4a98af96454515d576eda64e3222efa71b2704c6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/padraic/mockery/archive/4a98af96454515d576eda64e3222efa71b2704c6.zip",
-                "reference": "4a98af96454515d576eda64e3222efa71b2704c6",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "hamcrest/hamcrest": "1.1.0"
-            },
-            "suggest": {
-                "Hamcrest": "1.0.0"
-            },
-            "time": "2012-12-10 22:45:03",
-            "type": "library",
-            "installation-source": "source",
-            "autoload": {
-                "psr-0": {
-                    "Mockery": "library/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Pádraic Brady",
-                    "email": "padraic.brady@gmail.com",
-                    "homepage": "http://blog.astrumfutura.com"
-                }
-            ],
-            "description": "Mockery is a simple yet flexible PHP mock object framework for use in unit testing with PHPUnit, PHPSpec or any other testing framework. Its core goal is to offer a test double framework with a succint API capable of clearly defining all possible object operations and interactions using a human readable Domain Specific Language (DSL). Designed as a drop in alternative to PHPUnit's phpunit-mock-objects library, Mockery is easy to integrate with PHPUnit and can operate alongside phpunit-mock-objects without the World ending.",
-            "homepage": "http://github.com/padraic/mockery",
-            "keywords": [
-                "testing",
-                "library",
-                "BDD",
-                "TDD",
-                "test",
-                "mockery",
-                "mock",
-                "stub",
-                "test double",
-                "mock objects"
-            ]
-        },
-        {
-            "name": "raveren/kint",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/raveren/kint.git",
-                "reference": "f9a92137f39e16ec4c4e736aa733e746ee1cdeb0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/raveren/kint/archive/f9a92137f39e16ec4c4e736aa733e746ee1cdeb0.zip",
-                "reference": "f9a92137f39e16ec4c4e736aa733e746ee1cdeb0",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.0"
-            },
-            "time": "2012-12-20 14:07:55",
-            "type": "library",
-            "installation-source": "source",
-            "autoload": {
-                "files": [
-                    "Kint.class.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rokas Šleinius",
-                    "homepage": "https://github.com/raveren"
-                },
-                {
-                    "name": "Contributors",
-                    "homepage": "https://github.com/raveren/kint/contributors"
-                }
-            ],
-            "description": "Kint - debugging helper for PHP developers",
-            "homepage": "https://github.com/raveren/kint",
-            "keywords": [
-                "php",
-                "debug",
-                "kint"
-            ]
-        }
-    ],
+    "packages-dev": null,
     "aliases": [
 
     ],

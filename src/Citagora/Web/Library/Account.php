@@ -17,12 +17,12 @@ class Account
     private $session;
 
     /**
-     * @var Citagora\EntityCollection\UserCollection $userCollection
+     * @var Citagora\Common\EntityCollection\UserCollection $userCollection
      */
     private $userCollection;
 
     /**
-     * @var Citagora\Entity\User
+     * @var Citagora\Common\Entity\User
      */
     private $user;
 
@@ -93,6 +93,18 @@ class Account
         return (isset($this->user->$which))
             ? $this->user->$which
             : null;
+    }
+
+    // --------------------------------------------------------------
+
+    /**
+     * Get the user object
+     *
+     * @return Citagora\Common\Entity\User;
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
     // --------------------------------------------------------------

@@ -5,6 +5,7 @@ namespace Citagora;
 use Silex\Application as SilexApplication;
 use Silex\Provider\TranslationServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
+use Citagora\Common\SilexProvider;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Illuminate\Hashing\BcryptHasher;
 use RuntimeException, Exception;
@@ -74,7 +75,7 @@ abstract class App extends SilexApplication
         $app =& $this;
 
         //$this['monolog']
-        $this->register(new Common\Provider\Monolog(), array(
+        $this->register(new SilexProvider\Monolog(), array(
             'monolog.file'   => $this['config']->log_file,
             'monolog.emails' => (array) $this['config']->admin_emails
         ));
@@ -85,7 +86,7 @@ abstract class App extends SilexApplication
         ));
 
         //$this['mongo']
-        $this->register(new Common\Provider\DoctrineMongo(), array(
+        $this->register(new SilexProvider\DoctrineMongo(), array(
             'mongo.documents_path' => $this['srcpath'] . '/Document',
             'mongo.params'         => $this['config']->mongodb
         ));
@@ -96,7 +97,7 @@ abstract class App extends SilexApplication
         });
 
         //$this['em']
-        $this->register(new Common\Provider\EntityManager(), array(
+        $this->register(new SilexProvider\EntityManager(), array(
             'em.documentManager' => $this['mongo'],
             'em.namespace'       => __NAMESPACE__ . "\\Common\\Entity",
             'em.collections'     => array(
@@ -106,7 +107,7 @@ abstract class App extends SilexApplication
         ));
 
         //$this['data_sources']
-        $this->register(new Common\Provider\DataSources(), array(
+        $this->register(new SilexProvider\DataSources(), array(
             'data_sources.config' => $this['config']->datasource_keys
         ));
 

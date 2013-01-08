@@ -63,7 +63,7 @@
         },
         {
             "type" : "vcs",
-            "url"  : "http://github.com/mastacheata/socialite"
+            "url"  : "http://github.com/caseyamcl/socialite"
         }
     ]    
 }

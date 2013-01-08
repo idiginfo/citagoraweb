@@ -127,19 +127,6 @@ abstract class ControllerAbstract implements ControllerProviderInterface
             return $this->log('debug', $msg ?: 'Debug', (array) $item);
         }
     }
-    
-    // --------------------------------------------------------------
-
-    /**
-     * Get an entity collection
-     *
-     * @param string 
-     * @return DL2SL\EntityManager\Collection
-     */
-    protected function getEntityCollection($entityName)
-    {
-        return $this->app['em']->getCollection($entityName);  
-    }
 
     // --------------------------------------------------------------
 
@@ -270,7 +257,31 @@ abstract class ControllerAbstract implements ControllerProviderInterface
     // --------------------------------------------------------------
 
     /**
-     * Get the path requested
+     * Get the current URL
+     *
+     * @return string
+     */
+    protected function getUrl()
+    {
+        return $this->app['url.current'];
+    }
+
+    // --------------------------------------------------------------
+
+    /**
+     * Get the current request
+     *
+     * @return Symfony\Component\HttpFoundation\Request
+     */
+    protected function getRequest()
+    {
+        return $this->app['request'];
+    }
+
+    // --------------------------------------------------------------
+
+    /**
+     * Get the current path
      *
      * @return string
      */
