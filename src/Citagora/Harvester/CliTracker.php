@@ -106,7 +106,7 @@ class CliTracker
         $totalCount = $args['totalDocCount'];
 
         $this->tracker->tick(sprintf(
-            'Harvesting (%s total)',
+            'Harvesting (%s now in database)',
             number_format($totalCount, 0)
         ));
     }

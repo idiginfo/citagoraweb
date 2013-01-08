@@ -156,6 +156,9 @@ class Harvester
 
             //Increment counter
             $count++;
+
+            //Cleanup
+            unset($newrec, $document, $rec);
         }
 
         $this->dispatch(Events::FINISHED_SOURCE, $count);
