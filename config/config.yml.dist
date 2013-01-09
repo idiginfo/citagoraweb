@@ -9,14 +9,29 @@
 # Log File
 log_file: /tmp/citagora.log
 
-# API Keys
-api_keys:
+# Data Provder API Keys
+datasource_keys:
     altmetrics:
         key:    KEY_HERE
     mendeley:
         key:    KEY_HERE
         secret: SEC_HERE
     # etc...
+
+# Oauth Client Keys
+oauth_keys:
+    google:
+        key:    KEY_HERE
+        secret: SEC_HERE
+    facebook:
+        key:    KEY_HERE
+        secret: SEC_HERE
+    twitter:
+        key:    KEY_HERE
+        secret: SEC_HERE
+    linkedin:
+        key:    KEY_HERE
+        secret: SEC_HERE
 
 # Administrator Emails receive critical alerts and errors
 admin_emails:

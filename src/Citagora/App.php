@@ -5,6 +5,7 @@ namespace Citagora;
 use Silex\Application as SilexApplication;
 use Silex\Provider\TranslationServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
+use Citagora\Common\SilexProvider;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Illuminate\Hashing\BcryptHasher;
 use RuntimeException, Exception;
@@ -74,7 +75,7 @@ abstract class App extends SilexApplication
         $app =& $this;
 
         //$this['monolog']
-        $this->register(new Provider\Monolog(), array(
+        $this->register(new SilexProvider\Monolog(), array(
             'monolog.file'   => $this['config']->log_file,
             'monolog.emails' => (array) $this['config']->admin_emails
         ));
@@ -84,13 +85,8 @@ abstract class App extends SilexApplication
             'locale_fallback' => 'en',
         ));
 
-        //$this['mailer']
-        $this['mailer'] = $this->share(function($app) {
-            return new Tool\Mailer('system-noreply@citagora.com', 'Citagora');
-        });
-
         //$this['mongo']
-        $this->register(new Provider\DoctrineMongo(), array(
+        $this->register(new SilexProvider\DoctrineMongo(), array(
             'mongo.documents_path' => $this['srcpath'] . '/Document',
             'mongo.params'         => $this['config']->mongodb
         ));
@@ -101,26 +97,29 @@ abstract class App extends SilexApplication
         });
 
         //$this['em']
-        $this->register(new Provider\EntityManager(), array(
+        $this->register(new SilexProvider\EntityManager(), array(
             'em.documentManager' => $this['mongo'],
-            'em.namespace'       => __NAMESPACE__ . '\\' . 'Entity',
+            'em.namespace'       => __NAMESPACE__ . "\\Common\\Entity",
             'em.collections'     => array(
-                new EntityCollection\UserCollection(new BcryptHasher()),
-                new EntityCollection\DocumentCollection()
+                new Common\EntityCollection\UserCollection(new BcryptHasher()),
+                new Common\EntityCollection\DocumentCollection()
             )
         ));
 
-        $this['data_sources'] = $this->loadDataSources();
+        //$this['data_sources']
+        $this->register(new SilexProvider\DataSources(), array(
+            'data_sources.config' => $this['config']->datasource_keys
+        ));
 
         //Document Factory
         $this['document_factory'] = $this->share(function($app) {
-            return new Tool\DocumentFactory($app['em']);
+            return new Common\Tool\DocumentFactory($app['em']);
         });
 
         //$this['harvester']
         $this['harvester'] = $this->share(function($app) {
             
-            $hvstr = new Harvester\Harvester(
+            $hvstr = new Common\Harvester\Harvester(
                 $app['document_factory'],
                 $app['em']->getCollection('Document\Document')
             );
@@ -132,43 +131,5 @@ abstract class App extends SilexApplication
         //$this['validation']
         $this->register(new ValidatorServiceProvider());
     }
-
-    // --------------------------------------------------------------
-
-    /**
-     * Load Data Sources
-     *
-     * In its own method to save complexity..
-     *
-     * @return Pimple
-     */
-    protected function loadDataSources()
-    {
-        //Reference
-        $app =& $this;
-
-        //Setup a Generic OAI-PMH endpoint we can clone for use in OAI Harvesters
-        $app['oai_endpoint'] = function($app) {
-            $client = new \Phpoaipmh\Client('', new \Phpoaipmh\Http\Guzzle());
-            return new \Phpoaipmh\Endpoint($client);
-        };
-
-        //Pimple Container for DataSources
-        $ds = new Pimple();
-
-        //For now, the keys should match the slug for each data source...
-        $ds['nature'] = $ds->share(function() use ($app) {
-            return new DataSource\Nature($app['oai_endpoint']);
-        });
-        $ds['arxiv'] = $ds->share(function() use ($app) {
-            return new DataSource\Arxiv($app['oai_endpoint']);
-        });
-        $ds['dummy'] = $ds->share(function() use ($app) {
-            return new DataSource\DummyRecs();
-        });
-
-        return $ds;
-    }
 }
-
 /* EOF: App.php */

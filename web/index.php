@@ -11,18 +11,18 @@ if ( ! isset($mode)) {
 //Site mode
 switch ($mode) {
     case 'development':
-        $mode = Citagora\WebApp::DEVELOPMENT;
+        $mode = Citagora\Web\App::DEVELOPMENT;
     break;    
     case 'maintenance':
-        $mode = Citagora\WebApp::MAINTENANCE;
+        $mode = Citagora\Web\App::MAINTENANCE;
     break;
     case 'production': default:
-        $mode = Citagora\WebApp::PRODUCTION;
+        $mode = Citagora\Web\App::PRODUCTION;
     break;
 }
 
 //Run it
-$app = new Citagora\WebApp($mode);
+$app = new Citagora\Web\App($mode);
 $app->run();
 
 /* EOF: index.php */

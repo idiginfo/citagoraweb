@@ -12,6 +12,6 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 //Run it! Let's Go!
-\Citagora\CliApp::main();
+\Citagora\Cli\App::main();
 
 /* EOF: import */
