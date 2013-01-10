@@ -246,7 +246,13 @@ class Document extends Entity
     private function setNormalizedTitle($fullTitle)
     {
         //Strip out punctuation and special characters
-        $this->normalizedTitle = strtolower(preg_replace("/[^a-zA-Z 0-9]+/", " ", $fullTitle));
+        $title = strtolower(preg_replace("/[^a-zA-Z 0-9]+/", " ", $fullTitle));
+
+        //Turn multiple spaces into single spaces
+        $title = preg_replace('/(\s)(\s+)/', ' ', $title);
+
+        //Set it
+        $this->normalizedTitle = $title;
     }    
 }
 
