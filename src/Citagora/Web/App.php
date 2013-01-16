@@ -119,7 +119,7 @@ class App extends CitagoraApp
             $twig->addGlobal('notices', $app['notices']->flush());
 
             //User Info
-            $twig->addGlobal('user', $app['account']);
+            $twig->addGlobal('account', $app['account']);
 
             return $twig;
         }));          

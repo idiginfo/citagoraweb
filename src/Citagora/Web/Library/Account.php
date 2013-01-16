@@ -38,6 +38,8 @@ class Account
     {
         $this->session        = $session;
         $this->userCollection = $userColl;
+
+        $this->buildUserFromSession();
     }
 
     // --------------------------------------------------------------
@@ -111,7 +113,7 @@ class Account
 
     private function buildUserFromSession()
     {
-        $id = $this->sesion->get('user', false);
+        $id = $this->session->get('user', false);
 
         if ($id) {
             $this->user = $this->userCollection->find($id);

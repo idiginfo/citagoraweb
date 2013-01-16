@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints as Assert;
 use Citagora\Common\EntityManager\Entity;
 use Illuminate\Hashing\HasherInterface;
+use Illuminate\Socialite\OAuthTwo\AccessToken;
 use Exception;
 
 /**
@@ -83,9 +84,6 @@ class User extends Entity
     {
         $this->setHasher($hasher);
 
-        $this->ownedRecords      = new ArrayCollection;
-        $this->subscribedRecords = new ArrayCollection;
-
         $this->numLogins     = 0;
         $this->oauthServices = array();
     }
@@ -151,11 +149,11 @@ class User extends Entity
      * @param string $id           User ID at the service
      * @param string $accessToken  Optional
      */
-    public function setOauthService($service, $id, $accessToken = null)
+    public function setOauthService($service, $id, AccessToken $accessToken = null)
     {
         $this->oauthServices[$service] = array(
             'id'          => $id, 
-            'accessToken' => $accessToken
+            'accessToken' => ($accessToken) ? $accessToken->getValue() : null
         );
     }
 

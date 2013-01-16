@@ -144,10 +144,15 @@ abstract class Collection
     /**
      * Save the record
      *
-     * @param Entity $record
-     * @param boolean $flush
+     * The third parameter clears the document from Mongo ODM so it is not tracked,
+     * and is only relevant if $flush == TRUE.  This should be set to true whenever
+     * importing large batches of records
+     *
+     * @param Entity $record  The record to save
+     * @param boolean $flush  If TRUE, flushes the document to the database immediately
+     * @param boolean $clear  If TRUE, detaches the document from Mongo ODM after save
      */
-    public function save(Entity $record, $flush = true)
+    public function save(Entity $record, $flush = true, $clear = false)
     {
         //Persist the record
         $this->dm->persist($record);
@@ -155,6 +160,13 @@ abstract class Collection
         //Flush it?
         if ($flush) {
             $this->dm->flush();
+
+            //@TODO: Uncomment the classname when Mongo ODM implements this feature
+            //As of v1.0-BETA7, it hasn't been implemented yet
+            if ($clear) {
+                $this->dm->clear(/* $this->getEntityClassName() */);
+            }
+
         }
     }
 

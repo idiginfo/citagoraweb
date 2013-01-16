@@ -206,10 +206,10 @@ abstract class ControllerAbstract implements ControllerProviderInterface
     protected function redirect($path)
     {
         //Ensure left slash
-        $path = lrim($path, '/') . '/';
+        $path = '/' . ltrim($path, '/');
 
         //Do it
-        return $app->redirect($this->app['url.app'] . $path);
+        return $this->app->redirect($this->app['url.app'] . $path);
     } 
 
     // --------------------------------------------------------------

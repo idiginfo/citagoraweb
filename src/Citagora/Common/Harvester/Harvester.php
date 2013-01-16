@@ -147,8 +147,8 @@ class Harvester
 
             //@TODO: Check additional APIs for this record?
 
-            //Save record
-            $this->documentCollection->save($document);
+            //Save record (and flush it and detach it)
+            $this->documentCollection->save($document, true, true);
 
             //Reporting...
             $totalDocumentCount = $this->documentCollection->getQueryBuilder()->getQuery()->execute()->count();

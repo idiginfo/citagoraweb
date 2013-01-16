@@ -4,6 +4,7 @@ namespace Citagora\Web\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Citagora\Common\Entity\User;
 
 /**
  * Users Controller
@@ -27,7 +28,7 @@ class Users extends ControllerAbstract
         $this->addRoute('/login',             'login');
         $this->addRoute('/login/{service}',   'svclogin');
         $this->addRoute('/logout',            'logout');
-        $this->addRoute('/account',           'account');
+        $this->addRoute('/account',           'accountinfo');
         $this->addRoute('/forgot',            'forgot');
 
         $this->users = $app['em']->getCollection('User');
@@ -94,7 +95,7 @@ class Users extends ControllerAbstract
 
         //If $_GET['code'], then we'll get the info
         $accessToken = $client->getAccessToken($this->getRequest());
-        $info = $client->getUserData($accessToken);
+        $info = $client->getUserInfo($accessToken);
 
         //Connect the service to the account if logged-in
         if ($this->account()->isLoggedIn()) {
@@ -117,8 +118,12 @@ class Users extends ControllerAbstract
             else {
 
                 $user = $this->users->factory();
+
+                //Add info for new user
                 $user->setOauthService($service, $info->get('id'), $accessToken);
-                $user->email = $info->get('email');
+                $user->firstName = $info->get('firstName');
+                $user->lastName  = $info->get('lastName');
+                $user->email     = $info->get('email');
             }
 
             return $this->processLogin($user);
@@ -147,17 +152,18 @@ class Users extends ControllerAbstract
     /**
      * Account Management
      */
-    public function account()
+    public function accountinfo()
     {
         //Redirect to login page
-        if ( ! $this->account->isLoggedIn()) {
+        if ( ! $this->account()->isLoggedIn()) {
             return $this->redirect('/login');
         }
 
         //Will add form processing stuff here
 
         //Get the user and show the account page
-        $data = $this->account()->getUser();
+        $data['user'] = $this->account()->getUser();
+        
         return $this->render('Users/account.html.twig', $data);
     }
 

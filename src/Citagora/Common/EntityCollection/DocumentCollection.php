@@ -36,9 +36,9 @@ class DocumentCollection extends EntityCollection
     /**
      * Save a record, but try to avoid duplicates
      *
-     * @param Document $record
+     * {@inherit}
      */
-    public function save(Document $record, $flush = true)
+    public function save(Document $record, $flush = true, $clear = false)
     {
         //Check if an existing document exists with this record
         $existing = $this->checkDocumentExists($record);
@@ -49,7 +49,7 @@ class DocumentCollection extends EntityCollection
         }
 
         //Save it
-        return parent::save($record, $flush);
+        return parent::save($record, $flush, $clear);
     }
 
     // --------------------------------------------------------------
