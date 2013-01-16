@@ -7,19 +7,17 @@ use Illuminate\Socialite\OAuthTwo\FacebookProvider as OriginalFacebookProvider;
 
 class FacebookProvider extends OriginalFacebookProvider implements ProviderInterface
 {
-    /**
-     * Get normalized user data
-     */
-    function getNormalizedUserData(AccessToken $token)
+    public function getUserInfo(AccessToken $token)
     {
-        $userData = $this->getUserData($token);
-
-        return array(
-            'id'        => $userData->get('id'),
-            'firstName' => $userData->get('first_name'),
-            'lastName'  => $userData->get('last_name'),
-            'email'     => $userData->get('email')
+        $mappings = array(
+            'firstName' => 'first_name',
+            'lastName'  => 'last_name',
+            'email'     => 'email',
+            'id'        => 'id'
         );
+
+        return new UserInfo($this->getUserData($token), $mappings);
     }
 }
-/* EOF: GoogleProvider.php */
+
+/* EOF: FacebookProvider.php */

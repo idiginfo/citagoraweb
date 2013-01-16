@@ -7,19 +7,16 @@ use Illuminate\Socialite\OAuthTwo\GoogleProvider as OriginalGoogleProvider;
 
 class GoogleProvider extends OriginalGoogleProvider implements ProviderInterface
 {
-    /**
-     * Get normalized user data
-     */
-    function getNormalizedUserData(AccessToken $token)
+    public function getUserInfo(AccessToken $token)
     {
-        $userData = $this->getUserData($token);
-
-        return array(
-            'id'        => $userData->get('id'),
-            'firstName' => $userData->get('given_name'),
-            'lastName'  => $userData->get('family_name'),
-            'email'     => $userData->get('email')
+        $mappings = array(
+            'firstName' => 'given_name',
+            'lastName'  => 'family_name',
+            'email'     => 'email',
+            'id'        => 'id'
         );
+
+        return new UserInfo($this->getUserData($token), $mappings);
     }
 }
 /* EOF: GoogleProvider.php */

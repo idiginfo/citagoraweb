@@ -5,6 +5,7 @@ namespace Citagora\Web\SilexProvider;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 use Citagora\Web\Oauth\StateStore;
+use UnexpectedValueException;
 use Pimple;
 
 class OauthClientProvider implements ServiceProviderInterface
@@ -44,6 +45,7 @@ class OauthClientProvider implements ServiceProviderInterface
 
                     $className = $providers[$name];
 
+                    //Add it to the array
                     $clients[$name] = $clients->share(function() use ($className, $stateStore, $creds)  {
                         return new $className($stateStore, $creds['key'], $creds['secret']);
                     });
