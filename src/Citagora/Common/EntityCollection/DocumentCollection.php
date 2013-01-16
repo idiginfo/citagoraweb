@@ -6,12 +6,34 @@ use Citagora\Common\EntityManager\Collection as EntityCollection;
 use Citagora\Common\Entity\Document\Document;
 use Doctrine\Common\Collections\ArrayCollection;
 
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\EventDispatcher\GenericEvent;
+use Citagora\Common\Events;
 
 /**
  * Manages users in the database
  */
 class DocumentCollection extends EntityCollection
 {
+    /**
+     * @var Symfony\Component\EventDispatcher\EventDispatcherInterface
+     */
+    private $dispatcher;
+
+    // --------------------------------------------------------------
+
+    /**
+     * Constructor
+     *
+     * @param Symfony\Component\EventDispatcher\EventDispatcherInterface
+     */
+    public function __construct(EventDispatcherInterface $dispatcher)
+    {
+        $this->dispatcher = $dispatcher;
+    }
+
+    // --------------------------------------------------------------
+
     /**
      * Get entity classname (hard-coded)
      */
@@ -47,6 +69,10 @@ class DocumentCollection extends EntityCollection
         if ($existing) {
             $record = $this->mergeDocuments($record, $existing);
         }
+
+        //Dispatch a new event
+        $event = new GenericEvent($record, array('isnew' => (boolean) $existing));
+        $this->eventDispatcher->dispatch(Events::ENTITY_DOCUMENT_SAVE, $event);
 
         //Save it
         return parent::save($record, $flush, $clear);

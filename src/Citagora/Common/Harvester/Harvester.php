@@ -8,6 +8,7 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 use Citagora\Common\Tool\DocumentFactory;
 use Citagora\Common\EntityCollection\DocumentCollection;
 use Citagora\Common\DataSource\Type\Base as DataSource;
+use Citagora\Common\Events;
 
 /**
  * Document Harvester
@@ -121,13 +122,13 @@ class Harvester
         $count = 0;
 
         //Notify and set parameters
-        $this->dispatch(Events::NEXT_SOURCE, $dataSource, array('limit' => $limit));
+        $this->dispatch(Events::HARVESTER_SOURCE_CONNECT, $dataSource, array('limit' => $limit));
         $dataSource->setParameters($params);
 
 
         //Connect to datasource
         $result = $dataSource->connectToSource($params);
-        $this->dispatch(Events::CONNECT_RESULT, $result, $params);
+        $this->dispatch(Events::HARVESTER_SOURCE_CONNECT_RESULT, $result, $params);
 
         //If could not connect, fail out
         if ( ! $result) {
@@ -145,14 +146,14 @@ class Harvester
             $newrec   = $this->documentFactory->factory('Document');
             $document = $dataSource->mapRecord($rec, $newrec, $this->documentFactory);
 
-            //@TODO: Check additional APIs for this record?
-
             //Save record (and flush it and detach it)
             $this->documentCollection->save($document, true, true);
 
+            //Dispatch event for additional tasks to be done upon harvest
+            $this->dispatch(Events::HARVESTER_PROCESS_RECORD, $document, array('totalDocCount' => $totalDocumentCount));
+
             //Reporting...
             $totalDocumentCount = $this->documentCollection->getQueryBuilder()->getQuery()->execute()->count();
-            $this->dispatch(Events::RECORD_PROCESSED, $document, array('totalDocCount' => $totalDocumentCount));
 
             //Increment counter
             $count++;
@@ -161,7 +162,7 @@ class Harvester
             unset($newrec, $document, $rec);
         }
 
-        $this->dispatch(Events::FINISHED_SOURCE, $count);
+        $this->dispatch(Events::HARVESTER_SOURCE_FINISHED, $count);
         return $count;
     }
 

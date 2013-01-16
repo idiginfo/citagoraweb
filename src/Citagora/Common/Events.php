@@ -1,9 +1,9 @@
 <?php
 
-namespace Citagora\Common\Harvester;
+namespace Citagora\Common;
 
 /**
- * Events Definition for Citagora Harvester
+ * Events Definition for Citagora Common Libraries
  *
  * Refer to http://symfony.com/doc/2.0/components/event_dispatcher/introduction.html
  * for how this works
@@ -16,21 +16,21 @@ final class Events
      *
      * @var string
      */
-    const NEXT_SOURCE = 'harvester.next_source';
+    const HARVESTER_SOURCE_CONNECT = 'harvester.next_source';
 
     /**
      * Thrown each time a connection is attempted to a data source
      *
      * @var string
      */
-    const CONNECT_RESULT = 'harvester.connect_result';
+    const HARVESTER_SOURCE_CONNECT_RESULT = 'harvester.connect_result';
 
     /**
      * Thrown each time a record is processed
      *
      * @var string
      */
-    const RECORD_PROCESSED = 'harvester.record_processed';
+    const HARVESTER_PROCESS_RECORD = 'harvester.record_processed';
 
 
     /**
@@ -38,7 +38,12 @@ final class Events
      *
      * @var string
      */
-    const FINISHED_SOURCE = 'harvester.finished_source';    
+    const HARVESTER_SOURCE_FINISHED = 'harvester.finished_source';    
+
+    /**
+     * Thrown when a document is saved in the system
+     *
+     * @var string
+     */
+    const ENTITY_DOCUMENT_SAVE = 'entities.document.save';
 }
-
-/* EOF: Events.php */
