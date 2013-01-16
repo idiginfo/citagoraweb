@@ -1,5 +1,5 @@
 {
-    "hash": "9486faf2496e55c0d551cdeeff9ef82a",
+    "hash": "e5f45e842f33b3a089d8fa7ceaff07a8",
     "packages": [
         {
             "name": "caseyamcl/Configula",
@@ -792,6 +792,54 @@
             "homepage": "http://silex.sensiolabs.org",
             "keywords": [
                 "microframework"
+            ]
+        },
+        {
+            "name": "solarium/solarium",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/basdenooijer/solarium",
+                "reference": "3.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/basdenooijer/solarium/archive/3.0.1.zip",
+                "reference": "3.0.1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/event-dispatcher": ">=2.1.0,<2.3-dev"
+            },
+            "time": "2013-01-03 06:31:49",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Solarium": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "NewBSD"
+            ],
+            "authors": [
+                {
+                    "name": "See GitHub contributors",
+                    "homepage": "https://github.com/basdenooijer/solarium/contributors"
+                }
+            ],
+            "description": "PHP Solr client",
+            "homepage": "http://www.solarium-project.org",
+            "keywords": [
+                "php",
+                "solr",
+                "search"
             ]
         },
         {
@@ -1678,7 +1726,6 @@
     "stability-flags": {
         "silex/silex": 20,
         "doctrine/mongodb-odm": 10,
-        "caseyamcl/configula": 20,
         "caseyamcl/phpoaipmh": 20,
         "illuminate/socialite": 20,
         "firephp/firephp-core": 20,
