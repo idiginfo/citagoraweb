@@ -59,7 +59,12 @@
                 <ul>
                     <li><a href="">Help</a></li>
                     <li><a href="">About</a></li>
-                    <li><a href="login.php">Login</a></li>
+                    {% if account.isLoggedIn %}
+                        <li><a href='{{ site_url }}/account'>Welcome, {{ account.info('firstName') }}</a></li>
+                        <li><a href='{{ site_url}}/logout'>Logout</a></li>
+                    {% else %}
+                        <li><a href="login.php">Login</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

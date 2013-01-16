@@ -118,8 +118,12 @@ class Users extends ControllerAbstract
             else {
 
                 $user = $this->users->factory();
+
+                //Add info for new user
                 $user->setOauthService($service, $info->get('id'), $accessToken);
-                $user->email = $info->get('email');
+                $user->firstName = $info->get('firstName');
+                $user->lastName  = $info->get('lastName');
+                $user->email     = $info->get('email');
             }
 
             return $this->processLogin($user);
