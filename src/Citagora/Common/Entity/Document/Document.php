@@ -102,10 +102,10 @@ class Document extends Entity
     /**
      * @var ArrayCollection
      * @ODM\EmbedMany(
-     *    targetDocument="Rating"
+     *    targetDocument="Review"
      * )
      */
-    protected $ratings;
+    protected $reviews;
 
     /**
      * @var ArrayCollection
@@ -161,7 +161,7 @@ class Document extends Entity
         $this->unmappedFields = array();
         $this->contributors   = new ArrayCollection();
         $this->citations      = new ArrayCollection();
-        $this->ratings        = new ArrayCollection();
+        $this->reviews        = new ArrayCollection();
         $this->socialMetrics  = new SocialMetrics();
         $this->meta           = new Meta();
     }
@@ -174,9 +174,9 @@ class Document extends Entity
             case 'contributors':
             case 'citations':
             case 'normalizedTitle':
-            case 'ratings':
+            case 'reviews':
             case 'unmappedFields':
-                throw new \Exception("Cannot modify {%item} property directly");
+                throw new \Exception("Cannot modify {$item} property directly");
             break;
             case 'title':
                 $this->setNormalizedTitle($value);
@@ -188,9 +188,9 @@ class Document extends Entity
 
     // --------------------------------------------------------------
 
-    public function addRating(Rating $rating)
+    public function addReview(Review $review)
     {
-        $this->ratings->add($rating);
+        $this->reviews->add($review);
     }
 
     // --------------------------------------------------------------

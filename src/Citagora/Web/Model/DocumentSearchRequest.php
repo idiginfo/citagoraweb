@@ -4,6 +4,12 @@ namespace Citagora\Web\Model;
 
 /**
  * Document Search Request Model
+ *
+ * Possible patterns:
+ *   . doi regex   - convert to faceted doi
+ *   . url         - convert to facted url
+ *   . solr format - pass along as solr query
+ *   . plaintext   - conver to general solr query
  */
 class DocumentSearchRequest
 {
@@ -15,6 +21,8 @@ class DocumentSearchRequest
     {
         $this->query = $query;
     }
+
+    // --------------------------------------------------------------
 
     public function getQuery()
     {
