@@ -103,8 +103,8 @@ class Document extends Entity
     /**
      * @var ArrayCollection
      * @ODM\ReferenceMany(
-     *     targetDocument="Review",
-     *     cascade={"persist","refresh","merge","delete"}
+     *    targetDocument="Review", 
+     *    mappedBy="document"
      * )
      */
     protected $reviews;
@@ -186,13 +186,6 @@ class Document extends Entity
         }
 
         parent::__set($item, $value);
-    }
-
-    // --------------------------------------------------------------
-
-    public function addReview(Review $review)
-    {
-        $this->reviews->add($review);
     }
 
     // --------------------------------------------------------------

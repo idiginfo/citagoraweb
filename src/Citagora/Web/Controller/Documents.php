@@ -110,8 +110,9 @@ class Documents extends ControllerAbstract
             return $this->abort(400, 'Invalid parameters sent');
         }
 
-        //Get the document to rate
-        $doc = $this->documentCollection->find($id);
+        //Get the document to rate and the user
+        $doc  = $this->documentCollection->find($id);
+        $user = $this->account()->getUser();
 
         //Ensure document exists
         if ( ! $doc) {
@@ -119,17 +120,15 @@ class Documents extends ControllerAbstract
         }
 
         //See if a review exists for this document and user
-        $reviewObj = $this->reviewCollection->getUserReview($doc, $this->account()->getUser());
+        $reviewObj = $this->reviewCollection->getUserReview($doc, $user);
 
         //Else create a new one...
         if ( ! $reviewObj) {
-            $reviewObj = $this->reviewCollection->factory();
-            $doc->addReview($reviewObj);
-            $this->documentCollection->save($doc);
+            $reviewObj = $this->reviewCollection->factory($doc, $user);
         }
 
         $reviewObj->addRating($category, $value);
-        $reviewObj->save();
+        $this->reviewCollection->save($reviewObj, $this->account()->getUser());
 
         //Return JSON
         return $this->json(array('success' => true));
