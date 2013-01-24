@@ -88,6 +88,28 @@ abstract class Base
     abstract public function getSpecificRecord(Document $document);
 
     // --------------------------------------------------------------
+ 
+    /**
+     * Map mappable record fields to Citagora Document Container
+     *
+     * @param  mixed           $sourceRecord  Whatever format getNextRecord() returned
+     * @param  Document        $document      A document to populate
+     * @param  DocumentFactory $df            Document Factory for generating document-related entities     
+     * @return Document
+     */
+    abstract protected function mapFields($sourceRecord, Document $document, DocumentFactory $df);
+
+    // --------------------------------------------------------------
+
+    /**
+     * Get fields from source that were not mapped to Citagora container
+     *
+     * @param  mixed $sourceRecord  Whatever format getNextRecord() returned
+     * @return array Key/values for fields that were not mapped, but we want to store for potential use
+     */
+    abstract protected function getUnmappedFields($sourceRecord);
+
+    // --------------------------------------------------------------
 
     /**
      * Map record to Citagora Document Container Object
@@ -97,7 +119,14 @@ abstract class Base
      * @param  DocumentFactory $df            Document Factory for generating document-related entities     
      * @return Document
      */
-    abstract public function mapRecord($sourceRecord, Document $document, DocumentFactory $df);
+    public function mapRecord($sourceRecord, Document $document, DocumentFactory $df)
+    {
+        $document = $this->mapFields($sourceRecord, $document, $df);
+        $document->meta->addSource($this->getSlug(), $this->getRecordIdentifier($sourceRecord));
+        $document->addUnmappedFields($this->getSlug(), $this->getUnmappedFields($sourceRecord));
+
+        return $document;
+    }
 
     // --------------------------------------------------------------
 

@@ -136,7 +136,7 @@ class Harvester
         }
 
         //While getNextRecord...
-        while ($rec = $dataSource->getNextRecord($params)) {                
+        while ($sourceRec = $dataSource->getNextRecord($params)) {                
 
             if ($limit && $count >= $limit) {
                 break;
@@ -144,22 +144,22 @@ class Harvester
 
             //Map record
             $newrec   = $this->documentFactory->factory('Document');
-            $document = $dataSource->mapRecord($rec, $newrec, $this->documentFactory);
+            $document = $dataSource->mapRecord($sourceRec, $newrec, $this->documentFactory);
 
             //Save record (and flush it and detach it)
             $this->documentCollection->save($document, true, true);
 
+            //Determine total document count for reporting...
+            $totalDocumentCount = $this->documentCollection->getQueryBuilder()->getQuery()->execute()->count();
+
             //Dispatch event for additional tasks to be done upon harvest
             $this->dispatch(Events::HARVESTER_PROCESS_RECORD, $document, array('totalDocCount' => $totalDocumentCount));
-
-            //Reporting...
-            $totalDocumentCount = $this->documentCollection->getQueryBuilder()->getQuery()->execute()->count();
 
             //Increment counter
             $count++;
 
             //Cleanup
-            unset($newrec, $document, $rec);
+            unset($newrec, $document, $sourceRec);
         }
 
         $this->dispatch(Events::HARVESTER_SOURCE_FINISHED, $count);

@@ -56,7 +56,7 @@ class Arxiv extends Type\Oaipmh
 
     // --------------------------------------------------------------
 
-    public function mapRecord($sourceRecord, Document $document, DocumentFactory $df)
+    protected function mapFields($sourceRecord, Document $document, DocumentFactory $df)
     {
         $source = $sourceRecord->metadata->arXiv;
 
@@ -75,7 +75,18 @@ class Arxiv extends Type\Oaipmh
             $document->addContributor($contributor);
         }
 
-        //Unmapped Fields
+
+
+        //Return it
+        return $document;     
+    }
+
+    // --------------------------------------------------------------
+
+    protected function getUnmappedFields($sourceRecord)
+    {
+        $source = $sourceRecord->metadata->arXiv;
+
         $unmappedFields = array();
         $unmappedFields['journal-ref'] = (string) $source->{'journal-ref'};
         $unmappedFields['created']     = (string) $source->created;
@@ -83,11 +94,9 @@ class Arxiv extends Type\Oaipmh
         $unmappedFields['categories']  = (string) $source->categories;
         $unmappedFields['comments']    = (string) $source->comments;
         $unmappedFields['report-no']   = (string) $source->{'report-no'};
-        $document->unmappedFields = $unmappedFields;
 
-        //Return it
-        return $document;     
-    }
+        return $unmappedFields;      
+    }    
 }
 
 /* EOF: Arxiv.php */

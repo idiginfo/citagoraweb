@@ -138,7 +138,7 @@ class DocumentCollection extends EntityCollection
         //Merge meta
         $mergeMeta = function($meta) use ($target) {
             foreach($meta->sources as $source => $id) {
-                if ( ! in_array($target->meta->sources)) {
+                if ( ! isset($target->meta->sources[$source])) {
                     $target->meta->addSource($source, $id);
                 }
             }
