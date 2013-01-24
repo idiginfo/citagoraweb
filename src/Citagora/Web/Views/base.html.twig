@@ -22,9 +22,9 @@
         <!-- For Facebook Sharing -->
         <meta property="og:site_name" content="Citagora" />
         <meta property="og:image" content="{{ asset_url }}/_img/share.jpg" />
-        <meta property="og:title" content="" />
+        <meta property="og:title" content="Citagora | {{ block('page_title') | trim }}" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="{{ base_url }}" />
+        <meta property="og:url" content="{{ current_url }}" />
         {% endblock %}
 
     
@@ -99,11 +99,16 @@
         </div>
         </div>
 
-        {# Javascript #}
         {% block base_js %}
+        {# Vendor Javascript Libraries #}
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>    
         <script type="text/javascript" src="{{ asset_url }}/_js/jquery.tabify.js"  charset="utf-8"></script>
-        <script type="text/javascript" src="{{ asset_url }}/_js/tinybox.js"></script>    
+        <script type="text/javascript" src="{{ asset_url }}/_js/tinybox.js"></script>
+
+        {# Site JS #}
+        <script type='text/javascript'>
+            siteUrl = '{{ site_url }}';
+        </script>
         <script type='text/javascript'  src="{{ asset_url }}/_js/main.js"></script>
         {% endblock %}
         {% block page_js %}
