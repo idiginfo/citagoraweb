@@ -146,17 +146,24 @@ class Document extends Entity
      */
     protected $keywords;
 
+    /**
+     * @var array
+     * @ODM\Hash
+     */
+    protected $unmappedFields;
+
     // --------------------------------------------------------------
 
     public function __construct()
     {
         //Initialize Everything
-        $this->keywords      = array();
-        $this->contributors  = new ArrayCollection();
-        $this->citations     = new ArrayCollection();
-        $this->ratings       = new ArrayCollection();
-        $this->meta          = new Meta();
-        $this->socialMetrics = new SocialMetrics();
+        $this->keywords       = array();
+        $this->unmappedFields = array();
+        $this->contributors   = new ArrayCollection();
+        $this->citations      = new ArrayCollection();
+        $this->ratings        = new ArrayCollection();
+        $this->socialMetrics  = new SocialMetrics();
+        $this->meta           = new Meta();
     }
 
     // --------------------------------------------------------------
@@ -168,6 +175,7 @@ class Document extends Entity
             case 'citations':
             case 'normalizedTitle':
             case 'ratings':
+            case 'unmappedFields':
                 throw new \Exception("Cannot modify {%item} property directly");
             break;
             case 'title':
@@ -206,6 +214,30 @@ class Document extends Entity
         if ( ! in_array($keyword, $this->keywords)) {
             $this->keywords[] = $keyword;
         }
+    }
+
+    // --------------------------------------------------------------
+
+    /**
+     * Add unmapped fields to record
+     *
+     * Merges existing unmapped fields from the source with new ones,
+     * and overwrites any old unmapped fields that are sent as part of the
+     * second parameter
+     *
+     * @param string $sourceSlug  The datasource slug
+     * @param array  $fields      The fields
+     */
+    public function addUnmappedFields($sourceSlug, array $fields)
+    {
+        $unmappedFields = $this->unmappedFields;
+
+        $existingUnmappedFields = isset($unmappedFields[$sourceSlug])
+            ? $unmappedFields[$sourceSlug]
+            : array();
+
+        $unmappedFields[$sourceSlug] = array_filter(array_merge($existingUnmappedFields, $fields));
+        $this->unmappedFields = $unmappedFields;
     }
 
     // --------------------------------------------------------------

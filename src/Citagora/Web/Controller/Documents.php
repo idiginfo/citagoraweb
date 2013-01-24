@@ -68,8 +68,6 @@ class Documents extends ControllerAbstract
         //Render the view
         return $this->render('Documents/search.html.twig', $data);
     }
-
-    // --------------------------------------------------------------
 }
 
 /* EOF: Documents.php */

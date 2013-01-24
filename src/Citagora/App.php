@@ -51,6 +51,7 @@ abstract class App extends SilexApplication
         if ( ! is_readable($this['basepath'] . '/config/config.yml')) {
             throw new RuntimeException("Missing config/config.yml!  Did you forget to set it up?");
         }
+
         $this['config'] = new Config($this['basepath'] . '/config');
 
         //App mode
@@ -102,7 +103,7 @@ abstract class App extends SilexApplication
             'em.namespace'       => __NAMESPACE__ . "\\Common\\Entity",
             'em.collections'     => array(
                 new Common\EntityCollection\UserCollection(new BcryptHasher()),
-                new Common\EntityCollection\DocumentCollection()
+                new Common\EntityCollection\DocumentCollection($app['dispatcher'])
             )
         ));
 

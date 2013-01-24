@@ -59,7 +59,7 @@ class Nature extends Type\Oaipmh
 
     // --------------------------------------------------------------
 
-    public function mapRecord($sourceRecord, Document $document, DocumentFactory $df)
+    protected function mapFields($sourceRecord, Document $document, DocumentFactory $df)
     {
         //Register namespaces
         $sourceRecord = $this->registerNamespaces($sourceRecord);
@@ -89,7 +89,24 @@ class Nature extends Type\Oaipmh
             $document->addContributor($contributor);
         }
 
+        //Return it..
         return $document;        
+    }
+
+    // --------------------------------------------------------------
+
+    protected function getUnmappedFields($sourceRecord)
+    {
+        //Register namespaces
+        $sourceRecord = $this->registerNamespaces($sourceRecord);
+        
+        $unmappedFields = array();
+        $unmappedFields['eissn']     = $this->getXpathValue($sourceRecord, '//pam:article//prism:eIssn');
+        $unmappedFields['volume']    = $this->getXpathValue($sourceRecord, '//pam:article//prism:volume');
+        $unmappedFields['number']    = $this->getXpathValue($sourceRecord, '//pam:article//prism:number');
+        $unmappedFields['copyright'] = $this->getXpathValue($sourceRecord, '//pam:article//prism:copyright');
+
+        return $unmappedFields;      
     }
 
     // --------------------------------------------------------------
