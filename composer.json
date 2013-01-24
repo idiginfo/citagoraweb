@@ -39,7 +39,7 @@
         "symfony/form":           "2.1.*",
         "symfony/validator":      "2.1.*",
         "symfony/config":         "2.1.*",
-        "symfony/yaml":           ">=2.1.0",
+        "symfony/yaml":           "2.1.*",
         "doctrine/mongodb-odm":   ">=1.0.0-BETA7",
         "monolog/monolog":        ">=1.0.0",
         "caseyamcl/Configula":    ">=2.1.0",
