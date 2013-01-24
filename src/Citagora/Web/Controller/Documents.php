@@ -119,7 +119,7 @@ class Documents extends ControllerAbstract
         }
 
         //See if a review exists for this document and user
-        $reviewObj = $this->reviewCollection->findOneBy(array('user' => $this->account()->getUser()));
+        $reviewObj = $this->reviewCollection->getUserReview($doc, $this->account()->getUser());
 
         //Else create a new one...
         if ( ! $reviewObj) {

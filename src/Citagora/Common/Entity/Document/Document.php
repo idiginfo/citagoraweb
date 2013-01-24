@@ -5,6 +5,7 @@ namespace Citagora\Common\Entity\Document;
 use Citagora\Common\EntityManager\Entity;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\Common\Collections\ArrayCollection;
+use InavlidArgumentException;
 
 /**
  * @ODM\Document
@@ -210,6 +211,11 @@ class Document extends Entity
 
     // --------------------------------------------------------------
 
+    /**
+     * Add keyword
+     *
+     * @param string $keyword
+     */
     public function addKeyword($keyword)
     {
         if ( ! in_array($keyword, $this->keywords)) {
@@ -243,6 +249,11 @@ class Document extends Entity
 
     // --------------------------------------------------------------
 
+    /**
+     * Get the DOI URL
+     *
+     * @return string
+     */
     public function doiUrl()
     {
         if ($this->doi) {
@@ -262,12 +273,45 @@ class Document extends Entity
 
     // --------------------------------------------------------------
 
+    /**
+     * Get the Pubmed ID Url
+     *
+     * @return string
+     */
     public function pmidUrl()
     {
         return ($this->pmid)
             ? 'http://www.ncbi.nlm.nih.gov/pubmed/' . $this->pmid
             : null;
     }    
+
+    // --------------------------------------------------------------
+
+    /**
+     * Aggregate ratings for a category
+     *
+     * @param string $category
+     * @return float
+     */
+    public function aggregateRating($category)
+    {
+        if ( ! in_array($category, array_keys(Review::getRatingCategories()))) {
+            throw new InvalidArgumentException("The category {$category} is not valid");
+        }
+
+        $values = array();
+
+        foreach ($this->reviews as $review) {
+            $value = $review->getRating($category);
+            if ($value !== null) {
+                $values[] = $value;
+            }
+        }
+
+        return (count($values) > 0)
+            ? array_sum($values) / count($values)
+            : 0;
+    }
 
     // --------------------------------------------------------------
 

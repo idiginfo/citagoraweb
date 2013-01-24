@@ -16,8 +16,8 @@ class Review extends Entity
      * @var arrray  Definition of rating categories 
      *              (keys are categories, values are human-readable)
      */
-    private $ratingCategories = array(
-        'overall'     => 'Overall'
+    private static $ratingCategories = array(
+        'overall'     => 'Overall',
         'readabilty'  => 'Readability',
         'accuracy'    => 'Accuracy',
         'originality' => 'Originality'
@@ -70,9 +70,23 @@ class Review extends Entity
      *
      * @return array  Keys are rating caetegory, values are human names
      */
-    public function getRatingCategories()
+    public static function getRatingCategories()
     {
-        return $this->ratingCategories;
+        return self::$ratingCategories;
+    }
+
+    // --------------------------------------------------------------
+
+    /**
+     * Get a rating
+     */
+    public function getRating($category)
+    {
+        if ( ! isset(self::$ratingCategories[$category])) {
+            throw new InvalidArgumentException("Rating category {$category} is not valid");
+        }
+
+        return isset($this->ratings[$category]) ? $this->ratings[$category] : null;
     }
 
     // --------------------------------------------------------------
@@ -85,7 +99,7 @@ class Review extends Entity
      */
     public function addRating($category, $rating)
     {
-        if ( ! isset($this->ratingCategories[$category])) {
+        if ( ! isset(self::$ratingCategories[$category])) {
             throw new InvalidArgumentException("Rating category {$category} is not valid");
         }
         if ( ! is_numeric($rating)) {

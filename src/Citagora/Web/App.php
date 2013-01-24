@@ -111,7 +111,10 @@ class App extends CitagoraApp
             break;
             default:
 
-                $this['monolog']->addError($exception->getMessage(), array('code' => $code));
+                $this['monolog']->addError(
+                    $exception->getMessage(),
+                    array('code' => $code, 'trace' => $exception->getTrace())
+                );
 
                 //If Debug, do default (just return to cause this behvior)
                 if ($this['debug']) {

@@ -103,7 +103,8 @@ abstract class App extends SilexApplication
             'em.namespace'       => __NAMESPACE__ . "\\Common\\Entity",
             'em.collections'     => array(
                 new Common\EntityCollection\UserCollection(new BcryptHasher()),
-                new Common\EntityCollection\DocumentCollection($app['dispatcher'])
+                new Common\EntityCollection\DocumentCollection($app['dispatcher']),
+                new Common\EntityCollection\DocumentReviewCollection()
             )
         ));
 
