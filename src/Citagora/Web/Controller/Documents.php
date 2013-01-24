@@ -11,21 +11,37 @@ use Silex\Application;
 class Documents extends ControllerAbstract
 {
     /**
-     * @var Citagora\EntityCollection\DocumentCollection
+     * @var Citagora\Common\EntityCollection\DocumentCollection
      */
     private $documentCollection;
+
+    /**
+     * @var Citagora\Common\EntityManager\GenericCollection
+     */
+    private $reviewCollection;
+
+    /**
+     * @var Citagora\Common\Tool\DocumentFactory
+     */
+    private $documentFactory;
 
     // --------------------------------------------------------------
 
     protected function init(Application $app)
     {
+        //Add routes
         $this->addRoute('/documents/',            'index');
         $this->addRoute('/documents/{id}/',       'single');
         $this->addRoute('/documents/{id}/{sub}/', 'single');
+        $this->addRoute('/documents/rate/{id}',   'rate', 'post');
+
         $this->addRoute('/search/',               'search');
         $this->addRoute('/search/{query}/',       'search');
 
+        //Get collections
         $this->documentCollection = $app['em']->getCollection('Document\Document');
+        $this->reviewCollection   = $app['em']->getCollection('Document\Review');
+        $this->documentFactory    = $app['document_factory'];
     }
 
     // --------------------------------------------------------------
@@ -68,6 +84,56 @@ class Documents extends ControllerAbstract
         //Render the view
         return $this->render('Documents/search.html.twig', $data);
     }
+
+    // --------------------------------------------------------------
+
+    /**
+     * AJAX: Add a rating to a document
+     *
+     * TODO: Debug this!
+     *
+     * @param string $id  Document ID
+     */
+    public function rate($id)
+    {
+        //Ensure logged-in
+        if ( ! $this->account()->isLoggedIn()) {
+            return $this->abort(401, 'You must login to rate documents');
+        }
+
+        //Get the category and value from POST (both are required)
+        $category = $this->getPostParams('category');
+        $value    = $this->getPostParams('value');
+
+        //Ensure required parameters
+        if ( ! $category OR ! $value) {
+            return $this->abort(400, 'Invalid parameters sent');
+        }
+
+        //Get the document to rate
+        $doc = $this->documentCollection->find($id);
+
+        //Ensure document exists
+        if ( ! $doc) {
+            return $this->abort(404, 'Document not found');
+        }
+
+        //See if a review exists for this document and user
+        $reviewObj = $this->reviewCollection->findOneBy(array('user' => $this->account()->getUser()));
+
+        //Else create a new one...
+        if ( ! $reviewObj) {
+            $reviewObj = $this->reviewCollection->factory();
+            $doc->addReview($reviewObj);
+            $this->documentCollection->save($doc);
+        }
+
+        $reviewObj->addRating($category, $value);
+        $reviewObj->save();
+
+        //Return JSON
+        return $this->json(array('success' => true));
+    }    
 }
 
 /* EOF: Documents.php */

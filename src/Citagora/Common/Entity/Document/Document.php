@@ -101,8 +101,9 @@ class Document extends Entity
 
     /**
      * @var ArrayCollection
-     * @ODM\EmbedMany(
-     *    targetDocument="Review"
+     * @ODM\ReferenceMany(
+     *     targetDocument="Review",
+     *     cascade={"persist","refresh","merge","delete"}
      * )
      */
     protected $reviews;

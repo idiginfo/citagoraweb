@@ -8,19 +8,28 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Exception, InvalidArgumentException;
 
 /**
- * @ODM\EmbeddedDocument
+ * @ODM\Document(collection="DocumentReview")
  */
 class Review extends Entity
 {
     /**
-     * @var arrray  Definition of rating types
+     * @var arrray  Definition of rating categories 
+     *              (keys are categories, values are human-readable)
      */
-    private $ratingTypes = array(
+    private $ratingCategories = array(
         'overall'     => 'Overall'
         'readabilty'  => 'Readability',
         'accuracy'    => 'Accuracy',
         'originality' => 'Originality'
     );
+
+    // --------------------------------------------------------------
+
+    /**
+     * @var int
+     * @ODM\Id     
+     */
+    protected $id;
 
     /**
      * @var array
@@ -57,30 +66,33 @@ class Review extends Entity
     // --------------------------------------------------------------
 
     /**
-     * Get valid rating types
+     * Get valid rating categories
      *
-     * @return array  Keys are rating type, values are human names
+     * @return array  Keys are rating caetegory, values are human names
      */
-    public function getRatingTypes()
+    public function getRatingCategories()
     {
-        return $this->ratingTypes;
+        return $this->ratingCategories;
     }
 
     // --------------------------------------------------------------
 
     /**
      * Add a rating
+     *
+     * @param string $category
+     * @param float  $rating
      */
-    public function addRating($type, $rating)
+    public function addRating($category, $rating)
     {
-        if ( ! isset($this->ratingTypes[$type])) {
-            throw new InvalidArgumentException("Rating type {$type} is not valid");
+        if ( ! isset($this->ratingCategories[$category])) {
+            throw new InvalidArgumentException("Rating category {$category} is not valid");
         }
         if ( ! is_numeric($rating)) {
-            throw new InvalidArgumentException("The rating type {$type} must be numeric");
+            throw new InvalidArgumentException("The {$category} rating must be numeric");
         }
 
-        $this->ratings[$type] = (float) $rating;
+        $this->ratings[$category] = (float) $rating;
     }
 }
 

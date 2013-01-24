@@ -155,6 +155,29 @@ abstract class ControllerAbstract implements ControllerProviderInterface
     // --------------------------------------------------------------    
 
     /**
+     * Return JSON
+     *
+     * @param mixed   $data  Anything that can be JSON-encoded
+     * @param int     $code  HTTP Response Code
+     * @param boolean $wrap  Wrap standard JSON API information?
+     */
+    protected function json($data, $code = 200, $wrap = true)
+    {   
+        //Wrap in a standard container
+        if ($wrap) {
+            $data = array(
+                'version' => '1', 
+                'data'    => $data,
+                'notices' => $this->app['notices']->flush()
+            );
+        }
+
+        return $this->app->json($data, $code);
+    }
+
+    // --------------------------------------------------------------    
+
+    /**
      * Abort
      *
      * @int $code
