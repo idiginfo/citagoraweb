@@ -15,6 +15,7 @@
     
     <h2>Currently Searching:</h2>
     
+    {# needs to be dynamic #}
     <ul class="disc">
     <li>Web of Science</li>
     <li>Wiley</li>
@@ -33,12 +34,14 @@
     {% for doc in docs %}    
         <div class='row {{ loop.index is odd ? 'odd' : 'even' }}'>
 
+            {# activity box is only for home page activity results, not search results #}
             <div class='activity'>
                 <p class='activity'>
-                    Just Published by <a href=''>Dummy</a>
+                    Just Published by <a onclick="TINY.box.show({html:'This is a box. A musical box. Wound up and ready to play.',animate:false,close:false})">Dummy</a>
                     <br><span class='date'>11 June 2012, 5:39 am</span>
                 </p>
             </div>
+            {# end activity #}
 
             <div class='record'>
                 <h4><a href='{{ site_url }}/documents/{{ doc.id }}'>{{ doc.title }}</a></h4>

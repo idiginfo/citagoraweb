@@ -353,6 +353,48 @@ table.tab-table { width: 579px; }
 /* #Page Styles
 ================================================== */
 
+.boxed {
+    border: 1px solid #ddd;
+    padding: 10px;
+    -moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	}
+	
+ul.activity-list  {
+    border-top: 1px #ddd solid;
+    }
+	
+.activity-list li {
+    margin: 0;
+    padding: 5px 0;
+    border-bottom: 1px #ddd solid;
+    font-size: 90%;
+    vertical-align: baseline;
+    }
+    
+.activity-list li img {
+    vertical-align: baseline;
+    }
+    
+.activity-list li:hover {
+    background: #fff;
+    }
+    
+.activity-date {
+    color: #aaa;
+    }
+    
+.profile-label { width: 63px; display: block; float: left; font-style: italic; }
+    
+.tbox {position:absolute; display:none; padding:14px 17px; z-index:900}
+.tinner {padding:15px; -moz-border-radius:5px; border-radius:5px; background:#fff url(images/preload.gif) no-repeat 50% 50%; border-right:1px solid #333; border-bottom:1px solid #333}
+.tmask {position:absolute; display:none; top:0px; left:0px; height:100%; width:100%; background:#666; z-index:800}
+.tclose {position:absolute; top:0px; right:0px; width:30px; height:30px; cursor:pointer; background:url(images/close.png) no-repeat}
+.tclose:hover {background-position:0 -30px}
+
+
 /* #Media Queries
 ================================================== */
 

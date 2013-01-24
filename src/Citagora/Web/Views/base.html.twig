@@ -17,12 +17,12 @@
         <meta name="description" content="DESC HERE" />
         <meta name="keywords" content="KEYWORDS HERE" />
         
-        <!-- MY GIT DONT WORK -->
+        <!-- For Facebook Sharing -->
         <meta property="og:site_name" content="Citagora" />
-        <meta property="og:image" content="" />
+        <meta property="og:image" content="{{ asset_url }}/_img/share.jpg" />
         <meta property="og:title" content="" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="" />
+        <meta property="og:url" content="{{ base_url }}" />
 
     
         <!-- Mobile Specific Metas
@@ -63,7 +63,7 @@
                         <li><a href='{{ site_url }}/account'>Welcome, {{ account.info('firstName') }}</a></li>
                         <li><a href='{{ site_url}}/logout'>Logout</a></li>
                     {% else %}
-                        <li><a href="login.php">Login</a></li>
+                        <li><a href="{{ site_url}}/login">Login</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -100,5 +100,7 @@
                 }
             });
         </script>
+        <script type="text/javascript" src="{{ asset_url }}/_js/tinybox.js"></script>    
+        
     </body>
 </html>
