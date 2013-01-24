@@ -146,17 +146,24 @@ class Document extends Entity
      */
     protected $keywords;
 
+    /**
+     * @var array
+     * @ODM\Hash
+     */
+    protected $unmappedFields;
+
     // --------------------------------------------------------------
 
     public function __construct()
     {
         //Initialize Everything
-        $this->keywords      = array();
-        $this->contributors  = new ArrayCollection();
-        $this->citations     = new ArrayCollection();
-        $this->ratings       = new ArrayCollection();
-        $this->meta          = new Meta();
-        $this->socialMetrics = new SocialMetrics();
+        $this->keywords       = array();
+        $this->unmappedFields = array();
+        $this->contributors   = new ArrayCollection();
+        $this->citations      = new ArrayCollection();
+        $this->ratings        = new ArrayCollection();
+        $this->socialMetrics  = new SocialMetrics();
+        $this->meta           = new Meta();
     }
 
     // --------------------------------------------------------------

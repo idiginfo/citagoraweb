@@ -72,7 +72,7 @@ class DocumentCollection extends EntityCollection
 
         //Dispatch a new event
         $event = new GenericEvent($record, array('isnew' => (boolean) $existing));
-        $this->eventDispatcher->dispatch(Events::ENTITY_DOCUMENT_SAVE, $event);
+        $this->dispatcher->dispatch(Events::ENTITY_DOCUMENT_SAVE, $event);
 
         //Save it
         return parent::save($record, $flush, $clear);

@@ -102,7 +102,9 @@ abstract class Base
     // --------------------------------------------------------------
 
     /**
-     * Add an paramater (should be done from the constructor in child classes)
+     * Add an available paramater for this Datasource
+     *
+     * This should be done from the constructor in child classes
      *
      * @param Option $param
      */
@@ -115,7 +117,7 @@ abstract class Base
     // --------------------------------------------------------------
 
     /**
-     * Return array of available options
+     * Return array of available options for this data source
      *
      * @return array
      */
@@ -127,7 +129,7 @@ abstract class Base
     // --------------------------------------------------------------
 
     /**
-     * Set parameters
+     * Set parameters for Datasource
      *
      * @param array $params  Key/value of desired settings
      */
@@ -139,7 +141,7 @@ abstract class Base
     // --------------------------------------------------------------
 
     /**
-     * Set Parameter
+     * Set Parameter for Datasource
      *
      * @param string $name
      * @param mixed $value
@@ -156,7 +158,8 @@ abstract class Base
     // --------------------------------------------------------------
 
     /**
-     * Get the parameters that have been set
+     * Get the parameters that have been set for Datasource
+     *
      * @return array
      */
     protected function getParameter($name)

@@ -69,12 +69,23 @@ class Arxiv extends Type\Oaipmh
         //Authors
         foreach($source->authors->author as $author) {
             
-            $contributor = $this->buildEntity('Document\Contributor');
+            $contributor = $df->factory('Contributor');
             $contributor->surname   = $author->keyname;
             $contributor->givenname = $author->forenames;
             $document->addContributor($contributor);
         }
 
+        //Unmapped Fields
+        $unmappedFields = array();
+        $unmappedFields['journal-ref'] = (string) $source->{'journal-ref'};
+        $unmappedFields['created']     = (string) $source->created;
+        $unmappedFields['updated']     = (string) $source->updated;
+        $unmappedFields['categories']  = (string) $source->categories;
+        $unmappedFields['comments']    = (string) $source->comments;
+        $unmappedFields['report-no']   = (string) $source->{'report-no'};
+        $document->unmappedFields = $unmappedFields;
+
+        //Return it
         return $document;     
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Citagora\Common\Harvester;
 
+use Citagora\Common\Events;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\Event;
@@ -34,10 +35,10 @@ class CliTracker
      */
     public function __construct(EventDispatcher $dispatcher, OutputInterface $output)
     {
-        $dispatcher->addListener(Events::NEXT_SOURCE,      array($this, 'nextSourceNotify'));
-        $dispatcher->addListener(Events::CONNECT_RESULT,   array($this, 'connectResult'));
-        $dispatcher->addListener(Events::RECORD_PROCESSED, array($this, 'recordProcessed'));
-        $dispatcher->addListener(Events::FINISHED_SOURCE,  array($this, 'finishedSource'));
+        $dispatcher->addListener(Events::HARVESTER_SOURCE_CONNECT,        array($this, 'nextSourceNotify'));
+        $dispatcher->addListener(Events::HARVESTER_SOURCE_CONNECT_RESULT, array($this, 'connectResult'));
+        $dispatcher->addListener(Events::HARVESTER_PROCESS_RECORD,        array($this, 'recordProcessed'));
+        $dispatcher->addListener(Events::HARVESTER_SOURCE_FINISHED,       array($this, 'finishedSource'));
 
         $this->output = $output;
     }
