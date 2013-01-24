@@ -8,7 +8,9 @@
 
         <!-- Basic Page Needs
         ================================================== -->        
-        <title>{% block title %}Citagora{% endblock %}</title>
+        <title>Citagora | {% block page_title %}Reference Discovery{% endblock %}</title>
+
+        {% block base_meta %}
         <meta name="author" content="Institute for Digital Information and Scientific Communication">
     
         <meta name="robots" content="NOODP">
@@ -23,6 +25,7 @@
         <meta property="og:title" content="" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="{{ base_url }}" />
+        {% endblock %}
 
     
         <!-- Mobile Specific Metas
@@ -31,7 +34,7 @@
 
         <!-- CSS
         ================================================== -->
-        {% block stylesheets %}{% endblock %}
+        {% block base_css %}
         <link href='http://fonts.googleapis.com/css?family=Trocchi|Signika:300,400,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{{ asset_url }}/_css/base.css">
         <link rel="stylesheet" href="{{ asset_url }}/_css/skeleton.css">
@@ -42,7 +45,9 @@
             label { display: block!important; }
             </style>
         <![endif]-->
-               
+        {% endblock %}
+        {% block page_css %}
+        {% endblock %}
 
         <!-- Favicons
         ================================================== -->
@@ -50,6 +55,9 @@
         <link rel="apple-touch-icon" href="{{ asset_url }}/_img/apple-touch-icon.png">
         <link rel="apple-touch-icon" sizes="72x72" href="{{ asset_url }}/_img/apple-touch-icon-72x72.png">
         <link rel="apple-touch-icon" sizes="114x114" href="{{ asset_url }}/_img/apple-touch-icon-114x114.png">
+
+        {% block page_headers %}
+        {% endblock %}
     </head>
     <body class="default pages">
 
@@ -79,7 +87,8 @@
             </div>            
 
             <div class="container" id="boxes">
-                {{ __content__ | raw }} {# always use the raw filter for content in a template #}
+                {% block page_content %}
+                {% endblock %}
             </div>
         </div>
 
@@ -91,16 +100,13 @@
         </div>
 
         {# Javascript #}
+        {% block base_js %}
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>    
-        <script src="{{ asset_url }}/_js/jquery.tabify.js" type="text/javascript" charset="utf-8"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                if ($('#tabs').length > 0) {
-                    $('#tabs').tabify();
-                }
-            });
-        </script>
+        <script type="text/javascript" src="{{ asset_url }}/_js/jquery.tabify.js"  charset="utf-8"></script>
         <script type="text/javascript" src="{{ asset_url }}/_js/tinybox.js"></script>    
-        
+        <script type='text/javascript'  src="{{ asset_url }}/_js/main.js"></script>
+        {% endblock %}
+        {% block page_js %}
+        {% endblock %}
     </body>
 </html>

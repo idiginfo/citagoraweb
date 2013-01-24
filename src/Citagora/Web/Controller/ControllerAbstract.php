@@ -139,17 +139,9 @@ abstract class ControllerAbstract implements ControllerProviderInterface
      * @param string|boolean $template  Template filename (in Views directory) or false
      * @param return string             The rendered output
      */
-    protected function render($view, $data = array(), $template = 'base.html.twig')
+    protected function render($view, $data = array())
     {
-        //Render in template, or render without template if none specified
-        if ($template) {
-            $content = $this->app['twig']->render($view, $data);
-            $data = array_merge($data, array('__content__' => $content));
-            return $this->app['twig']->render($template, $data);
-        }
-        else {
-            return $this->app['twig']->render($view, $data);
-        }        
+        return $this->app['twig']->render($view, $data);      
     }
 
     // --------------------------------------------------------------    
@@ -232,7 +224,7 @@ abstract class ControllerAbstract implements ControllerProviderInterface
         $path = '/' . ltrim($path, '/');
 
         //Do it
-        return $this->app->redirect($this->app['url.app'] . $path);
+        return $this->app->redirect($this->getSiteUrl() . $path);
     } 
 
     // --------------------------------------------------------------
@@ -280,13 +272,24 @@ abstract class ControllerAbstract implements ControllerProviderInterface
     // --------------------------------------------------------------
 
     /**
+     * Get the application site URL
+     */
+    protected function getSiteUrl()
+    {
+        return $this->app['request']->getSchemeAndHttpHost() 
+            . $this->app['request']->getBaseUrl();
+    }
+
+    // --------------------------------------------------------------
+
+    /**
      * Get the current URL
      *
      * @return string
      */
     protected function getUrl()
     {
-        return $this->app['url.current'];
+        return $this->getSiteUrl() . $this->app['request']->getPathInfo();
     }
 
     // --------------------------------------------------------------

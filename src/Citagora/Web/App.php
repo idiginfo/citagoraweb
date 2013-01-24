@@ -19,10 +19,7 @@ class App extends CitagoraApp
         //Load Libraries
         $this->loadWebLibraries();
 
-        //Before Hook
-        $this->before(array($this, 'doBefore'));
-
-        //Error Hook
+        //Error Handler
         $this->error(array($this, 'doError'));
 
         //Maintenance mode?
@@ -67,7 +64,7 @@ class App extends CitagoraApp
         $this->register(new FormServiceProvider());
 
         //$this['twig']
-        $this->register(new TwigServiceProvider(), array(
+        $this->register(new SilexProvider\TwigServiceProvider(), array(
             'twig.path' => $this['srcpath'] . '/Web/Views'
         ));
 
@@ -89,40 +86,6 @@ class App extends CitagoraApp
         $this['notices'] = $this->share(function($app) {
             return new Library\Notices($app['session']);
         });    
-    }
-
-    // --------------------------------------------------------------
-
-    public function doBefore()
-    {
-
-        //Some additional info about the path at runtime
-        $this['url.base']     = $this['request']->getSchemeAndHttpHost() . $this['request']->getBasePath();
-        $this['url.app']      = $this['request']->getSchemeAndHttpHost() . $this['request']->getBaseUrl();
-        $this['url.current']  = $this['url.app'] . $this['request']->getPathInfo();
-
-        //Add additional information to Twig
-        $this['twig'] = $this->share($this->extend('twig', function($twig, $app) {
-
-            //URL globals
-            $twig->addGlobal('base_url',    $app['url.base']);
-            $twig->addGlobal('asset_url',   $app['url.base'] . '/assets');
-            $twig->addGlobal('site_url',    $app['url.app']);
-            $twig->addGlobal('current_url', $app['url.current']);
-
-            //debug method
-            if ($app['debug'] == true) {
-                $twig->addExtension(new \Twig_Extension_Debug());
-            }
-
-            //Notices to print
-            $twig->addGlobal('notices', $app['notices']->flush());
-
-            //User Info
-            $twig->addGlobal('account', $app['account']);
-
-            return $twig;
-        }));          
     }
 
     // --------------------------------------------------------------
