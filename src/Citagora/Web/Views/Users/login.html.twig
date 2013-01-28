@@ -2,54 +2,36 @@
 {% block page_content %}
 <div class="one-third column" id="social-login">
     
-    <a href='{{ site_url }}/login/facebook' title='Signin with Facebook'>    
-        <img src="{{ asset_url }}/_img/facebook_signin.png" alt="Signin with Facebook" style="margin-top: 12px;">
-    </a>
+    <p>Login to Citagora to comment and rank documents, and to share and export content you find.</p>
     
-    <a href='{{ site_url }}/login/twitter' title='Signin with Twitter'>
-        <img src="{{ asset_url }}/_img/twitter_signin.png" alt="Signin with Twitter" style="margin-top: 4px;">
-    </a>
-    
-    <a href='{{ site_url }}/login/linkedin' title='Signin with LinkedIn'>    
-        <img src="{{ asset_url }}/_img/linkedin_signin.png" alt="Signin with LinkedIn" style="margin-top: 4px;">
-    </a>
+    <p>Citagora requires you to login via an existing social media account, or using OpenID. Choose your service and we will redirect you to that provider for authentication. After your credentials are confirmed, you will be returned to Citagora.</p>
 
-    <a href='{{ site_url }}/login/google' title='Signin with Google'>
-        <img src="{{ asset_url }}/_img/google_signin.png" alt="Signin with Google" style="margin-top: 4px;">
-    </a>
     
-    <a href='{{ site_url }}/login/openid' title='Signin with OpenID'>
-        <img src="{{ asset_url }}/_img/openid_signin.png" alt="Signin with OpenID" style="margin-top: 4px;">        
-    </a>
 </div>
 
 <div class="two-thirds column" id="pane">
     
     <h2>Login to Citagora</h2>
-    <p>Login to Citagora to comment and rank documents, and to share and export content you find.</p>
-
-    {# Prints errors if they exist #}
-    {{ form_errors(loginForm) }}
-
-    <form id='login' action="{{ site_url }}/login" method="post" {{ form_enctype(loginForm) }}>
-        <p>
-            {{ form_label(loginForm.email) }}
-            {{ form_widget(loginForm.email) }}
-        </p>
-
-        <p>
-            {{ form_label(loginForm.password) }}
-            {{ form_widget(loginForm.password) }}
-        </p>
-        <p>
-            <input type="submit" value="Login">
-        </p>
-    </form>
     
-    <p>
-        <a href="{{ site_url }}/register">Create an account</a>
-        | <a href="{{ site_url }}/forgot">Forgot your password?</a>
-    </p>
+    {# Prints errors if they exist #}
+   <a href='{{ site_url }}/login/facebook' title='Signin with Facebook'>    
+        <img src="{{ asset_url }}/_img/facebook_signin.png" alt="Signin with Facebook" style="margin-top: 12px;"></a>
+    <br />
+    
+    <a href='{{ site_url }}/login/twitter' title='Signin with Twitter'>
+        <img src="{{ asset_url }}/_img/twitter_signin.png" alt="Signin with Twitter" style="margin-top: 4px;"></a>
+    <br />
+    
+    <a href='{{ site_url }}/login/linkedin' title='Signin with LinkedIn'>    
+        <img src="{{ asset_url }}/_img/linkedin_signin.png" alt="Signin with LinkedIn" style="margin-top: 4px;"></a>
+    <br />
+
+    <a href='{{ site_url }}/login/google' title='Signin with Google'>
+        <img src="{{ asset_url }}/_img/google_signin.png" alt="Signin with Google" style="margin-top: 4px;"></a>
+    <br />
+    
+    <a href='{{ site_url }}/login/openid' title='Signin with OpenID'>
+        <img src="{{ asset_url }}/_img/openid_signin.png" alt="Signin with OpenID" style="margin-top: 4px;"></a>
             
 </div>
 {% endblock %}
