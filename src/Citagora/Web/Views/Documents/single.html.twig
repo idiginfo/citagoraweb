@@ -62,11 +62,14 @@
         {% for ratingslug, rating in document.aggregateRatings %}
             <li>
                 {{ rating.name  }}: <strong>{{ rating.value }}</strong><br />
+
+                {% if account.isLoggedIn %}
                 <a class='rate-link' href='{{ site_url }}/documents/rate/{{ document.id }}' data-category='{{ ratingslug }}' data-score='1' title='Rate {{ rating.name }} 1'>1</a>
                 <a class='rate-link' href='{{ site_url }}/documents/rate/{{ document.id }}' data-category='{{ ratingslug }}' data-score='2' title='Rate {{ rating.name }} 2'>2</a>
                 <a class='rate-link' href='{{ site_url }}/documents/rate/{{ document.id }}' data-category='{{ ratingslug }}' data-score='3' title='Rate {{ rating.name }} 3'>3</a>
                 <a class='rate-link' href='{{ site_url }}/documents/rate/{{ document.id }}' data-category='{{ ratingslug }}' data-score='4' title='Rate {{ rating.name }} 4'>4</a>
                 <a class='rate-link' href='{{ site_url }}/documents/rate/{{ document.id }}' data-category='{{ ratingslug }}' data-score='5' title='Rate {{ rating.name }} 5'>5</a>
+                {% endif %}
             </li>
         {% endfor %}
     </ul>
