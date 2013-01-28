@@ -7,12 +7,25 @@ $(document).ready(function() {
     }
 
     //Ratings test
-    $('#ratings-test').click(function() {
+    $('.rate-link').click(function(e) {
+
+        //Don't go to the link...
+        e.preventDefault();
+
+        //URL
+        var url    = $(this).attr('href');
+        var rating = $(this).attr('data-score');
+        var cat    = $(this).attr('data-category');
+
+        //POST
         $.post(
-            siteUrl + '/documents/rate/51015023ece0b92c35000035',
-            { category: 'overall', value: '4' },
+            url,
+            { 
+                category: cat, 
+                value: rating 
+            },
             function(data) {
-                console.log("DONE");
+                //Console log
                 console.log(data);
             },
             'json'

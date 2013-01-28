@@ -4,11 +4,7 @@ namespace Citagora\Common\EntityCollection;
 
 use Citagora\Common\EntityManager\Collection as EntityCollection;
 use Citagora\Common\Entity\Document\Document;
-use Doctrine\Common\Collections\ArrayCollection;
-
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\EventDispatcher\GenericEvent;
-use Citagora\Common\Events;
+use Citagora\Common\Entity\User;
 
 /**
  * Manages users in the database
@@ -22,6 +18,17 @@ class DocumentReviewCollection extends EntityCollection
     {
         return 'Document\Review';
     }    
+
+
+    // --------------------------------------------------------------
+
+    /**
+     * Factory for Reviews
+     */
+    public function factory(Document $document, User $user = null)
+    {
+        return parent::factory(array($document, $user));
+    }
 
     // --------------------------------------------------------------
 
@@ -39,8 +46,10 @@ class DocumentReviewCollection extends EntityCollection
             return null;
         }
 
-        $query = $this->getQueryBuilder();
-
+        return $this->findOneBy(array(
+            'user.id' => $user->id,
+            'document.id' => $document->id
+        ));
     }
 }
 

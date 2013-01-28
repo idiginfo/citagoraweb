@@ -18,7 +18,7 @@ class Review extends Entity
      */
     private static $ratingCategories = array(
         'overall'     => 'Overall',
-        'readabilty'  => 'Readability',
+        'readability'  => 'Readability',
         'accuracy'    => 'Accuracy',
         'originality' => 'Originality'
     );
@@ -39,15 +39,27 @@ class Review extends Entity
 
     /**
      * @var User
-     * @ODM\ReferenceOne(targetDocument="User")
+     * @ODM\ReferenceOne(targetDocument="\Citagora\Common\Entity\User")
      */
     protected $user;
 
+    /**
+     * @var Document
+     * @ODM\ReferenceOne(
+     *    targetDocument="Document", 
+     *    inversedBy="reviews",
+     *    cascade={"persist","refresh","merge"}
+     * )
+     */
+    protected $document;
+
     // --------------------------------------------------------------
 
-    public function __construct()
+    public function __construct(Document $document, User $user = null)
     {
-        $this->ratings = array();
+        $this->document = $document;
+        $this->user     = $user;
+        $this->ratings  = array();
     }
 
     // --------------------------------------------------------------
@@ -56,6 +68,7 @@ class Review extends Entity
     {
         switch ($item) {
             case 'ratings':
+            case 'document':
                 throw new Exception("Cannot modify {$item} property directly");
             break;
         }

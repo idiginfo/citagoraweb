@@ -103,8 +103,8 @@ class Document extends Entity
     /**
      * @var ArrayCollection
      * @ODM\ReferenceMany(
-     *     targetDocument="Review",
-     *     cascade={"persist","refresh","merge","delete"}
+     *    targetDocument="Review", 
+     *    mappedBy="document"
      * )
      */
     protected $reviews;
@@ -186,13 +186,6 @@ class Document extends Entity
         }
 
         parent::__set($item, $value);
-    }
-
-    // --------------------------------------------------------------
-
-    public function addReview(Review $review)
-    {
-        $this->reviews->add($review);
     }
 
     // --------------------------------------------------------------
@@ -290,27 +283,31 @@ class Document extends Entity
     /**
      * Aggregate ratings for a category
      *
-     * @param string $category
-     * @return float
+     * @return array   A simple data structure with (rating_slug => [name, value, count])
      */
-    public function aggregateRating($category)
+    public function aggregateRatings()
     {
-        if ( ! in_array($category, array_keys(Review::getRatingCategories()))) {
-            throw new InvalidArgumentException("The category {$category} is not valid");
-        }
-
         $values = array();
+        foreach(Review::getRatingCategories() as $slug => $hname) {
+            $values[$slug] = (object) array(
+                'name'  => $hname,
+                'value' => 0,
+                'count' => 0,
+                'score' => 0
+            );
+        }
 
         foreach ($this->reviews as $review) {
-            $value = $review->getRating($category);
-            if ($value !== null) {
-                $values[] = $value;
+
+            foreach($review->ratings as $slug => $val) {
+                $values[$slug]->count++;
+                $values[$slug]->score += $val;
+                $values[$slug]->value = $values[$slug]->score / $values[$slug]->count;
             }
+
         }
 
-        return (count($values) > 0)
-            ? array_sum($values) / count($values)
-            : 0;
+        return $values;
     }
 
     // --------------------------------------------------------------
