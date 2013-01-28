@@ -92,7 +92,8 @@ class Documents extends ControllerAbstract
      *
      * TODO: Debug this!
      *
-     * @param string $id  Document ID
+     * @param  string $id  Document ID
+     * @return string JSON array of new aggregate ratings for the document
      */
     public function rate($id)
     {
@@ -131,7 +132,10 @@ class Documents extends ControllerAbstract
         $this->reviewCollection->save($reviewObj, $this->account()->getUser());
 
         //Return JSON
-        return $this->json(array('success' => true));
+        return $this->json(array(
+            'success' => true,
+            'reviews' => $doc->aggregateRatings())
+        );
     }    
 }
 

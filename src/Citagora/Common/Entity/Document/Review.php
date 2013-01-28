@@ -18,7 +18,7 @@ class Review extends Entity
      */
     private static $ratingCategories = array(
         'overall'     => 'Overall',
-        'readabilty'  => 'Readability',
+        'readability'  => 'Readability',
         'accuracy'    => 'Accuracy',
         'originality' => 'Originality'
     );
