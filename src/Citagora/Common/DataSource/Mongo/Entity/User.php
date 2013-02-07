@@ -1,12 +1,11 @@
 <?php
 
-namespace Citagora\Common\Entity;
+namespace Citagora\Common\DataSource\Mongo\Entity;
 
+use Citagora\Common\Model\User\User as UserModel;
+use Citagora\Common\DataSource\Mongo\EntityManager\Entity;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Mapping\ClassMetadata;
-use Symfony\Component\Validator\Constraints as Assert;
-use Citagora\Common\EntityManager\Entity;
 use Illuminate\Hashing\HasherInterface;
 use Illuminate\Socialite\OAuthTwo\AccessToken;
 use Exception;
@@ -15,7 +14,7 @@ use Exception;
  * User Entity
  * @ODM\Document
  */
-class User extends Entity
+class User extends UserModel implements Entity
 {
     /**
      * @var Illuminate\Hashing\HasherInterface

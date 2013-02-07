@@ -1,11 +1,11 @@
 <?php
 
-namespace Citagora\Common\Entity\Document;
+namespace Citagora\Common\Model\Document\Annotation;
 
-use Citagora\Common\Entity\User;
 use Exception, InvalidArgumentException;
+use Citagora\Common\Model\Document\Annotation as AnnotationModel;
 
-class Review extends Model
+class Review extends AnnotationModel
 {
     /**
      * @var arrray  Definition of rating categories 
@@ -37,10 +37,6 @@ class Review extends Model
 
     /**
      * @var Document
-     *    targetDocument="Document",
-     *    inversedBy="reviews",
-     *    cascade={"persist","refresh","merge"}
-     * )
      */
     protected $document;
 
@@ -114,4 +110,4 @@ class Review extends Model
     }
 }
 
-/* EOF: Ratings.php */
+/* EOF: Review.php */

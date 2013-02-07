@@ -2,13 +2,40 @@
 
 interface UserInterface
 {
-    const ANY = null;
+    /**
+     * Retrieve user by identifier
+     *
+     * @param string $identifier  Usually an email or some other unique identifier
+     * @return User|boolean       FALSE if no user exists with this identifier
+     */
+    function getUser($identifier);
 
-    function registerUser(User $user);
+    /**
+     * Retrieve multiple users by identifier
+     *
+     * @param  array  Array of unique identifiers
+     * @return array  Array of User objects
+     */
+    function getUsers(array $identifiers);
 
-    function loginUser(User $user);
+    /**
+     * Check user by identifier and password
+     *
+     * @param  string $identifier
+     * @param  string $password   Cleartext password
+     * @return null|boolean|User  Returns the User object if success, null if not found
+     *                            or false, if incorrect password
+     */
+    function checkCredentials($identifier, $password);
 
-    function retrieveUser($email, $password = self::ANY)
+
+    /**
+     * Create a new user
+     *
+     * @param array $attributes  Optionally specify attributes upon construction
+     * @return User
+     */
+    function createNewUser(array $attributes = array());
 
 }
 

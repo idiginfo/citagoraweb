@@ -5,7 +5,7 @@ namesapce Citagora\Common\BackendAPI;
 /**
  * Document API
  */
-class Document
+class DocumentAPI implements DocumentInterface
 {
 
 }

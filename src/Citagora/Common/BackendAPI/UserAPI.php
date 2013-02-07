@@ -3,7 +3,7 @@
 /**
  * User API
  */
-class User
+class UserAPI implements UserInterface
 {
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Citagora\Common\Entity\Document;
+namespace Citagora\Common\Model\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use InavlidArgumentException;
@@ -83,39 +83,27 @@ class Document extends Model
     protected $abstract;
 
     /**
-     * @var ArrayCollection
-     *    targetDocument="Review",
-     *    mappedBy="document"
-     * )
+     * @var ArrayCollecton  Array of Annotation objects
      */
-    protected $reviews;
+    protected $annotations;
 
     /**
      * @var ArrayCollection
-     *     targetDocument="Contributor",
-     *     cascade={"persist","refresh","merge"}
-     * )
      */
     protected $contributors;
 
     /**
      * @var ArrayCollection
-     *    targetDocument="Citation"
-     * )
      */
     protected $citations;
 
     /**
      * @var SocialMetrics
-     *    targetDocument="SocialMetrics"
-     * )
      */
     protected $socialMetrics;
 
     /**
      * @var Meta
-     *    targetDocument="Meta"
-     * )
      */
     protected $meta;
 

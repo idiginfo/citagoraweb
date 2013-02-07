@@ -1,6 +1,6 @@
 <?php
 
-namespace Citagora\Common\Entity\Document;
+namespace Citagora\Common\Model\Document;
 
 class Contributor extends Model
 {
