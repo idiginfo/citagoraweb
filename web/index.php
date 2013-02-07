@@ -1,12 +1,12 @@
 <?php
 
-//Autoload
-require(__DIR__ . '/../vendor/autoload.php');
-
 //Friendly error message to avoid WSOD
 if ( ! is_readable(__DIR__ . '/../vendor/autoload.php')) {
     die('Missing vendor dependencies.  Did you forget to run setup?');
 }
+
+//Autoload
+require(__DIR__ . '/../vendor/autoload.php');
 
 //Mode not previously set by dev.php or maint.php?
 if ( ! isset($mode)) {
