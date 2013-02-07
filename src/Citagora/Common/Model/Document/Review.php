@@ -2,15 +2,10 @@
 
 namespace Citagora\Common\Entity\Document;
 
-use Citagora\Common\EntityManager\Entity;
 use Citagora\Common\Entity\User;
-use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Exception, InvalidArgumentException;
 
-/**
- * @ODM\Document(collection="DocumentReview")
- */
-class Review extends Entity
+class Review extends Model
 {
     /**
      * @var arrray  Definition of rating categories 
@@ -27,26 +22,22 @@ class Review extends Entity
 
     /**
      * @var int
-     * @ODM\Id     
      */
     protected $id;
 
     /**
      * @var array
-     * @ODM\Hash
      */
     protected $ratings;
 
     /**
      * @var User
-     * @ODM\ReferenceOne(targetDocument="\Citagora\Common\Entity\User")
      */
     protected $user;
 
     /**
      * @var Document
-     * @ODM\ReferenceOne(
-     *    targetDocument="Document", 
+     *    targetDocument="Document",
      *    inversedBy="reviews",
      *    cascade={"persist","refresh","merge"}
      * )

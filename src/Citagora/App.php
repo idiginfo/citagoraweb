@@ -103,32 +103,10 @@ abstract class App extends SilexApplication
             'em.namespace'       => __NAMESPACE__ . "\\Common\\Entity",
             'em.collections'     => array(
                 new Common\EntityCollection\UserCollection(new BcryptHasher()),
-                new Common\EntityCollection\DocumentCollection($app['dispatcher']),
+                new Common\EntityCollection\DocumentCollection(),
                 new Common\EntityCollection\DocumentReviewCollection()
             )
         ));
-
-        //$this['data_sources']
-        $this->register(new SilexProvider\DataSources(), array(
-            'data_sources.config' => $this['config']->datasource_keys
-        ));
-
-        //Document Factory
-        $this['document_factory'] = $this->share(function($app) {
-            return new Common\Tool\DocumentFactory($app['em']);
-        });
-
-        //$this['harvester']
-        $this['harvester'] = $this->share(function($app) {
-            
-            $hvstr = new Common\Harvester\Harvester(
-                $app['document_factory'],
-                $app['em']->getCollection('Document\Document')
-            );
-
-            $hvstr->setEventDispatcher($app['dispatcher']);
-            return $hvstr;
-        });
 
         //$this['validation']
         $this->register(new ValidatorServiceProvider());

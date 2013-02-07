@@ -2,41 +2,30 @@
 
 namespace Citagora\Common\Entity\Document;
 
-use Citagora\Common\EntityManager\Entity;
-use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-
-/**
- * @ODM\Document(collection="DocumentContributor")
- */
-class Contributor extends Entity
+class Contributor extends Model
 {
     /**
      * @var int
-     * @ODM\Id
      */
     protected $id;
 
     /**
      * @var string
-     * @ODM\String
      */
     protected $fullname;
 
     /**
      * @var string
-     * @ODM\String     
      */
     protected $givenname;
 
     /**
      * @var string
-     * @ODM\String     
      */
     protected $surname;
 
     /**
      * @var string
-     * @ODM\String     
      */
     protected $type;
 

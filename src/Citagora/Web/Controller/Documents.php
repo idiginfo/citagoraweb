@@ -20,11 +20,6 @@ class Documents extends ControllerAbstract
      */
     private $reviewCollection;
 
-    /**
-     * @var Citagora\Common\Tool\DocumentFactory
-     */
-    private $documentFactory;
-
     // --------------------------------------------------------------
 
     protected function init(Application $app)
@@ -41,7 +36,6 @@ class Documents extends ControllerAbstract
         //Get collections
         $this->documentCollection = $app['em']->getCollection('Document\Document');
         $this->reviewCollection   = $app['em']->getCollection('Document\Review');
-        $this->documentFactory    = $app['document_factory'];
     }
 
     // --------------------------------------------------------------

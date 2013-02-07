@@ -2,108 +2,89 @@
 
 namespace Citagora\Common\Entity\Document;
 
-use Citagora\Common\EntityManager\Entity;
-use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\Common\Collections\ArrayCollection;
 use InavlidArgumentException;
 
-/**
- * @ODM\Document
- */
-class Document extends Entity
+
+class Document extends Model
 {
     /**
      * @var int
-     * @ODM\Id     
      */
     protected $id;
 
     /**
      * @var string
-     * @ODM\String    
      */
     protected $title;
 
     /**
      * @var string
-     * @ODM\String
      * @ODM\Index
      */
     protected $normalizedTitle;
 
     /**
      * @var string
-     * @ODM\String       
      */
     protected $journal;
 
     /**
      * @var string
-     * @ODM\String       
      */
     protected $publicationType;
 
     /**
      * @var int
-     * @ODM\Int     
      */
     protected $year;
 
     /**
      * @var DateTime
-     * @ODM\Date
      */
     protected $pubDate;
 
     /**
      * @var string
-     * @ODM\String       
      */
     protected $pagination;
 
     /**
      * @var string
-     * @ODM\String
      * @ODM\UniqueIndex
      */
     protected $doi;
 
     /**
      * @var string
-     * @ODM\String       
      */
     protected $isbn;
 
     /**
      * @var string
-     * @ODM\String
      */
     protected $issn;
 
     /**
      * @var string
-     * @ODM\String
      * @ODM\UniqueIndex
      */
     protected $pmid;
 
     /**
      * @var string
-     * @ODM\String  
      * @ODM\UniqueIndex
      */
     protected $url;
 
     /**
      * @var string
-     * @ODM\String            
      */
     protected $abstract;
 
     /**
      * @var ArrayCollection
-     * @ODM\ReferenceMany(
-     *    targetDocument="Review", 
+     *    targetDocument="Review",
      *    mappedBy="document"
      * )
      */
@@ -111,7 +92,6 @@ class Document extends Entity
 
     /**
      * @var ArrayCollection
-     * @ODM\ReferenceMany(
      *     targetDocument="Contributor",
      *     cascade={"persist","refresh","merge"}
      * )
@@ -120,7 +100,6 @@ class Document extends Entity
 
     /**
      * @var ArrayCollection
-     * @ODM\EmbedMany(
      *    targetDocument="Citation"
      * )
      */
@@ -128,7 +107,6 @@ class Document extends Entity
 
     /**
      * @var SocialMetrics
-     * @ODM\EmbedOne(
      *    targetDocument="SocialMetrics"
      * )
      */
@@ -136,7 +114,6 @@ class Document extends Entity
 
     /**
      * @var Meta
-     * @ODM\EmbedOne(
      *    targetDocument="Meta"
      * )
      */
@@ -144,13 +121,11 @@ class Document extends Entity
 
     /**
      * @var array
-     * @ODM\Collection
      */
     protected $keywords;
 
     /**
      * @var array
-     * @ODM\Hash
      */
     protected $unmappedFields;
 
@@ -262,7 +237,7 @@ class Document extends Entity
         else {
             return null;
         }
-    }    
+    }
 
     // --------------------------------------------------------------
 
@@ -276,7 +251,7 @@ class Document extends Entity
         return ($this->pmid)
             ? 'http://www.ncbi.nlm.nih.gov/pubmed/' . $this->pmid
             : null;
-    }    
+    }
 
     // --------------------------------------------------------------
 
@@ -327,7 +302,7 @@ class Document extends Entity
 
         //Set it
         $this->normalizedTitle = $title;
-    }    
+    }
 }
 
 /* EOF: Document.php */

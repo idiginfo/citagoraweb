@@ -22,7 +22,7 @@ class User extends Entity
      */
     private $hasher;
 
-    /** 
+    /**
      * @ODM\Id
      */
     protected $id;
@@ -48,7 +48,7 @@ class User extends Entity
 
     /**
      * @var string
-     * @ODM\String   
+     * @ODM\String
      */
     protected $password;
 
@@ -60,7 +60,7 @@ class User extends Entity
 
     /**
      * @var int
-     * @ODM\Int   
+     * @ODM\Int
      */
     protected $numLogins;
 

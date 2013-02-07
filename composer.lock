@@ -3,16 +3,16 @@
     "packages": [
         {
             "name": "caseyamcl/Configula",
-            "version": "dev-master",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/caseyamcl/Configula.git",
-                "reference": "1c0ab70676b47ed9a3d59f37c038506b3bc04499"
+                "reference": "v2.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/caseyamcl/Configula/archive/1c0ab70676b47ed9a3d59f37c038506b3bc04499.zip",
-                "reference": "1c0ab70676b47ed9a3d59f37c038506b3bc04499",
+                "url": "https://github.com/caseyamcl/Configula/archive/v2.1.0.zip",
+                "reference": "v2.1.0",
                 "shasum": ""
             },
             "require": {
@@ -24,7 +24,7 @@
             "suggest": {
                 "symfony/yaml": "Allows parsing of .yaml configuration files"
             },
-            "time": "2012-12-21 15:02:04",
+            "time": "2012-12-03 18:41:17",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -46,8 +46,8 @@
             "description": "A simple, flexible, read-only config library for PHP 5.3+",
             "homepage": "http://github.com/caseyamcl/Configula",
             "keywords": [
-                "configuration",
-                "config"
+                "config",
+                "configuration"
             ]
         },
         {
@@ -60,7 +60,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/caseyamcl/phpoaipmh/archive/290c1fb99e145cf108ad7a834bfdde674e6bc03d.zip",
+                "url": "https://api.github.com/repos/caseyamcl/phpoaipmh/zipball/290c1fb99e145cf108ad7a834bfdde674e6bc03d",
                 "reference": "290c1fb99e145cf108ad7a834bfdde674e6bc03d",
                 "shasum": ""
             },
@@ -85,8 +85,8 @@
             "description": "A PHP OAI-PMH 2.0 Harvester library",
             "homepage": "https://github.com/caseyamcl/phpoaipmh",
             "keywords": [
-                "OAI",
                 "Harvester",
+                "OAI",
                 "OAI-PMH"
             ]
         },
@@ -108,8 +108,8 @@
                 "php": ">=5.3.1"
             },
             "require-dev": {
-                "symfony/console": ">=2.1.0",
-                "monolog/monolog": ">=1.3.x-dev"
+                "monolog/monolog": ">=1.3.x-dev",
+                "symfony/console": ">=2.1.0"
             },
             "time": "2012-10-26 14:28:15",
             "type": "library",
@@ -132,12 +132,12 @@
             "description": "A PHP library for keeping track of progress and stats for long running tasks",
             "homepage": "http://github.com/caseyamcl/tasktracker",
             "keywords": [
-                "task",
                 "asynchronous",
+                "cli",
                 "negotiation",
                 "progress",
                 "report",
-                "cli"
+                "task"
             ],
             "support": {
                 "source": "https://github.com/caseyamcl/tasktracker/tree/master",
@@ -199,18 +199,18 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
             "description": "Common Library for Doctrine projects",
             "homepage": "http://www.doctrine-project.org",
             "keywords": [
-                "collections",
-                "spl",
-                "eventmanager",
                 "annotations",
-                "persistence"
+                "collections",
+                "eventmanager",
+                "persistence",
+                "spl"
             ]
         },
         {
@@ -228,9 +228,9 @@
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.2",
+                "doctrine/common": ">=2.1.0,<2.5-dev",
                 "ext-mongo": ">=1.2.12,<1.4-dev",
-                "doctrine/common": ">=2.1.0,<2.5-dev"
+                "php": ">=5.3.2"
             },
             "time": "2013-01-10 20:57:52",
             "type": "library",
@@ -250,7 +250,7 @@
                     "homepage": "http://avalanche123.com"
                 },
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/"
                 },
@@ -269,8 +269,8 @@
             "homepage": "http://www.doctrine-project.org",
             "keywords": [
                 "database",
-                "persistence",
-                "mongodb"
+                "mongodb",
+                "persistence"
             ]
         },
         {
@@ -288,10 +288,10 @@
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.2",
-                "symfony/console": ">=2.0-dev,<2.3-dev",
                 "doctrine/common": ">=2.2.0,<2.5-dev",
-                "doctrine/mongodb": "1.0.*"
+                "doctrine/mongodb": "1.0.*",
+                "php": ">=5.3.2",
+                "symfony/console": ">=2.0-dev,<2.3-dev"
             },
             "require-dev": {
                 "symfony/yaml": ">=2.0-dev,<2.3-dev"
@@ -341,28 +341,64 @@
             "homepage": "http://www.doctrine-project.org",
             "keywords": [
                 "database",
-                "persistence",
                 "mongodb",
-                "odm"
+                "odm",
+                "persistence"
             ]
         },
         {
-            "name": "guzzle/guzzle",
-            "version": "v3.1.1",
+            "name": "firephp/firephp-core",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/guzzle/guzzle",
-                "reference": "v3.1.1"
+                "url": "https://github.com/firephp/firephp-core",
+                "reference": "f60753a8dd7817e4da6bc73e0e717387a9a0866a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/guzzle/guzzle/archive/v3.1.1.zip",
-                "reference": "v3.1.1",
+                "url": "https://api.github.com/repos/firephp/firephp-core/zipball/f60753a8dd7817e4da6bc73e0e717387a9a0866a",
+                "reference": "f60753a8dd7817e4da6bc73e0e717387a9a0866a",
+                "shasum": ""
+            },
+            "time": "2013-01-19 22:55:24",
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib/FirePHPCore/FirePHP.class.php",
+                    "lib/FirePHPCore/fb.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Dorn",
+                    "email": "christoph@christophdorn.com",
+                    "homepage": "http://christophdorn.com"
+                }
+            ],
+            "description": "Traditional FirePHPCore library for sending PHP variables to the browser.",
+            "homepage": "https://github.com/firephp/firephp-core"
+        },
+        {
+            "name": "guzzle/guzzle",
+            "version": "v3.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/guzzle",
+                "reference": "v3.1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/guzzle/guzzle/archive/v3.1.2.zip",
+                "reference": "v3.1.2",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.2",
                 "ext-curl": "*",
+                "php": ">=5.3.2",
                 "symfony/event-dispatcher": ">=2.1"
             },
             "replace": {
@@ -390,15 +426,15 @@
             },
             "require-dev": {
                 "doctrine/common": "*",
-                "symfony/class-loader": "*",
                 "monolog/monolog": "1.*",
-                "zendframework/zend-cache": "2.0.*",
-                "zendframework/zend-log": "2.0.*",
-                "zend/zend-log1": "1.12",
+                "phpunit/phpunit": "3.7.*",
+                "symfony/class-loader": "*",
                 "zend/zend-cache1": "1.12",
-                "phpunit/phpunit": "3.7.*"
+                "zend/zend-log1": "1.12",
+                "zendframework/zend-cache": "2.0.*",
+                "zendframework/zend-log": "2.0.*"
             },
-            "time": "2013-01-21 00:31:35",
+            "time": "2013-01-28 00:07:40",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -429,12 +465,12 @@
             "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
             "homepage": "http://guzzlephp.org/",
             "keywords": [
-                "framework",
-                "curl",
-                "http",
-                "rest",
-                "http client",
                 "client",
+                "curl",
+                "framework",
+                "http",
+                "http client",
+                "rest",
                 "web service"
             ]
         },
@@ -486,9 +522,9 @@
                 "shasum": ""
             },
             "require": {
+                "guzzle/guzzle": "3.*",
                 "php": ">=5.3.0",
-                "symfony/http-foundation": "2.*",
-                "guzzle/guzzle": "3.*"
+                "symfony/http-foundation": "2.*"
             },
             "require-dev": {
                 "mockery/mockery": "0.7.*"
@@ -524,7 +560,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/Seldaek/monolog/archive/1.3.1.zip",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1.3.1",
                 "reference": "1.3.1",
                 "shasum": ""
             },
@@ -533,16 +569,16 @@
                 "psr/log": ">=1.0,<2.0"
             },
             "require-dev": {
+                "doctrine/couchdb": "dev-master",
                 "mlehner/gelf-php": "1.0.*",
-                "raven/raven": "0.3.*",
-                "doctrine/couchdb": "dev-master"
+                "raven/raven": "0.3.*"
             },
             "suggest": {
-                "mlehner/gelf-php": "Allow sending log messages to a GrayLog2 server",
-                "raven/raven": "Allow sending log messages to a Sentry server",
                 "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
-                "ext-mongo": "Allow sending log messages to a MongoDB server"
+                "ext-mongo": "Allow sending log messages to a MongoDB server",
+                "mlehner/gelf-php": "Allow sending log messages to a GrayLog2 server",
+                "raven/raven": "Allow sending log messages to a Sentry server"
             },
             "time": "2013-01-11 10:23:20",
             "type": "library",
@@ -586,7 +622,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/pear/Console_Table/archive/Console_Table-1.1.5.zip",
+                "url": "https://api.github.com/repos/pear/Console_Table/zipball/Console_Table-1.1.5",
                 "reference": "Console_Table-1.1.5",
                 "shasum": ""
             },
@@ -673,8 +709,8 @@
             "description": "Pimple is a simple Dependency Injection Container for PHP 5.3",
             "homepage": "http://pimple.sensiolabs.org",
             "keywords": [
-                "dependency injection",
-                "container"
+                "container",
+                "dependency injection"
             ]
         },
         {
@@ -721,12 +757,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Silex.git",
-                "reference": "f7a8956f96e991f86a5fc4811876bef76e3a4e25"
+                "reference": "e69e9f002c89a381d88f5a756d9a5f0dd76bea6d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Silex/archive/f7a8956f96e991f86a5fc4811876bef76e3a4e25.zip",
-                "reference": "f7a8956f96e991f86a5fc4811876bef76e3a4e25",
+                "url": "https://api.github.com/repos/fabpot/Silex/zipball/e69e9f002c89a381d88f5a756d9a5f0dd76bea6d",
+                "reference": "e69e9f002c89a381d88f5a756d9a5f0dd76bea6d",
                 "shasum": ""
             },
             "require": {
@@ -738,31 +774,31 @@
                 "symfony/routing": ">=2.1,<2.3-dev"
             },
             "require-dev": {
-                "twig/twig": ">=1.8.0,<2.0-dev",
-                "swiftmailer/swiftmailer": "4.2.*",
                 "doctrine/dbal": ">=2.2.0,<2.4.0-dev",
-                "symfony/security": ">=2.1,<2.3-dev",
-                "symfony/config": ">=2.1,<2.3-dev",
-                "symfony/locale": ">=2.1,<2.3-dev",
-                "symfony/form": ">=2.1,<2.3-dev",
+                "swiftmailer/swiftmailer": "4.2.*",
                 "symfony/browser-kit": ">=2.1,<2.3-dev",
+                "symfony/config": ">=2.1,<2.3-dev",
                 "symfony/css-selector": ">=2.1,<2.3-dev",
+                "symfony/dom-crawler": ">=2.1,<2.3-dev",
                 "symfony/finder": ">=2.1,<2.3-dev",
+                "symfony/form": ">=2.1,<2.3-dev",
+                "symfony/locale": ">=2.1,<2.3-dev",
                 "symfony/monolog-bridge": ">=2.1,<2.3-dev",
+                "symfony/options-resolver": ">=2.1,<2.3-dev",
                 "symfony/process": ">=2.1,<2.3-dev",
+                "symfony/security": ">=2.1,<2.3-dev",
+                "symfony/serializer": ">=2.1,<2.3-dev",
                 "symfony/translation": ">=2.1,<2.3-dev",
                 "symfony/twig-bridge": ">=2.1,<2.3-dev",
                 "symfony/validator": ">=2.1,<2.3-dev",
-                "symfony/serializer": ">=2.1,<2.3-dev",
-                "symfony/dom-crawler": ">=2.1,<2.3-dev",
-                "symfony/options-resolver": ">=2.1,<2.3-dev"
+                "twig/twig": ">=1.8.0,<2.0-dev"
             },
             "suggest": {
                 "symfony/browser-kit": ">=2.1,<2.3-dev",
                 "symfony/css-selector": ">=2.1,<2.3-dev",
                 "symfony/dom-crawler": ">=2.1,<2.3-dev"
             },
-            "time": "2013-01-24 12:18:41",
+            "time": "2013-02-07 15:54:50",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -839,8 +875,8 @@
             "homepage": "http://www.solarium-project.org",
             "keywords": [
                 "php",
-                "solr",
-                "search"
+                "search",
+                "solr"
             ]
         },
         {
@@ -854,7 +890,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Config/archive/v2.1.7.zip",
+                "url": "https://api.github.com/repos/symfony/Config/zipball/v2.1.7",
                 "reference": "v2.1.7",
                 "shasum": ""
             },
@@ -887,23 +923,23 @@
         },
         {
             "name": "symfony/console",
-            "version": "v2.2.0-BETA2",
+            "version": "v2.2.0-RC1",
             "target-dir": "Symfony/Component/Console",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console",
-                "reference": "v2.2.0-BETA2"
+                "reference": "v2.2.0-RC1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Console/archive/v2.2.0-BETA2.zip",
-                "reference": "v2.2.0-BETA2",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/v2.2.0-RC1",
+                "reference": "v2.2.0-RC1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2013-01-18 08:14:58",
+            "time": "2013-01-24 15:55:08",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -992,7 +1028,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Form/archive/v2.1.7.zip",
+                "url": "https://api.github.com/repos/symfony/Form/zipball/v2.1.7",
                 "reference": "v2.1.7",
                 "shasum": ""
             },
@@ -1003,12 +1039,12 @@
                 "symfony/options-resolver": "2.1.*"
             },
             "require-dev": {
-                "symfony/validator": "2.1.*",
-                "symfony/http-foundation": "2.1.*"
+                "symfony/http-foundation": "2.1.*",
+                "symfony/validator": "2.1.*"
             },
             "suggest": {
-                "symfony/validator": "2.1.*",
-                "symfony/http-foundation": "2.1.*"
+                "symfony/http-foundation": "2.1.*",
+                "symfony/validator": "2.1.*"
             },
             "time": "2013-01-11 13:37:17",
             "type": "library",
@@ -1088,7 +1124,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/HttpKernel/archive/v2.1.7.zip",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/v2.1.7",
                 "reference": "v2.1.7",
                 "shasum": ""
             },
@@ -1115,7 +1151,7 @@
                 "symfony/dependency-injection": "2.1.*",
                 "symfony/finder": "2.1.*"
             },
-            "time": "2012-12-21 10:24:53",
+            "time": "2013-01-17 16:21:47",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1226,42 +1262,42 @@
             "description": "Symfony OptionsResolver Component",
             "homepage": "http://symfony.com",
             "keywords": [
-                "configuration",
                 "config",
+                "configuration",
                 "options"
             ]
         },
         {
             "name": "symfony/routing",
-            "version": "v2.2.0-BETA2",
+            "version": "v2.2.0-RC1",
             "target-dir": "Symfony/Component/Routing",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Routing",
-                "reference": "v2.2.0-BETA2"
+                "reference": "v2.2.0-RC1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Routing/archive/v2.2.0-BETA2.zip",
-                "reference": "v2.2.0-BETA2",
+                "url": "https://api.github.com/repos/symfony/Routing/zipball/v2.2.0-RC1",
+                "reference": "v2.2.0-RC1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
+                "doctrine/common": ">=2.2,<3.0",
+                "psr/log": ">=1.0,<2.0",
                 "symfony/config": "2.2.*",
-                "symfony/yaml": "2.2.*",
                 "symfony/http-kernel": "2.2.*",
-                "doctrine/common": ">=2.2,<2.4-dev",
-                "psr/log": ">=1.0,<2.0"
+                "symfony/yaml": "2.2.*"
             },
             "suggest": {
+                "doctrine/common": "~2.2",
                 "symfony/config": "2.2.*",
-                "symfony/yaml": "2.2.*",
-                "doctrine/common": ">=2.2,<2.4-dev"
+                "symfony/yaml": "2.2.*"
             },
-            "time": "2013-01-21 16:57:32",
+            "time": "2013-02-01 09:33:53",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1362,18 +1398,18 @@
             "require-dev": {
                 "symfony/form": "2.1.*",
                 "symfony/routing": "2.1.*",
+                "symfony/security": "2.1.*",
                 "symfony/templating": "2.1.*",
                 "symfony/translation": "2.1.*",
-                "symfony/yaml": "2.1.*",
-                "symfony/security": "2.1.*"
+                "symfony/yaml": "2.1.*"
             },
             "suggest": {
                 "symfony/form": "2.1.*",
                 "symfony/routing": "2.1.*",
+                "symfony/security": "2.1.*",
                 "symfony/templating": "2.1.*",
                 "symfony/translation": "2.1.*",
-                "symfony/yaml": "2.1.*",
-                "symfony/security": "2.1.*"
+                "symfony/yaml": "2.1.*"
             },
             "time": "2013-01-17 15:20:05",
             "type": "symfony-bridge",
@@ -1462,7 +1498,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Yaml/archive/v2.1.7.zip",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/v2.1.7",
                 "reference": "v2.1.7",
                 "shasum": ""
             },
@@ -1554,7 +1590,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/davedevelopment/hamcrest-php/archive/e4ffaf43b25065fe7d1e5fa173d271ca7e065ff0.zip",
+                "url": "https://api.github.com/repos/davedevelopment/hamcrest-php/zipball/e4ffaf43b25065fe7d1e5fa173d271ca7e065ff0",
                 "reference": "e4ffaf43b25065fe7d1e5fa173d271ca7e065ff0",
                 "shasum": ""
             },
@@ -1578,53 +1614,17 @@
             ]
         },
         {
-            "name": "firephp/firephp-core",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/firephp/firephp-core",
-                "reference": "f60753a8dd7817e4da6bc73e0e717387a9a0866a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/firephp/firephp-core/archive/f60753a8dd7817e4da6bc73e0e717387a9a0866a.zip",
-                "reference": "f60753a8dd7817e4da6bc73e0e717387a9a0866a",
-                "shasum": ""
-            },
-            "time": "2013-01-19 22:55:24",
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "lib/FirePHPCore/FirePHP.class.php",
-                    "lib/FirePHPCore/fb.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Christoph Dorn",
-                    "email": "christoph@christophdorn.com",
-                    "homepage": "http://christophdorn.com"
-                }
-            ],
-            "description": "Traditional FirePHPCore library for sending PHP variables to the browser.",
-            "homepage": "https://github.com/firephp/firephp-core"
-        },
-        {
             "name": "mockery/mockery",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "git://github.com/padraic/mockery.git",
-                "reference": "896cddd26190530931a2649a701a01fd5358d650"
+                "reference": "9088ad2e0a1d9a090475928b52dfb1dccad9c672"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/padraic/mockery/archive/896cddd26190530931a2649a701a01fd5358d650.zip",
-                "reference": "896cddd26190530931a2649a701a01fd5358d650",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/9088ad2e0a1d9a090475928b52dfb1dccad9c672",
+                "reference": "9088ad2e0a1d9a090475928b52dfb1dccad9c672",
                 "shasum": ""
             },
             "require": {
@@ -1636,7 +1636,7 @@
             "suggest": {
                 "Hamcrest": "1.0.0"
             },
-            "time": "2013-01-11 12:37:28",
+            "time": "2013-02-07 19:32:31",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1657,16 +1657,16 @@
             "description": "Mockery is a simple yet flexible PHP mock object framework for use in unit testing with PHPUnit, PHPSpec or any other testing framework. Its core goal is to offer a test double framework with a succint API capable of clearly defining all possible object operations and interactions using a human readable Domain Specific Language (DSL). Designed as a drop in alternative to PHPUnit's phpunit-mock-objects library, Mockery is easy to integrate with PHPUnit and can operate alongside phpunit-mock-objects without the World ending.",
             "homepage": "http://github.com/padraic/mockery",
             "keywords": [
-                "testing",
-                "library",
                 "BDD",
                 "TDD",
-                "test",
-                "mockery",
+                "library",
                 "mock",
+                "mock objects",
+                "mockery",
                 "stub",
+                "test",
                 "test double",
-                "mock objects"
+                "testing"
             ]
         },
         {
@@ -1679,7 +1679,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/raveren/kint/archive/0f6e5640957e1c9a8bba192eee86ba8d0e682488.zip",
+                "url": "https://api.github.com/repos/raveren/kint/zipball/0f6e5640957e1c9a8bba192eee86ba8d0e682488",
                 "reference": "0f6e5640957e1c9a8bba192eee86ba8d0e682488",
                 "shasum": ""
             },
@@ -1710,9 +1710,9 @@
             "description": "Kint - debugging helper for PHP developers",
             "homepage": "https://github.com/raveren/kint",
             "keywords": [
-                "php",
                 "debug",
-                "kint"
+                "kint",
+                "php"
             ]
         }
     ],
