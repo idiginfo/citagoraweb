@@ -22,21 +22,25 @@ class Review extends AnnotationModel
 
     /**
      * @var int
+     * @attribute
      */
     protected $id;
 
     /**
      * @var array
+     * @attribute
      */
     protected $ratings;
 
     /**
      * @var User
+     * @attribute
      */
     protected $user;
 
     /**
      * @var Document
+     * @attribute
      */
     protected $document;
 

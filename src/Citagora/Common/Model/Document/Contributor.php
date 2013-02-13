@@ -2,29 +2,36 @@
 
 namespace Citagora\Common\Model\Document;
 
+use Citagora\Common\Model;
+
 class Contributor extends Model
 {
     /**
+     * @attribute
      * @var int
      */
     protected $id;
 
     /**
+     * @attribute
      * @var string
      */
     protected $fullname;
 
     /**
+     * @attribute
      * @var string
      */
     protected $givenname;
 
     /**
+     * @attribute
      * @var string
      */
     protected $surname;
 
     /**
+     * @attribute
      * @var string
      */
     protected $type;

@@ -8,12 +8,12 @@ namespace Citagora\Common\BackendAPI;
 interface DocumentInterface
 {
     /**
-     * @return Document  A single document
+     * @return Document|null  A single document or NULL if not exists
      */
     function getDocument($id);
 
     /**
-     * @return array  Document objects
+     * @return array  Document objects (empty array for no results)
      */
     function getDocumentsById(array $ids);
 

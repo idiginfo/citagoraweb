@@ -2,6 +2,7 @@
 
 namespace Citagora\Common\Model\Document;
 
+use Citagora\Common\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use InavlidArgumentException;
 
@@ -10,112 +11,111 @@ class Document extends Model
 {
     /**
      * @var int
+     * @attribute
      */
     protected $id;
 
     /**
      * @var string
+     * @attribute
      */
     protected $title;
 
     /**
      * @var string
-     * @ODM\Index
+     * @attribute
      */
     protected $normalizedTitle;
 
     /**
      * @var string
+     * @attribute
      */
     protected $journal;
 
     /**
      * @var string
+     * @attribute
      */
     protected $publicationType;
 
     /**
      * @var int
+     * @attribute
      */
     protected $year;
 
     /**
      * @var DateTime
+     * @attribute
      */
     protected $pubDate;
 
     /**
      * @var string
+     * @attribute
      */
     protected $pagination;
 
     /**
      * @var string
-     * @ODM\UniqueIndex
+     * @attribute
      */
     protected $doi;
 
     /**
      * @var string
+     * @attribute
      */
     protected $isbn;
 
     /**
      * @var string
+     * @attribute
      */
     protected $issn;
 
     /**
      * @var string
-     * @ODM\UniqueIndex
+     * @attribute
      */
     protected $pmid;
 
     /**
      * @var string
-     * @ODM\UniqueIndex
+     * @attribute
      */
     protected $url;
 
     /**
      * @var string
+     * @attribute
      */
     protected $abstract;
 
     /**
      * @var ArrayCollecton  Array of Annotation objects
+     * @attribute
      */
     protected $annotations;
 
     /**
      * @var ArrayCollection
+     * @attribute
      */
     protected $contributors;
 
     /**
-     * @var ArrayCollection
-     */
-    protected $citations;
-
-    /**
      * @var SocialMetrics
+     * @attribute
      */
     protected $socialMetrics;
 
     /**
-     * @var Meta
-     */
-    protected $meta;
-
-    /**
      * @var array
+     * @attribute
      */
     protected $keywords;
-
-    /**
-     * @var array
-     */
-    protected $unmappedFields;
 
     // --------------------------------------------------------------
 
@@ -137,10 +137,8 @@ class Document extends Model
     {
         switch ($item) {
             case 'contributors':
-            case 'citations':
             case 'normalizedTitle':
             case 'reviews':
-            case 'unmappedFields':
                 throw new \Exception("Cannot modify {$item} property directly");
             break;
             case 'title':

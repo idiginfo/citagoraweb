@@ -2,6 +2,8 @@
 
 namespace Citagora\Common\Model\Document;
 
+use Citagora\Common\Model;
+
 /**
  * Abstract Annotation Class
  */
@@ -15,7 +17,7 @@ abstract class Annotation extends Model
     public function getType()
     {
         //Returns the basename of the called class
-        //LEFT OFF HERE LEFT OFF HERE LEFT OFF HERE
+        return join('', array_slice(explode('\\', get_called_class()), -1));
     }
 }
 
