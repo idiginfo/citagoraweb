@@ -1,5 +1,5 @@
 {
-    "hash": "3bbfbec22c60935e844161eb61d770f7",
+    "hash": "c9442effaa5434ea891f0f86b9b10e38",
     "packages": [
         {
             "name": "caseyamcl/Configula",
@@ -214,6 +214,69 @@
             ]
         },
         {
+            "name": "doctrine/dbal",
+            "version": "2.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/dbal",
+                "reference": "2.3.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/doctrine/dbal/archive/2.3.2.zip",
+                "reference": "2.3.2",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": "2.3.*",
+                "php": ">=5.3.2"
+            },
+            "time": "2013-01-07 20:03:43",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Doctrine\\DBAL": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com",
+                    "homepage": "http://www.jwage.com/"
+                },
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com",
+                    "homepage": "http://www.instaclick.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                }
+            ],
+            "description": "Database Abstraction Layer",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "database",
+                "dbal",
+                "persistence",
+                "queryobject"
+            ]
+        },
+        {
             "name": "doctrine/mongodb",
             "version": "1.0.1",
             "source": {
@@ -384,16 +447,16 @@
         },
         {
             "name": "guzzle/guzzle",
-            "version": "v3.1.2",
+            "version": "v3.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/guzzle/guzzle",
-                "reference": "v3.1.2"
+                "url": "https://github.com/guzzle/guzzle.git",
+                "reference": "v3.2.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/guzzle/guzzle/archive/v3.1.2.zip",
-                "reference": "v3.1.2",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/v3.2.0",
+                "reference": "v3.2.0",
                 "shasum": ""
             },
             "require": {
@@ -434,7 +497,7 @@
                 "zendframework/zend-cache": "2.0.*",
                 "zendframework/zend-log": "2.0.*"
             },
-            "time": "2013-01-28 00:07:40",
+            "time": "2013-02-15 01:33:10",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -756,13 +819,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git://github.com/fabpot/Silex.git",
-                "reference": "c421eab3c4ca9d106cc5b68266d58adece8636cd"
+                "url": "https://github.com/fabpot/Silex.git",
+                "reference": "44183a2cbf103ae95fc92d59438e92c1b70908d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Silex/zipball/c421eab3c4ca9d106cc5b68266d58adece8636cd",
-                "reference": "c421eab3c4ca9d106cc5b68266d58adece8636cd",
+                "url": "https://api.github.com/repos/fabpot/Silex/zipball/44183a2cbf103ae95fc92d59438e92c1b70908d6",
+                "reference": "44183a2cbf103ae95fc92d59438e92c1b70908d6",
                 "shasum": ""
             },
             "require": {
@@ -798,7 +861,7 @@
                 "symfony/css-selector": ">=2.1,<2.3-dev",
                 "symfony/dom-crawler": ">=2.1,<2.3-dev"
             },
-            "time": "2013-02-13 11:44:19",
+            "time": "2013-02-18 14:02:01",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1617,13 +1680,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git://github.com/padraic/mockery.git",
-                "reference": "4310d5c3617e832f277dfbc13b001678e155c256"
+                "url": "https://github.com/padraic/mockery.git",
+                "reference": "bac68ea04775a33c2da668de646ad9827dc4c380"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/4310d5c3617e832f277dfbc13b001678e155c256",
-                "reference": "4310d5c3617e832f277dfbc13b001678e155c256",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/bac68ea04775a33c2da668de646ad9827dc4c380",
+                "reference": "bac68ea04775a33c2da668de646ad9827dc4c380",
                 "shasum": ""
             },
             "require": {
@@ -1632,10 +1695,7 @@
             "require-dev": {
                 "hamcrest/hamcrest": "1.1.0"
             },
-            "suggest": {
-                "Hamcrest": "1.0.0"
-            },
-            "time": "2013-02-13 15:44:26",
+            "time": "2013-02-17 12:15:28",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1674,18 +1734,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/raveren/kint.git",
-                "reference": "65c69ac5d7b0d5296f40c2e201e8d13dbf512658"
+                "reference": "bb1d1c81a1ebe43fcfdbee90c2e096bcfc46da4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/raveren/kint/zipball/65c69ac5d7b0d5296f40c2e201e8d13dbf512658",
-                "reference": "65c69ac5d7b0d5296f40c2e201e8d13dbf512658",
+                "url": "https://api.github.com/repos/raveren/kint/zipball/bb1d1c81a1ebe43fcfdbee90c2e096bcfc46da4e",
+                "reference": "bb1d1c81a1ebe43fcfdbee90c2e096bcfc46da4e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.0"
             },
-            "time": "2013-02-13 00:30:21",
+            "time": "2013-02-18 10:32:27",
             "type": "library",
             "autoload": {
                 "files": [

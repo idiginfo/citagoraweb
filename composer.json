@@ -24,10 +24,10 @@
             "email":    "spinksjeremyspinks@gmail.com",
             "role":     "Designer/Developer"
         }
-          
+
     ],
     "autoload": {
-        "psr-0": { 
+        "psr-0": {
             "Citagora":    "src/",
             "TestFixture": "tests/fixtures"
         }
@@ -38,18 +38,19 @@
         "guzzle/guzzle":          ">=3.0.0",
         "twig/twig":              ">=1.12,<2.0-dev",
         "symfony/twig-bridge":    "2.1.*",
-        "symfony/translation":    "2.1.*",        
+        "symfony/translation":    "2.1.*",
         "symfony/form":           "2.1.*",
         "symfony/validator":      "2.1.*",
         "symfony/config":         "2.1.*",
         "symfony/yaml":           "2.1.*",
         "doctrine/mongodb-odm":   ">=1.0.0-BETA7",
+        "doctrine/dbal":          "2.3.2",
         "monolog/monolog":        ">=1.0.0",
         "caseyamcl/Configula":    ">=2.1.0",
         "illuminate/hashing":     "v1.0.0",
         "solarium/solarium":      "3.0.1",
         "caseyamcl/phpoaipmh":    "dev-master",
-        "illuminate/socialite":   "dev-master",        
+        "illuminate/socialite":   "dev-master",
         "firephp/firephp-core":   "dev-master",
         "pear/Console_Table":     "dev-trunk",
         "caseyamcl/tasktracker":  "dev-master"
@@ -69,5 +70,5 @@
             "type" : "vcs",
             "url"  : "http://github.com/caseyamcl/socialite"
         }
-    ]    
+    ]
 }
