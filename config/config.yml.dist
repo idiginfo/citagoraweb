@@ -38,13 +38,20 @@ admin_emails:
     - root@localhost
 
 # Mongo Database Settings
-mongodb: 
+mongodb:
     connstring: mongodb://localhost:27017
     dbname:     citagora
 
+# MySQL Database Settings
+mysql:
+    dbname:     citagora
+    host:       localhost:3306
+    user:       root
+    pass:       root
+
 # Enable Dev Mode?
 #
-# Acceptable Values: true, false, local 
+# Acceptable Values: true, false, local
 # (if local, only localhost will allow dev mode)
 enable_devmode: local
 
