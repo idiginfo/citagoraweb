@@ -2,7 +2,7 @@
 
 namespace Citagora\Common\Model;
 
-use InvalidArgumentException, ReflectionClass;
+use Exception, ReflectionClass;
 
 /**
  * Model class:
@@ -25,9 +25,9 @@ abstract class Model
      */
     public function __set($item, $val)
     {
-        //Item must exist
+        //Item must be an attribute
         if ( ! in_array($item, self::getAttributeNames())) {
-            throw new InvalidArgumentException("Cannot set property for model: '{$item}' in " . get_called_class());
+            throw new Exception(sprintf("Cannot set protected or private property %s::%s", get_called_class(), $item));
         }
 
         $this->$item = $val;
@@ -39,12 +39,15 @@ abstract class Model
      * Get an attribute
      *
      * @param string $item  Which attribute
+     * @return mixed
      */
     public function __get($item)
     {
-        if ($this->__isset($item)) {
-            return $this->$item;
+        if ( ! in_array($item, self::getAttributeNames())) {
+            throw new Exception(sprintf("Cannot access protected or private property %s::%s", get_called_class(), $item));
         }
+
+        return $this->$item;
     }
 
     // --------------------------------------------------------------
@@ -57,9 +60,13 @@ abstract class Model
      * @param string $name
      * @return boolean
      */
-    public function __isset($name)
+    public function __isset($item)
     {
-        return in_array($name, self::getAttributeNames());
+        if ( ! in_array($item, self::getAttributeNames())) {
+            throw new Exception(sprintf("Cannot access protected or private property %s::%s", get_called_class(), $item));
+        }
+
+        return isset($this->$item);
     }
 
     // --------------------------------------------------------------
