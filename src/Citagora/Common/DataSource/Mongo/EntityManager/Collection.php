@@ -1,6 +1,6 @@
 <?php
 
-namespace Citagora\Common\EntityManager;
+namespace Citagora\Common\DataSource\Mongo\EntityManager;
 
 use ReflectionClass, Exception;
 use Doctrine\ODM\MongoDB\DocumentManager;
@@ -206,7 +206,7 @@ abstract class Collection
     public function getQueryBuilder()
     {
         return $this->dm->createQueryBuilder($this->className);
-    }   
+    }
 
     // --------------------------------------------------------------
 
@@ -218,9 +218,7 @@ abstract class Collection
         if (get_class($eventArgs->getDocument()) == $this->className) {
             $this->postLoadEntity($eventArgs->getDocument());
         }
-
-        
-    }    
+    }
 }
 
 /* EOF: EntityCollection.php */

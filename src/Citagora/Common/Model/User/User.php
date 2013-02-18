@@ -2,49 +2,49 @@
 
 namespace Citagora\Common\Model\User;
 
-use Citagora\Common\Model;
+use Citagora\Common\Model\Model;
 
 class User extends Model
 {
     /**
      * @var string
-     * @attribute
+     * @Attribute
      */
     protected $email;
 
     /**
      * @var string
-     * @attribute
+     * @Attribute
      */
     protected $firstName;
 
     /**
      * @var string
-     * @attribute
+     * @Attribute
      */
     protected $lastName;
 
     /**
      * @var string
-     * @attribute
+     * @Attribute
      */
     protected $password;
 
     /**
      * @var array
-     * @attribute
+     * @Attribute
      */
     protected $oauthServices;
 
     /**
      * @var int
-     * @attribute
+     * @Attribute
      */
     protected $numLogins;
 
     /**
      * @var string
-     * @attribute
+     * @Attribute
      */
     protected $resetToken;
 }

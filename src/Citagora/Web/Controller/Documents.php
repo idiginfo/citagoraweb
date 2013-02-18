@@ -22,7 +22,7 @@ class Documents extends ControllerAbstract
 
     // --------------------------------------------------------------
 
-    protected function init(Application $app)
+    protected function loadRoutes()
     {
         //Add routes
         $this->addRoute('/documents/',            'index');
@@ -32,7 +32,12 @@ class Documents extends ControllerAbstract
 
         $this->addRoute('/search/',               'search');
         $this->addRoute('/search/{query}/',       'search');
+    }
 
+    // --------------------------------------------------------------
+
+    protected function init(Application $app)
+    {
         //Get collections
         $this->documentCollection = $app['em']->getCollection('Document\Document');
         $this->reviewCollection   = $app['em']->getCollection('Document\Review');

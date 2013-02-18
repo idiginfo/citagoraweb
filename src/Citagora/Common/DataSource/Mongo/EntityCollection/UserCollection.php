@@ -1,15 +1,15 @@
 <?php
 
-namespace Citagora\Common\EntityCollection;
+namespace Citagora\Common\DataSource\Mongo\EntityCollection;
 
 use Illuminate\Hashing\HasherInterface;
-use Citagora\Common\EntityManager\Collection as EntityCollection;
-use Citagora\Common\Entity\User;
+use Citagora\Common\DataSource\Mongo\EntityManager\Collection as BaseEntityCollection;
+use Citagora\Common\DataSource\Mongo\Entity\User;
 
 /**
  * Manages users in the database
  */
-class UserCollection extends EntityCollection
+class UserCollection extends BaseEntityCollection
 {
     /**
      * @var Illuminate\Hashing\HasherInterface
@@ -41,7 +41,7 @@ class UserCollection extends EntityCollection
     }
 
     // --------------------------------------------------------------
-    
+
     /**
      * Event manager callback on postLoad for an object
      *
@@ -53,13 +53,13 @@ class UserCollection extends EntityCollection
             $user->setHasher($this->hasher);
         }
     }
-    
+
     // --------------------------------------------------------------
 
-    /** 
+    /**
      * Override default factory method by including hasher
      *
-     * @inherit 
+     * @inherit
      */
     public function factory()
     {

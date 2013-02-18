@@ -8,9 +8,16 @@ class Front extends ControllerAbstract
 {
     // --------------------------------------------------------------
 
-    protected function init(Application $app)
+    protected function loadRoutes()
     {
         $this->addRoute('/', 'index');
+    }
+
+    // --------------------------------------------------------------
+
+    protected function init(Application $app)
+    {
+        //nothing yet
     }
     
     // --------------------------------------------------------------

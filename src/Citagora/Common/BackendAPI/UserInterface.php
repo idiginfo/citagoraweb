@@ -1,5 +1,12 @@
 <?php
 
+namespace Citagora\Common\BackendAPI;
+
+use Citagora\Common\Model\User\User;
+
+/**
+ * User API Interface
+ */
 interface UserInterface
 {
     /**
@@ -11,6 +18,14 @@ interface UserInterface
     function getUser($identifier);
 
     /**
+     * Retrieve user by email
+     *
+     * @param string $email  Email Address
+     * @return User|boolean  FALSE if no user exists with this identifier
+     */
+    function getUserByEmail($email);
+
+    /**
      * Retrieve multiple users by identifier
      *
      * @param  array  Array of unique identifiers
@@ -19,15 +34,14 @@ interface UserInterface
     function getUsers(array $identifiers);
 
     /**
-     * Check user by identifier and password
+     * Check user by email and password
      *
-     * @param  string $identifier
+     * @param  string $email
      * @param  string $password   Cleartext password
      * @return null|boolean|User  Returns the User object if success, null if not found
      *                            or false, if incorrect password
      */
-    function checkCredentials($identifier, $password);
-
+    function checkCredentials($email, $password);
 
     /**
      * Create a new user
@@ -36,6 +50,13 @@ interface UserInterface
      * @return User
      */
     function createNewUser(array $attributes = array());
+
+    /**
+     * Save a user
+     *
+     * @param Citagora\Common\Model\User\User $user
+     */
+    function saveUser(User $user);
 
 }
 

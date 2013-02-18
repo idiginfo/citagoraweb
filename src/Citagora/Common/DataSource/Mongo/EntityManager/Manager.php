@@ -1,6 +1,6 @@
 <?php
 
-namespace Citagora\Common\EntityManager;
+namespace Citagora\Common\DataSource\Mongo\EntityManager;
 
 use Doctrine\ODM\MongoDB\DocumentManager;
 use RuntimeException;
@@ -69,7 +69,7 @@ class Manager
     public function getCollection($entityClassName)
     {
         if (isset($this->collections[$entityClassName])) {
-            return $this->collections[$entityClassName];    
+            return $this->collections[$entityClassName];
         }
         else {
 

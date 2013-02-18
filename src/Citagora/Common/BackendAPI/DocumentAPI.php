@@ -3,29 +3,30 @@
 namesapce Citagora\Common\BackendAPI;
 
 use Citagora\Common\Model\Factory;
+use Citagora\Common\DataSource\MySQL\Client as MySQLClient;
 
 /**
- * Document API
+ * Default Document API -- Provides an abstract interface to documents
  *
  * Uses Doctrine DBAL to connect to Greg's database
  */
 class DocumentAPI implements DocumentInterface
 {
     /**
-     * @var Factory
+     * @var Citagora\Common\DataSource\MySQL\Client
      */
-    private $modelFactory;
+    private $mysqlClient;
 
     // --------------------------------------------------------------
 
     /**
      * Constructor
      *
-     * @param Factory
+     * @param Citagora\Common\DataSource\MySQL\Client
      */
-    public function __construct(Factory $modelFactory)
+    public function __construct(MySQLClient $mysql)
     {
-        $this->modelFactory = $modelFactory;
+        $this->mysqlClient = $mysql;
     }
 
     // --------------------------------------------------------------
@@ -33,9 +34,9 @@ class DocumentAPI implements DocumentInterface
     /**
      * @return Document  A single document
      */
-    function getDocument($id)
+    public function getDocument($id)
     {
-        
+        //Get the document from the client
     }
 
     // --------------------------------------------------------------
@@ -43,7 +44,10 @@ class DocumentAPI implements DocumentInterface
     /**
      * @return array  Document objects
      */
-    function getDocumentsById(array $ids);
+    public function getDocumentsById(array $ids)
+    {
+        //Get the documents from the client
+    }
 
     // --------------------------------------------------------------
 
@@ -55,7 +59,10 @@ class DocumentAPI implements DocumentInterface
      * @param  int    $offset         offset, relative to start indicator
      * @return array  Document objects
      */
-    function getDocumentsForIndexing($startPosition = null, $limit = null, $offset = null);
+    function getDocumentsForIndexing($startPosition = null, $limit = null, $offset = null)
+    {
+        //Get the documents from the MySQL client
+    }
 
     // --------------------------------------------------------------
 
@@ -64,7 +71,10 @@ class DocumentAPI implements DocumentInterface
      *
      * @return array  Document objects
      */
-    function getRecentDocuments($limit = null, $offset = null);
+    function getRecentDocuments($limit = null, $offset = null)
+    {
+        
+    }
 
     // --------------------------------------------------------------
 

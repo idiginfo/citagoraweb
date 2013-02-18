@@ -4,11 +4,13 @@ namespace Citagora\Common\DataSource\Mongo\Entity;
 
 use Citagora\Common\Model\User\User as UserModel;
 use Citagora\Common\DataSource\Mongo\EntityManager\Entity;
-use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Illuminate\Hashing\HasherInterface;
 use Illuminate\Socialite\OAuthTwo\AccessToken;
 use Exception;
+
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Citagora\Common\Annotations\Attribute;
 
 /**
  * User Entity
@@ -23,6 +25,7 @@ class User extends UserModel implements Entity
 
     /**
      * @ODM\Id
+     * @Attribute
      */
     protected $id;
 
@@ -30,42 +33,49 @@ class User extends UserModel implements Entity
      * @var string
      * @ODM\String
      * @ODM\UniqueIndex
+     * @Attribute
      */
     protected $email;
 
     /**
      * @var string
      * @ODM\String
+     * @Attribute
      */
     protected $firstName;
 
     /**
      * @var string
      * @ODM\String
+     * @Attribute
      */
     protected $lastName;
 
     /**
      * @var string
      * @ODM\String
+     * @Attribute
      */
     protected $password;
 
     /**
      * @var array
      * @ODM\Hash
+     * @Attribute
      */
     protected $oauthServices;
 
     /**
      * @var int
      * @ODM\Int
+     * @Attribute
      */
     protected $numLogins;
 
     /**
      * @var string
      * @ODM\String
+     * @Attribute
      */
     protected $resetToken;
 
@@ -105,7 +115,7 @@ class User extends UserModel implements Entity
      * Set magic method overrides its parent by hashing password when set
      */
     public function __set($item, $val)
-    {   
+    {
         switch ($item) {
 
             case 'oauthServices':
@@ -151,7 +161,7 @@ class User extends UserModel implements Entity
     public function setOauthService($service, $id, AccessToken $accessToken = null)
     {
         $this->oauthServices[$service] = array(
-            'id'          => $id, 
+            'id'          => $id,
             'accessToken' => ($accessToken) ? $accessToken->getValue() : null
         );
     }

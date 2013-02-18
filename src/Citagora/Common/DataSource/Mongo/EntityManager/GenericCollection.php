@@ -1,6 +1,6 @@
 <?php
 
-namespace Citagora\Common\EntityManager;
+namespace Citagora\Common\DataSource\Mongo\EntityManager;
 
 /**
  * Generic Entity Collection

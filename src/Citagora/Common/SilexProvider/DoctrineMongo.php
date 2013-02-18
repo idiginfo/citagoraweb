@@ -37,7 +37,7 @@ class DoctrineMongo implements ServiceProviderInterface
             $conn = (isset($app['mongo.connection_uri']) && $app['mongo.params']['connstring'])
                 ? new MongoConnection(new Mongo($app['mongo.params']['connstring']))
                 : new MongoConnection();
-    
+
             //Set it up
             return DocumentManager::create($conn, $config);
         });

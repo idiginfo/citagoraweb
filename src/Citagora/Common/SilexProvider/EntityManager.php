@@ -4,7 +4,7 @@ namespace Citagora\Common\SilexProvider;
 
 use Silex\Application;
 use Silex\ServiceProviderInterface;
-use Citagora\Common\EntityManager\Manager;
+use Citagora\Common\DataSource\Mongo\EntityManager\Manager;
 
 /**
  * Silex Provider for the Entity Manager
