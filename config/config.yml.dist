@@ -48,6 +48,7 @@ mysql:
     host:       localhost:3306
     user:       root
     pass:       root
+    port:       3306
 
 # Enable Dev Mode?
 #

@@ -15,8 +15,8 @@ final class Queries
      * :id  int  The document ID
      */
     const GET_DOCUMENT_QUERY = "
-                                SELECT c.MYID, c.CREATED, c.UPDATED, c.URI, c.RIGHTS, c.SOURCE, r.TITLE, r.URL, 
-                                r.VOLUME, r.PAGESTART, r.PAGEEND, r.KEYWORDS, r.ISSUE, r.ISSUED, r.ISSN, 
+                                SELECT c.MYID, c.CREATED, c.UPDATED, c.URI, c.RIGHTS, c.SOURCE, r.TITLE, r.URL,
+                                r.VOLUME, r.PAGESTART, r.PAGEEND, r.KEYWORDS, r.ISSUE, r.ISSUED, r.ISSN,
                                 r.ISBN, r.DOI, r.AUTHORSTRING, j.TITLE as `JTITLE` FROM citagora_objects
                                 c INNER JOIN (citagora_references r INNER JOIN citagora_references j ON
                                 r.isPartOf = j.MYID) ON c.MYID = r.MYID
@@ -30,16 +30,16 @@ final class Queries
      * Note: For Doctrine DBAL, you must use '\Doctrine\DBAL\Connection::PARAM_INT_ARRAY'
      *       See: http://goo.gl/RdlaC
      *
-     * :ids  array  The documents IDs (integers)
+     * ? array  The documents IDs (integers)
      */
     const GET_DOCUMENTS_QUERY = "
-                                SELECT c.MYID, c.CREATED, c.UPDATED, c.URI, c.RIGHTS, c.SOURCE, r.TITLE, r.URL, 
-                                r.VOLUME, r.PAGESTART, r.PAGEEND, r.KEYWORDS, r.ISSUE, r.ISSUED, r.ISSN, 
+                                SELECT c.MYID, c.CREATED, c.UPDATED, c.URI, c.RIGHTS, c.SOURCE, r.TITLE, r.URL,
+                                r.VOLUME, r.PAGESTART, r.PAGEEND, r.KEYWORDS, r.ISSUE, r.ISSUED, r.ISSN,
                                 r.ISBN, r.DOI, r.AUTHORSTRING, j.TITLE as `JTITLE` FROM citagora_objects
                                 c INNER JOIN (citagora_references r INNER JOIN citagora_references j ON
                                 r.isPartOf = j.MYID) ON c.MYID = r.MYID
 
-                                WHERE r.MYID IN (:ids);
+                                WHERE r.MYID IN (?);
                             ";
 
     /**
@@ -47,16 +47,15 @@ final class Queries
      *
      * :limit     int     Limit
      * :offset    int     Offset
-     * :direction string  Either 'ASC' or 'DESC'
      */
     const GET_RECENT_DOCUMENTS_QUERY = "
-                                        SELECT c.MYID, c.CREATED, c.UPDATED, c.URI, c.RIGHTS, c.SOURCE, r.TITLE, r.URL, 
-                                        r.VOLUME, r.PAGESTART, r.PAGEEND, r.KEYWORDS, r.ISSUE, r.ISSUED, r.ISSN, 
+                                        SELECT c.MYID, c.CREATED, c.UPDATED, c.URI, c.RIGHTS, c.SOURCE, r.TITLE, r.URL,
+                                        r.VOLUME, r.PAGESTART, r.PAGEEND, r.KEYWORDS, r.ISSUE, r.ISSUED, r.ISSN,
                                         r.ISBN, r.DOI, r.AUTHORSTRING, j.TITLE as `JTITLE` FROM citagora_objects
                                         c INNER JOIN (citagora_references r INNER JOIN citagora_references j ON
                                         r.isPartOf = j.MYID) ON c.MYID = r.MYID
 
-                                        LIMIT :limit OFFSET :offset ORDER BY c.UPDATED :direction;
+                                        ORDER BY c.UPDATED DESC LIMIT :limit OFFSET :offset;
                                     ";
 }
 

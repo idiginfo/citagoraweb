@@ -133,6 +133,7 @@ abstract class App extends SilexApplication
                 'host'     => $this['config']->mysql['host'],
                 'user'     => $this['config']->mysql['user'],
                 'password' => $this['config']->mysql['pass'],
+                'port'     => isset($config->mysql['port']) ?: 3306,
                 'charset'  => 'utf8'
             ),
         ));

@@ -18,16 +18,6 @@ interface DocumentInterface
     function getDocumentsById(array $ids);
 
     /**
-     * Get documents for indexation
-     *
-     * @param  mixed  $startPosition  Some indicator of where to start for maintaining index state
-     * @param  int    $limit          Number of documents to retrieve at a time
-     * @param  int    $offset         offset, relative to start indicator
-     * @return array  Document objects
-     */
-    function getDocumentsForIndexing($startPosition = null, $limit = null, $offset = null);
-
-    /**
      * Get recent documents mainly for display on front-page
      *
      * @return array  Document objects

@@ -56,7 +56,7 @@ class DocumentAPI implements DocumentInterface
      *
      * @param  mixed  $startPosition  Some indicator of where to start for maintaining index state
      * @param  int    $limit          Number of documents to retrieve at a time
-     * @param  int    $offset         offset, relative to start indicator
+     * @param  int    $offset         offset, relative to startPosition
      * @return array  Document objects
      */
     function getDocumentsForIndexing($startPosition = null, $limit = null, $offset = null)
