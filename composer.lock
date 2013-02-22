@@ -1,5 +1,5 @@
 {
-    "hash": "c9442effaa5434ea891f0f86b9b10e38",
+    "hash": "94e6a46bd94684d3aed0bdefa319bbeb",
     "packages": [
         {
             "name": "caseyamcl/Configula",
@@ -24,7 +24,6 @@
             "suggest": {
                 "symfony/yaml": "Allows parsing of .yaml configuration files"
             },
-            "time": "2012-12-03 18:41:17",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -48,7 +47,8 @@
             "keywords": [
                 "config",
                 "configuration"
-            ]
+            ],
+            "time": "2012-12-03 18:41:17"
         },
         {
             "name": "caseyamcl/phpoaipmh",
@@ -56,12 +56,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/caseyamcl/phpoaipmh.git",
-                "reference": "290c1fb99e145cf108ad7a834bfdde674e6bc03d"
+                "reference": "4d9c46ab645aaf04f5a692c94817e2ec1a028312"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/caseyamcl/phpoaipmh/zipball/290c1fb99e145cf108ad7a834bfdde674e6bc03d",
-                "reference": "290c1fb99e145cf108ad7a834bfdde674e6bc03d",
+                "url": "https://api.github.com/repos/caseyamcl/phpoaipmh/zipball/4d9c46ab645aaf04f5a692c94817e2ec1a028312",
+                "reference": "4d9c46ab645aaf04f5a692c94817e2ec1a028312",
                 "shasum": ""
             },
             "require": {
@@ -71,14 +71,13 @@
                 "guzzle/guzzle": ">=3.0.0",
                 "mockery/mockery": "dev-master"
             },
-            "time": "2013-01-03 21:16:19",
             "type": "library",
             "autoload": {
                 "psr-0": {
                     "Phpoaipmh": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -88,7 +87,8 @@
                 "Harvester",
                 "OAI",
                 "OAI-PMH"
-            ]
+            ],
+            "time": "2013-02-20 20:40:16"
         },
         {
             "name": "caseyamcl/tasktracker",
@@ -111,7 +111,6 @@
                 "monolog/monolog": ">=1.3.x-dev",
                 "symfony/console": ">=2.1.0"
             },
-            "time": "2012-10-26 14:28:15",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -142,7 +141,8 @@
             "support": {
                 "source": "https://github.com/caseyamcl/tasktracker/tree/master",
                 "issues": "https://github.com/caseyamcl/tasktracker/issues"
-            }
+            },
+            "time": "2012-10-26 14:28:15"
         },
         {
             "name": "doctrine/common",
@@ -161,7 +161,6 @@
             "require": {
                 "php": ">=5.3.2"
             },
-            "time": "2012-09-19 22:55:18",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -211,7 +210,8 @@
                 "eventmanager",
                 "persistence",
                 "spl"
-            ]
+            ],
+            "time": "2012-09-19 22:55:18"
         },
         {
             "name": "doctrine/dbal",
@@ -231,7 +231,6 @@
                 "doctrine/common": "2.3.*",
                 "php": ">=5.3.2"
             },
-            "time": "2013-01-07 20:03:43",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -274,7 +273,8 @@
                 "dbal",
                 "persistence",
                 "queryobject"
-            ]
+            ],
+            "time": "2013-01-07 20:03:43"
         },
         {
             "name": "doctrine/mongodb",
@@ -295,7 +295,6 @@
                 "ext-mongo": ">=1.2.12,<1.4-dev",
                 "php": ">=5.3.2"
             },
-            "time": "2013-01-10 20:57:52",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -334,7 +333,8 @@
                 "database",
                 "mongodb",
                 "persistence"
-            ]
+            ],
+            "time": "2013-01-10 20:57:52"
         },
         {
             "name": "doctrine/mongodb-odm",
@@ -362,7 +362,6 @@
             "suggest": {
                 "symfony/yaml": "Enables the YAML metadata mapping driver"
             },
-            "time": "2012-12-19 02:24:49",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -407,7 +406,8 @@
                 "mongodb",
                 "odm",
                 "persistence"
-            ]
+            ],
+            "time": "2012-12-19 02:24:49"
         },
         {
             "name": "firephp/firephp-core",
@@ -423,7 +423,6 @@
                 "reference": "f60753a8dd7817e4da6bc73e0e717387a9a0866a",
                 "shasum": ""
             },
-            "time": "2013-01-19 22:55:24",
             "type": "library",
             "autoload": {
                 "classmap": [
@@ -443,7 +442,8 @@
                 }
             ],
             "description": "Traditional FirePHPCore library for sending PHP variables to the browser.",
-            "homepage": "https://github.com/firephp/firephp-core"
+            "homepage": "https://github.com/firephp/firephp-core",
+            "time": "2013-01-19 22:55:24"
         },
         {
             "name": "guzzle/guzzle",
@@ -497,7 +497,6 @@
                 "zendframework/zend-cache": "2.0.*",
                 "zendframework/zend-log": "2.0.*"
             },
-            "time": "2013-02-15 01:33:10",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -535,7 +534,8 @@
                 "http client",
                 "rest",
                 "web service"
-            ]
+            ],
+            "time": "2013-02-15 01:33:10"
         },
         {
             "name": "illuminate/hashing",
@@ -554,7 +554,6 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-08-09 18:10:44",
             "type": "library",
             "autoload": {
                 "classmap": [
@@ -568,7 +567,8 @@
                     "email": "taylorotwell@gmail.com"
                 }
             ],
-            "description": "A password hashing library."
+            "description": "A password hashing library.",
+            "time": "2012-08-09 18:10:44"
         },
         {
             "name": "illuminate/socialite",
@@ -592,7 +592,6 @@
             "require-dev": {
                 "mockery/mockery": "0.7.*"
             },
-            "time": "2013-01-17 14:15:50",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -611,7 +610,8 @@
             "description": "A simple library for OAuth 2 authentication.",
             "support": {
                 "source": "https://github.com/caseyamcl/socialite/tree/master"
-            }
+            },
+            "time": "2013-01-17 14:15:50"
         },
         {
             "name": "monolog/monolog",
@@ -643,7 +643,6 @@
                 "mlehner/gelf-php": "Allow sending log messages to a GrayLog2 server",
                 "raven/raven": "Allow sending log messages to a Sentry server"
             },
-            "time": "2013-02-13 18:06:51",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -673,7 +672,8 @@
                 "log",
                 "logging",
                 "psr-3"
-            ]
+            ],
+            "time": "2013-02-13 18:06:51"
         },
         {
             "name": "pear/Console_Table",
@@ -695,7 +695,6 @@
             "suggest": {
                 "pear/Console_Color": ">=0.0.4"
             },
-            "time": "2012-12-07 14:43:01",
             "type": "library",
             "autoload": {
                 "classmap": [
@@ -728,7 +727,8 @@
             "homepage": "https://github.com/pear/Console_Table",
             "keywords": [
                 "console"
-            ]
+            ],
+            "time": "2012-12-07 14:43:01"
         },
         {
             "name": "pimple/pimple",
@@ -747,7 +747,6 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-11-11 08:32:34",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -774,7 +773,8 @@
             "keywords": [
                 "container",
                 "dependency injection"
-            ]
+            ],
+            "time": "2012-11-11 08:32:34"
         },
         {
             "name": "psr/log",
@@ -790,7 +790,6 @@
                 "reference": "1.0.0",
                 "shasum": ""
             },
-            "time": "2012-12-21 11:40:51",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -812,7 +811,8 @@
                 "log",
                 "psr",
                 "psr-3"
-            ]
+            ],
+            "time": "2012-12-21 11:40:51"
         },
         {
             "name": "silex/silex",
@@ -820,12 +820,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Silex.git",
-                "reference": "44183a2cbf103ae95fc92d59438e92c1b70908d6"
+                "reference": "f683583bff57a943feb40da1f9d8663fff0d7f27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Silex/zipball/44183a2cbf103ae95fc92d59438e92c1b70908d6",
-                "reference": "44183a2cbf103ae95fc92d59438e92c1b70908d6",
+                "url": "https://api.github.com/repos/fabpot/Silex/zipball/f683583bff57a943feb40da1f9d8663fff0d7f27",
+                "reference": "f683583bff57a943feb40da1f9d8663fff0d7f27",
                 "shasum": ""
             },
             "require": {
@@ -861,7 +861,6 @@
                 "symfony/css-selector": ">=2.1,<2.3-dev",
                 "symfony/dom-crawler": ">=2.1,<2.3-dev"
             },
-            "time": "2013-02-18 14:02:01",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -873,7 +872,7 @@
                     "Silex": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -892,7 +891,8 @@
             "homepage": "http://silex.sensiolabs.org",
             "keywords": [
                 "microframework"
-            ]
+            ],
+            "time": "2013-02-19 08:41:40"
         },
         {
             "name": "solarium/solarium",
@@ -912,7 +912,6 @@
                 "php": ">=5.3.2",
                 "symfony/event-dispatcher": ">=2.1.0,<2.3-dev"
             },
-            "time": "2013-01-03 06:31:49",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -940,7 +939,8 @@
                 "php",
                 "search",
                 "solr"
-            ]
+            ],
+            "time": "2013-01-03 06:31:49"
         },
         {
             "name": "symfony/config",
@@ -960,7 +960,6 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2013-01-09 08:51:07",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -982,7 +981,8 @@
                 }
             ],
             "description": "Symfony Config Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-01-09 08:51:07"
         },
         {
             "name": "symfony/console",
@@ -1002,7 +1002,6 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2013-01-24 15:55:08",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1029,7 +1028,8 @@
                 }
             ],
             "description": "Symfony Console Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-01-24 15:55:08"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1056,7 +1056,6 @@
                 "symfony/dependency-injection": "2.1.*",
                 "symfony/http-kernel": "2.1.*"
             },
-            "time": "2013-01-11 00:31:43",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1078,7 +1077,8 @@
                 }
             ],
             "description": "Symfony EventDispatcher Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-01-11 00:31:43"
         },
         {
             "name": "symfony/form",
@@ -1109,7 +1109,6 @@
                 "symfony/http-foundation": "2.1.*",
                 "symfony/validator": "2.1.*"
             },
-            "time": "2013-01-11 13:37:17",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1131,7 +1130,8 @@
                 }
             ],
             "description": "Symfony Form Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-01-11 13:37:17"
         },
         {
             "name": "symfony/http-foundation",
@@ -1151,7 +1151,6 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2013-01-11 00:31:43",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1174,7 +1173,8 @@
                 }
             ],
             "description": "Symfony HttpFoundation Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-01-11 00:31:43"
         },
         {
             "name": "symfony/http-kernel",
@@ -1214,7 +1214,6 @@
                 "symfony/dependency-injection": "2.1.*",
                 "symfony/finder": "2.1.*"
             },
-            "time": "2013-01-17 16:21:47",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1236,7 +1235,8 @@
                 }
             ],
             "description": "Symfony HttpKernel Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-01-17 16:21:47"
         },
         {
             "name": "symfony/locale",
@@ -1259,7 +1259,6 @@
             "suggest": {
                 "ext-intl": ">=5.3.3"
             },
-            "time": "2013-01-10 04:41:59",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1281,7 +1280,8 @@
                 }
             ],
             "description": "Symfony Locale Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-01-10 04:41:59"
         },
         {
             "name": "symfony/options-resolver",
@@ -1301,7 +1301,6 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2013-01-09 08:51:07",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1328,7 +1327,8 @@
                 "config",
                 "configuration",
                 "options"
-            ]
+            ],
+            "time": "2013-01-09 08:51:07"
         },
         {
             "name": "symfony/routing",
@@ -1359,7 +1359,6 @@
                 "symfony/config": "2.2.*",
                 "symfony/yaml": "2.2.*"
             },
-            "time": "2013-02-11 11:24:47",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1386,7 +1385,8 @@
                 }
             ],
             "description": "Symfony Routing Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-02-11 11:24:47"
         },
         {
             "name": "symfony/translation",
@@ -1414,7 +1414,6 @@
                 "symfony/config": "2.1.*",
                 "symfony/yaml": "2.1.*"
             },
-            "time": "2013-01-09 08:51:07",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1436,7 +1435,8 @@
                 }
             ],
             "description": "Symfony Translation Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-01-09 08:51:07"
         },
         {
             "name": "symfony/twig-bridge",
@@ -1473,7 +1473,6 @@
                 "symfony/translation": "2.1.*",
                 "symfony/yaml": "2.1.*"
             },
-            "time": "2013-01-17 15:20:05",
             "type": "symfony-bridge",
             "autoload": {
                 "psr-0": {
@@ -1495,7 +1494,8 @@
                 }
             ],
             "description": "Symfony Twig Bridge",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-01-17 15:20:05"
         },
         {
             "name": "symfony/validator",
@@ -1525,7 +1525,6 @@
                 "symfony/http-foundation": "2.1.*",
                 "symfony/yaml": "2.1.*"
             },
-            "time": "2013-01-11 00:31:43",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1547,7 +1546,8 @@
                 }
             ],
             "description": "Symfony Validator Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-01-11 00:31:43"
         },
         {
             "name": "symfony/yaml",
@@ -1567,7 +1567,6 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2013-01-17 21:21:51",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1589,7 +1588,8 @@
                 }
             ],
             "description": "Symfony Yaml Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-01-17 21:21:51"
         },
         {
             "name": "twig/twig",
@@ -1608,7 +1608,6 @@
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "2013-02-09 18:21:53",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1638,7 +1637,8 @@
             "homepage": "http://twig.sensiolabs.org",
             "keywords": [
                 "templating"
-            ]
+            ],
+            "time": "2013-02-09 18:21:53"
         }
     ],
     "packages-dev": [
@@ -1659,7 +1659,6 @@
             "require": {
                 "php": ">=5.3.2"
             },
-            "time": "2012-06-13 21:26:30",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1673,7 +1672,8 @@
             "description": "This is the PHP port of Hamcrest Matchers",
             "keywords": [
                 "test"
-            ]
+            ],
+            "time": "2012-06-13 21:26:30"
         },
         {
             "name": "mockery/mockery",
@@ -1695,7 +1695,6 @@
             "require-dev": {
                 "hamcrest/hamcrest": "1.1.0"
             },
-            "time": "2013-02-17 12:15:28",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1726,7 +1725,8 @@
                 "test",
                 "test double",
                 "testing"
-            ]
+            ],
+            "time": "2013-02-17 12:15:28"
         },
         {
             "name": "raveren/kint",
@@ -1734,25 +1734,24 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/raveren/kint.git",
-                "reference": "bb1d1c81a1ebe43fcfdbee90c2e096bcfc46da4e"
+                "reference": "6bc4df9b83331eb1a18650f94ac39a104cfb41ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/raveren/kint/zipball/bb1d1c81a1ebe43fcfdbee90c2e096bcfc46da4e",
-                "reference": "bb1d1c81a1ebe43fcfdbee90c2e096bcfc46da4e",
+                "url": "https://api.github.com/repos/raveren/kint/zipball/6bc4df9b83331eb1a18650f94ac39a104cfb41ad",
+                "reference": "6bc4df9b83331eb1a18650f94ac39a104cfb41ad",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.0"
             },
-            "time": "2013-02-18 10:32:27",
             "type": "library",
             "autoload": {
                 "files": [
                     "Kint.class.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1772,7 +1771,8 @@
                 "debug",
                 "kint",
                 "php"
-            ]
+            ],
+            "time": "2013-02-22 08:09:27"
         }
     ],
     "aliases": [

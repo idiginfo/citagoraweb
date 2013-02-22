@@ -28,8 +28,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "Citagora":    "src/",
-            "TestFixture": "tests/fixtures"
+            "Citagora":    ["src/", "tests/"]
         }
     },
     "minimum-stability": "beta",

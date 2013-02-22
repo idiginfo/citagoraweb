@@ -91,7 +91,9 @@ class User extends UserModel implements Entity
      */
     public function __construct(HasherInterface $hasher = null)
     {
-        $this->setHasher($hasher);
+        if ($hasher) {
+            $this->setHasher($hasher);
+        }
 
         $this->numLogins     = 0;
         $this->oauthServices = array();

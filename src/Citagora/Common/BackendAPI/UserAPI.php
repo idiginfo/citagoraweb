@@ -3,7 +3,9 @@
 namespace Citagora\Common\BackendAPI;
 
 use Citagora\Common\DataSource\Mongo\EntityCollection\UserCollection;
+use Citagora\Common\DataSource\Mongo\Entity\User as MongoEntityUser;
 use Citagora\Common\Model\User\User;
+use InvalidArgumentException;
 
 /**
  * Default User API -- Provides an abstract interface to user functionality
@@ -85,8 +87,8 @@ class UserAPI implements UserInterface
      */
     function checkCredentials($email, $password)
     {
-        if ($this->getUser($identifier)) {
-            return $this->userCollection->checkCredentials($identifier, $password);
+        if ($this->getUserByEmail($email)) {
+            return $this->userCollection->checkCredentials($email, $password);
         }
         else {
             return null;
@@ -111,10 +113,14 @@ class UserAPI implements UserInterface
     /**
      * Save a user
      *
-     * @param Citagora\Common\Model\User\User
+     * @param Citagora\Common\DataSource\Mongo\Entity\User
      */
     function saveUser(User $user)
     {
+        if ( ! $user instanceOf MongoEntityUser) {
+            throw new InvalidArgumentException("User must be a Mongo Entity User");
+        }
+
         return $this->userCollection->save($user);
     }
 }

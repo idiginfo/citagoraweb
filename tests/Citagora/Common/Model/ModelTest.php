@@ -2,13 +2,16 @@
 
 namespace Citagora\Common\Model;
 use Citagora\CitagoraTest, Mockery;
-use TestFixture\DummyModel;
+use Citagora\TestFixture\DummyModel;
 
 /**
  * Test the Model Abstract Class
  */
 class ModelTest extends CitagoraTest
 {
+    /**
+     * Test Instantiation
+     */
     public function testInstantiateSucceeds()
     {
         $this->assertInstanceOf('Citagora\Common\Model\Model', $this->getObject());
@@ -16,6 +19,9 @@ class ModelTest extends CitagoraTest
 
     // --------------------------------------------------------------
 
+    /**
+     * The __get() magic method should work for properties with @Attribute annotation
+     */
     public function testGetAttributeNamesReturnsCorrectValues()
     {
         $obj = $this->getObject();
@@ -29,6 +35,9 @@ class ModelTest extends CitagoraTest
 
     // --------------------------------------------------------------
 
+    /**
+     * The __set() magic method should work for properties with @Attribute annotation
+     */
     public function testGetAndSetMagicMethodsWorksForAttribute()
     {
         $obj = $this->getObject();
@@ -48,6 +57,9 @@ class ModelTest extends CitagoraTest
 
     // --------------------------------------------------------------
 
+    /**
+     * The __set() magic method should fail for protected properties not tagged as attributes
+     */
     public function testSetMagicMethodFailsForNonAttributeProperty()
     {
         $this->setExpectedException('\Exception');
@@ -58,6 +70,9 @@ class ModelTest extends CitagoraTest
 
     // --------------------------------------------------------------
 
+    /**
+     * THe __get() magic method should fail for protected properties not tagged as attributes
+     */
     public function testGetMagicMethodFailsForNonAttributeProperty()
     {
         $this->setExpectedException('\Exception');
@@ -68,6 +83,9 @@ class ModelTest extends CitagoraTest
 
     // --------------------------------------------------------------
 
+    /**
+     * The __isset() should work for attribute properties the same as it would for public properties
+     */
     public function testIssetReturnsTrueForSetAttribute()
     {
         $obj = $this->getObject();
@@ -78,6 +96,9 @@ class ModelTest extends CitagoraTest
 
     // --------------------------------------------------------------
 
+    /**
+     * The __isset() should work for attribute properties the same as it would for public properties
+     */
     public function testIssetReturnsFalseForNonSetAttribute()
     {
         $obj = $this->getObject();
@@ -86,6 +107,9 @@ class ModelTest extends CitagoraTest
 
     // --------------------------------------------------------------
 
+    /**
+     * The __isset() should throw an exception for non-attribute protected properties
+     */
     public function testIssetThrowsExceptionForNonAttributeProperty()
     {
         $this->setExpectedException('\Exception');
@@ -99,6 +123,9 @@ class ModelTest extends CitagoraTest
 
     // --------------------------------------------------------------
 
+    /**
+     * toArray() should return the attributes as an array
+     */
     public function testToArrayReturnsAttributesAsArray()
     {
         $obj = $this->getObject();
@@ -114,6 +141,9 @@ class ModelTest extends CitagoraTest
 
     // --------------------------------------------------------------
 
+    /**
+     * __toString() should return a JSON encoded array of attributes
+     */
     public function testToStringEncodesProtectedPropertiesToJson()
     {
         $obj = $this->getObject();
