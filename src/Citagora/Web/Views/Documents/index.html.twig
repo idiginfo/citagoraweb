@@ -3,7 +3,7 @@
 {# Document Index View
  #
  # Available Variables:
- #   docs  (DocumentCollection)
+ #   docs  (DocumentCollection) - 10 Documents with latest modification timestamp
  #}
 <div class="one-third column">
     <h2>Find a Scientific Document</h2>
@@ -33,7 +33,7 @@
     
     <h2>Latest Activity</h2>
 
-    {% for doc in docs %}    
+    {% for doc in docs %}   
         <div class='row {{ loop.index is odd ? 'odd' : 'even' }}'>
 
             {# activity box is only for home page activity results, not search results #}

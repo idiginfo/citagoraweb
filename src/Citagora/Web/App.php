@@ -27,12 +27,11 @@ class App extends CitagoraApp
             $this->doMaintenance();
         }
         else {
-            
+
             //Mount the controllers
-            $this->mount('', new Controller\Front());             
-            $this->mount('', new Controller\Documents());   
-            $this->mount('', new Controller\Users());   
-            $this->mount('', new Controller\Dashboard());   
+            $this->mount('', new Controller\Front());
+            $this->mount('', new Controller\Documents());
+            $this->mount('', new Controller\Users());
         }
 
         //Go
@@ -52,7 +51,7 @@ class App extends CitagoraApp
         //$this['session']
         $this->register(
             new SessionServiceProvider(), array('session.storage.options' => array(
-                'name'            => 'Citagora', 
+                'name'            => 'Citagora',
                 'cookie_lifetime' => $this['config']->session_expire
             )
         ));
@@ -76,16 +75,13 @@ class App extends CitagoraApp
 
         //Load account manager (relies on session)
         $this['account'] = $this->share(function($app) {
-            return new Library\Account(
-                $app['session'],
-                $app['em']->getCollection('User')
-            );
+            return new Library\Account($app['session'], $app['user_api']);
         });
 
         //Notices Provider
         $this['notices'] = $this->share(function($app) {
             return new Library\Notices($app['session']);
-        });    
+        });
     }
 
     // --------------------------------------------------------------
@@ -111,7 +107,10 @@ class App extends CitagoraApp
             break;
             default:
 
-                $this['monolog']->addError($exception->getMessage(), array('code' => $code));
+                $this['monolog']->addError(
+                    $exception->getMessage(),
+                    array('code' => $code, 'trace' => $exception->getTrace())
+                );
 
                 //If Debug, do default (just return to cause this behvior)
                 if ($this['debug']) {
@@ -145,7 +144,7 @@ class App extends CitagoraApp
         $this->match('{url}', function($url) use ($app) {
             $data = $app['twig']->render('maint.html.twig');
             return new Response($data, 503);
-        })->assert('url', '.+');        
+        })->assert('url', '.+');
     }
 }
 

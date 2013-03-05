@@ -3,8 +3,8 @@
 namespace Citagora\Web\Library;
 
 use Symfony\Component\HttpFoundation\Session\Session;
-use Citagora\Common\EntityCollection\UserCollection;
-use Citagora\Common\Entity\User;
+use Citagora\Common\BackendAPI\UserInterface;
+use Citagora\Common\Model\User\User;
 
 /**
  * Manages the user in the session
@@ -17,9 +17,9 @@ class Account
     private $session;
 
     /**
-     * @var Citagora\Common\EntityCollection\UserCollection $userCollection
+     * @var Citagora\Common\BackendAPI\UserInterface
      */
-    private $userCollection;
+    private $userApi;
 
     /**
      * @var Citagora\Common\Entity\User
@@ -30,14 +30,14 @@ class Account
 
     /**
      * Constructor
-     * 
+     *
      * @param Symfony\Component\HttpFoundation\Session\Session
-     * @param Citagora\EntityCollection\UserCollection $userColl
+     * @param Citagora\Common\BackendAPI\UserInterface $userApi
      */
-    public function __construct(Session $session, UserCollection $userColl)
+    public function __construct(Session $session, UserInterface $userApi)
     {
-        $this->session        = $session;
-        $this->userCollection = $userColl;
+        $this->session = $session;
+        $this->userApi = $userApi;
 
         $this->buildUserFromSession();
     }
@@ -50,11 +50,11 @@ class Account
     public function login(User $user)
     {
         $user->numLogins++;
-        $this->userCollection->save($user);
+        $this->userApi->saveUser($user);
 
         $this->user = $user;
         $this->session->set('user', $user->id);
-    }   
+    }
 
     // --------------------------------------------------------------
 
@@ -70,7 +70,7 @@ class Account
         else {
             return false;
         }
-    }    
+    }
 
     // --------------------------------------------------------------
 
@@ -111,12 +111,18 @@ class Account
 
     // --------------------------------------------------------------
 
+    /**
+     * Load the user object in from the session, if it exists
+     *
+     * Gets the id from the session and then builds the user object
+     * from the User API
+     */
     private function buildUserFromSession()
     {
         $id = $this->session->get('user', false);
 
         if ($id) {
-            $this->user = $this->userCollection->find($id);
+            $this->user = $this->userApi->getUser($id);
         }
     }
 }

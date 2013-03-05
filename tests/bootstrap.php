@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Citagora Front-End Test Suite
+ */
+
+//
+// Check to ensure certain files exist
+//
 $checkFiles['autoload'] = __DIR__.'/../vendor/autoload.php';
 $checkFiles[] = __DIR__.'/../vendor/mockery/mockery/library/Mockery.php';
 
@@ -10,7 +17,10 @@ foreach($checkFiles as $file) {
     }
 }
 
-//Away we go
+//
+// Load Composer Autoloader
+//
 $autoload = require_once $checkFiles['autoload'];
+
 
 /* EOF: bootstrap.php */

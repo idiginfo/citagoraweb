@@ -4,7 +4,8 @@ namespace Citagora\Web\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Citagora\Common\Entity\User;
+use Citagora\Common\BackendAPI\UserInterface;
+use Citagora\Common\Model\User\User;
 
 /**
  * Users Controller
@@ -12,9 +13,9 @@ use Citagora\Common\Entity\User;
 class Users extends ControllerAbstract
 {
     /**
-     * @var Citagora\EntityManager\Collection
+     * @var Citagora\Common\BackendAPI\UserInterface
      */
-    private $users;
+    private $userApi;
 
     /**
      * @var Pimple
@@ -23,15 +24,23 @@ class Users extends ControllerAbstract
 
     // --------------------------------------------------------------
 
-    protected function init(Application $app)
+    protected function loadRoutes()
     {
         $this->addRoute('/login',             'login');
         $this->addRoute('/login/{service}',   'svclogin');
         $this->addRoute('/logout',            'logout');
         $this->addRoute('/account',           'accountinfo');
         $this->addRoute('/forgot',            'forgot');
+    }
 
-        $this->users = $app['em']->getCollection('User');
+    // --------------------------------------------------------------
+
+    public function init(Application $app)
+    {
+        //Get the User API
+        $this->userApi = $app['user_api'];
+
+        //Get the OAuth Providers
         $this->oauthProviders = $app['oauth_clients'];
     }
 
@@ -48,7 +57,7 @@ class Users extends ControllerAbstract
             $creds = $loginForm->getData();
 
             //If credentials match, then login
-            if ($this->users->checkCredentials($creds['email'], $creds['password'])) {
+            if ($this->userApi->checkCredentials($creds['email'], $creds['password'])) {
 
                 $this->debug("LOGGED IN!");
 
@@ -108,7 +117,7 @@ class Users extends ControllerAbstract
         else {
 
             //Check for existing user
-            $existingUser = $this->users->getUserByEmail($info->get('email'));
+            $existingUser = $this->userApi->getUserByEmail($info->get('email'));
 
             if ($existingUser) {
 
@@ -117,7 +126,7 @@ class Users extends ControllerAbstract
             }
             else {
 
-                $user = $this->users->factory();
+                $user = $this->userApi->createNewUser();
 
                 //Add info for new user
                 $user->setOauthService($service, $info->get('id'), $accessToken);
@@ -163,7 +172,7 @@ class Users extends ControllerAbstract
 
         //Get the user and show the account page
         $data['user'] = $this->account()->getUser();
-        
+
         return $this->render('Users/account.html.twig', $data);
     }
 

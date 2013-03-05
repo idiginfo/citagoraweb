@@ -59,7 +59,7 @@ class Monolog implements ServiceProviderInterface
     public function boot(Application $app)
     {
         //Nothing, but its required by ServiceProviderInterface
-    }    
+    }
 }
 
 /* EOF: Monolog.php */

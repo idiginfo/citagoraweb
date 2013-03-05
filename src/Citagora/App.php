@@ -5,7 +5,8 @@ namespace Citagora;
 use Silex\Application as SilexApplication;
 use Silex\Provider\TranslationServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
-use Citagora\Common\SilexProvider;
+
+use Doctrine\Common\Annotations\AnnotationRegistry;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Illuminate\Hashing\BcryptHasher;
 use RuntimeException, Exception;
@@ -60,14 +61,14 @@ abstract class App extends SilexApplication
         }
 
         //Load common libraries
-        $this->loadCommonLibraries();       
+        $this->loadCommonLibraries();
     }
 
     // --------------------------------------------------------------
 
     /**
      * Load common libraries
-     * 
+     *
      * Needed for both CLI and web application
      */
     protected function loadCommonLibraries()
@@ -75,8 +76,18 @@ abstract class App extends SilexApplication
         //Pointer for anonymous functions
         $app =& $this;
 
+        //
+        // General
+        //
+
+        //Register Annotations
+        AnnotationRegistry::registerAutoloadNamespace(
+            'Citagora\Common\Annotations', 
+            realpath($this['srcpath'] . '/../')
+        );
+
         //$this['monolog']
-        $this->register(new SilexProvider\Monolog(), array(
+        $this->register(new Common\SilexProvider\Monolog(), array(
             'monolog.file'   => $this['config']->log_file,
             'monolog.emails' => (array) $this['config']->admin_emails
         ));
@@ -86,51 +97,58 @@ abstract class App extends SilexApplication
             'locale_fallback' => 'en',
         ));
 
-        //$this['mongo']
-        $this->register(new SilexProvider\DoctrineMongo(), array(
-            'mongo.documents_path' => $this['srcpath'] . '/Document',
-            'mongo.params'         => $this['config']->mongodb
-        ));
-
         //Guzzle Library
         $this['guzzle'] = $this->share(function() {
             return new \Guzzle\Http\Client();
         });
 
+        //$this['validation']
+        $this->register(new ValidatorServiceProvider());
+
+
+        //
+        // DataSources
+        //
+
+        //$this['mongo']
+        $this->register(new Common\SilexProvider\DoctrineMongo(), array(
+            'mongo.documents_path' => $this['srcpath'] . '/Document',
+            'mongo.params'         => $this['config']->mongodb
+        ));
+
         //$this['em']
-        $this->register(new SilexProvider\EntityManager(), array(
+        $this->register(new Common\SilexProvider\EntityManager(), array(
             'em.documentManager' => $this['mongo'],
-            'em.namespace'       => __NAMESPACE__ . "\\Common\\Entity",
+            'em.namespace'       => __NAMESPACE__ . "\\Common\\DataSource\\Mongo\\Entity",
             'em.collections'     => array(
-                new Common\EntityCollection\UserCollection(new BcryptHasher()),
-                new Common\EntityCollection\DocumentCollection($app['dispatcher'])
+                new Common\DataSource\Mongo\EntityCollection\UserCollection(new BcryptHasher())
             )
         ));
 
-        //$this['data_sources']
-        $this->register(new SilexProvider\DataSources(), array(
-            'data_sources.config' => $this['config']->datasource_keys
+        //$this['db']
+        $app->register(new \Silex\Provider\DoctrineServiceProvider(), array(
+            'db.options' => array(
+                'driver'   => 'pdo_mysql',
+                'dbname'   => $this['config']->mysql['dbname'],
+                'host'     => $this['config']->mysql['host'],
+                'user'     => $this['config']->mysql['user'],
+                'password' => $this['config']->mysql['pass'],
+                'port'     => isset($config->mysql['port']) ?: 3306,
+                'charset'  => 'utf8'
+            ),
         ));
 
-        //Document Factory
-        $this['document_factory'] = $this->share(function($app) {
-            return new Common\Tool\DocumentFactory($app['em']);
+        //
+        // Backend APIs
+        //
+
+        //$this['document_api']
+        //ADD HERE...
+
+        //$this['user_api']
+        $this['user_api'] = $this->share(function() use ($app) {
+            return new Common\BackendAPI\UserAPI($app['em']->getCollection('User'));
         });
-
-        //$this['harvester']
-        $this['harvester'] = $this->share(function($app) {
-            
-            $hvstr = new Common\Harvester\Harvester(
-                $app['document_factory'],
-                $app['em']->getCollection('Document\Document')
-            );
-
-            $hvstr->setEventDispatcher($app['dispatcher']);
-            return $hvstr;
-        });
-
-        //$this['validation']
-        $this->register(new ValidatorServiceProvider());
     }
 }
 /* EOF: App.php */

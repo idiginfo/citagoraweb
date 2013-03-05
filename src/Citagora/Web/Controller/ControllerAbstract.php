@@ -6,6 +6,7 @@ use Silex\Application;
 use Silex\ControllerProviderInterface;
 use Silex\ControllerCollection;
 use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Abstract Controller for simplifying code in other controllers
@@ -37,8 +38,10 @@ abstract class ControllerAbstract implements ControllerProviderInterface
         $this->app    = $app;
         $this->routes = $app['controllers_factory'];
 
+        $this->app->before(array($this, 'exec'));
+
         //Run the child method
-        $this->init($app);
+        $this->loadRoutes();
 
         return $this->routes;
     }
@@ -46,10 +49,44 @@ abstract class ControllerAbstract implements ControllerProviderInterface
     // --------------------------------------------------------------
 
     /**
+     * Exec Callback
+     *
+     * Fires when the controller is about to actually be executed
+     *
+     * @param Symfony\HttpFoundation\Request $request  Not used
+     */
+    public function exec(Request $request)
+    {
+        $reqController = null;
+
+        //Determine the controller to be loaded from the request
+        if (is_array($request->attributes->get('_controller'))) {
+            $reqController = get_class(array_shift($request->attributes->get('_controller')));
+        }
+
+        //If this is that controller, run the init() method
+        if ($reqController == get_called_class()) {
+            $this->init($this->app);    
+        }
+    }
+
+    // --------------------------------------------------------------
+
+    /**
+     * Load routes method
+     *
+     * Should call $this->addRoute() for adding routes to this controller
+     */
+    abstract protected function loadRoutes();
+
+    // --------------------------------------------------------------
+
+    /**
      * Initialize method
      *
-     * Should load $this->addRoute() for whatever
-     * routes to register with the controller and do any other runtime setup
+     * Should pull desired libraries and reosources from the $app DiC
+     *
+     * @param Silex\Application $app
      */
     abstract protected function init(Application $app);
 
@@ -73,7 +110,7 @@ abstract class ControllerAbstract implements ControllerProviderInterface
         }
 
         if ($methods == self::ALL) {
-            $this->routes->match($path, array($this, $classMethod));            
+            $this->routes->match($path, array($this, $classMethod));
         }
         else {
 
@@ -89,7 +126,7 @@ abstract class ControllerAbstract implements ControllerProviderInterface
 
     /**
      * Log a message to Monolog
-     * 
+     *
      * @param string $level
      * @param string $message
      * @param array  $context
@@ -107,7 +144,6 @@ abstract class ControllerAbstract implements ControllerProviderInterface
                 $level
             ));
         }
-        
     }
 
     // --------------------------------------------------------------
@@ -141,10 +177,10 @@ abstract class ControllerAbstract implements ControllerProviderInterface
      */
     protected function render($view, $data = array())
     {
-        return $this->app['twig']->render($view, $data);      
+        return $this->app['twig']->render($view, $data);
     }
 
-    // --------------------------------------------------------------    
+    // --------------------------------------------------------------
 
     /**
      * Return JSON
@@ -154,11 +190,11 @@ abstract class ControllerAbstract implements ControllerProviderInterface
      * @param boolean $wrap  Wrap standard JSON API information?
      */
     protected function json($data, $code = 200, $wrap = true)
-    {   
+    {
         //Wrap in a standard container
         if ($wrap) {
             $data = array(
-                'version' => '1', 
+                'version' => '1',
                 'data'    => $data,
                 'notices' => $this->app['notices']->flush()
             );
@@ -167,7 +203,7 @@ abstract class ControllerAbstract implements ControllerProviderInterface
         return $this->app->json($data, $code);
     }
 
-    // --------------------------------------------------------------    
+    // --------------------------------------------------------------
 
     /**
      * Abort
@@ -200,14 +236,14 @@ abstract class ControllerAbstract implements ControllerProviderInterface
     /**
      * Get post parameters from input
      *
-     * @param string|null $which     
+     * @param string|null $which
      * @return array|mixed|null
      */
     protected function getPostParams($which = null)
     {
         return ( ! is_null($which))
             ? $this->app['request']->request->get($which)
-            : $this->app['request']->request->all();        
+            : $this->app['request']->request->all();
     }
 
     // --------------------------------------------------------------
@@ -225,7 +261,7 @@ abstract class ControllerAbstract implements ControllerProviderInterface
 
         //Do it
         return $this->app->redirect($this->getSiteUrl() . $path);
-    } 
+    }
 
     // --------------------------------------------------------------
 
@@ -267,7 +303,7 @@ abstract class ControllerAbstract implements ControllerProviderInterface
     protected function formWasSubmitted(Form $form)
     {
         return $form->isBound();
-    }       
+    }
 
     // --------------------------------------------------------------
 
@@ -276,7 +312,7 @@ abstract class ControllerAbstract implements ControllerProviderInterface
      */
     protected function getSiteUrl()
     {
-        return $this->app['request']->getSchemeAndHttpHost() 
+        return $this->app['request']->getSchemeAndHttpHost()
             . $this->app['request']->getBaseUrl();
     }
 
@@ -340,7 +376,7 @@ abstract class ControllerAbstract implements ControllerProviderInterface
     protected function setNotice($message, $type = 'info', $scope = 'global')
     {
         $this->app['notices']->add($message, $type, $scope);
-    }      
+    }
 
 }
 

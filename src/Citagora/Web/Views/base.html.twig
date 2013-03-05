@@ -22,9 +22,18 @@
         <!-- For Facebook Sharing -->
         <meta property="og:site_name" content="Citagora" />
         <meta property="og:image" content="{{ asset_url }}/_img/share.jpg" />
-        <meta property="og:title" content="" />
+        <meta property="og:title" content="Citagora | {{ block('page_title') | trim }}" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="{{ base_url }}" />
+        <meta property="og:url" content="{{ current_url }}" />
+        
+        <!-- Dublin Core -->
+        <meta name="DC.title" lang="en" content="{{ block('page_title') | trim }}" />
+        <meta name="DC.creator" content="Citagora : The Florida State University Research Foundation." />
+        <meta name="DC.identifier" scheme="DCTERMS.URI" content="{{ current_url }}" />
+        <meta name="DC.format" scheme="DCTERMS.IMT" content="text/html" />
+        <meta name="DC.type" scheme="DCTERMS.DCMIType" content="Text" />
+        <meta name="DC.language" scheme="DCTERMS.DCMIType" content="en" />
+
         {% endblock %}
 
     
@@ -65,14 +74,15 @@
         <div class="container" style="padding: 0;">
             <div class="sixteen columns" style="text-align: right; padding: 0;">
                 <ul>
-                    <li><a href="">Help</a></li>
-                    <li><a href="">About</a></li>
+                    <li><a href="/search/">Search</a></li>
                     {% if account.isLoggedIn %}
                         <li><a href='{{ site_url }}/account'>Welcome, {{ account.info('firstName') }}</a></li>
                         <li><a href='{{ site_url}}/logout'>Logout</a></li>
                     {% else %}
                         <li><a href="{{ site_url}}/login">Login</a></li>
                     {% endif %}
+                    <li><a href="">About</a></li>
+                    <li><a href="">Help</a></li>
                 </ul>
             </div>
         </div>
@@ -99,11 +109,16 @@
         </div>
         </div>
 
-        {# Javascript #}
         {% block base_js %}
+        {# Vendor Javascript Libraries #}
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>    
         <script type="text/javascript" src="{{ asset_url }}/_js/jquery.tabify.js"  charset="utf-8"></script>
-        <script type="text/javascript" src="{{ asset_url }}/_js/tinybox.js"></script>    
+        <script type="text/javascript" src="{{ asset_url }}/_js/tinybox.js"></script>
+
+        {# Site JS #}
+        <script type='text/javascript'>
+            siteUrl = '{{ site_url }}';
+        </script>
         <script type='text/javascript'  src="{{ asset_url }}/_js/main.js"></script>
         {% endblock %}
         {% block page_js %}

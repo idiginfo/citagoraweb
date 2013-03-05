@@ -20,14 +20,9 @@ class Documents extends ControllerAbstract
      */
     private $reviewCollection;
 
-    /**
-     * @var Citagora\Common\Tool\DocumentFactory
-     */
-    private $documentFactory;
-
     // --------------------------------------------------------------
 
-    protected function init(Application $app)
+    protected function loadRoutes()
     {
         //Add routes
         $this->addRoute('/documents/',            'index');
@@ -37,11 +32,15 @@ class Documents extends ControllerAbstract
 
         $this->addRoute('/search/',               'search');
         $this->addRoute('/search/{query}/',       'search');
+    }
 
+    // --------------------------------------------------------------
+
+    protected function init(Application $app)
+    {
         //Get collections
         $this->documentCollection = $app['em']->getCollection('Document\Document');
         $this->reviewCollection   = $app['em']->getCollection('Document\Review');
-        $this->documentFactory    = $app['document_factory'];
     }
 
     // --------------------------------------------------------------
@@ -92,7 +91,8 @@ class Documents extends ControllerAbstract
      *
      * TODO: Debug this!
      *
-     * @param string $id  Document ID
+     * @param  string $id  Document ID
+     * @return string JSON array of new aggregate ratings for the document
      */
     public function rate($id)
     {
@@ -110,8 +110,9 @@ class Documents extends ControllerAbstract
             return $this->abort(400, 'Invalid parameters sent');
         }
 
-        //Get the document to rate
-        $doc = $this->documentCollection->find($id);
+        //Get the document to rate and the user
+        $doc  = $this->documentCollection->find($id);
+        $user = $this->account()->getUser();
 
         //Ensure document exists
         if ( ! $doc) {
@@ -119,20 +120,21 @@ class Documents extends ControllerAbstract
         }
 
         //See if a review exists for this document and user
-        $reviewObj = $this->reviewCollection->findOneBy(array('user' => $this->account()->getUser()));
+        $reviewObj = $this->reviewCollection->getUserReview($doc, $user);
 
         //Else create a new one...
         if ( ! $reviewObj) {
-            $reviewObj = $this->reviewCollection->factory();
-            $doc->addReview($reviewObj);
-            $this->documentCollection->save($doc);
+            $reviewObj = $this->reviewCollection->factory($doc, $user);
         }
 
         $reviewObj->addRating($category, $value);
-        $reviewObj->save();
+        $this->reviewCollection->save($reviewObj, $this->account()->getUser());
 
         //Return JSON
-        return $this->json(array('success' => true));
+        return $this->json(array(
+            'success' => true,
+            'reviews' => $doc->aggregateRatings())
+        );
     }    
 }
 
