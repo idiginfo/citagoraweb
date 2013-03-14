@@ -61,7 +61,7 @@ class UserCollection extends EntityCollection
      *
      * @inherit 
      */
-    public function factory()
+    public function factory($params = array())
     {
         return parent::factory(array($this->hasher));
     }

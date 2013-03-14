@@ -1,5 +1,7 @@
 <?php
 
+namespace Citagora\Web;
+
 $mode = 'development';
 
 //Include index

@@ -4,6 +4,7 @@ namespace Citagora\Common\EntityCollection;
 
 use Citagora\Common\EntityManager\Collection as EntityCollection;
 use Citagora\Common\Entity\Document\Document;
+use Citagora\Common\EntityManager\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -60,7 +61,7 @@ class DocumentCollection extends EntityCollection
      *
      * {@inherit}
      */
-    public function save(Document $record, $flush = true, $clear = false)
+    public function save(Entity $record, $flush = true, $clear = false)
     {
         //Check if an existing document exists with this record
         $existing = $this->checkDocumentExists($record);

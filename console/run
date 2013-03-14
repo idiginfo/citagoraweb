@@ -8,10 +8,12 @@
  * @author Casey McLaughlin
  */
 
+namespace Citagora\Cli;
+
 //Autoloader
 require __DIR__ . '/../vendor/autoload.php';
 
 //Run it! Let's Go!
-\Citagora\Cli\App::main();
+App::main();
 
 /* EOF: import */

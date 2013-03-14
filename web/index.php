@@ -1,5 +1,7 @@
 <?php
 
+namespace Citagora\Web;
+
 //Autoload
 require(__DIR__ . '/../vendor/autoload.php');
 
@@ -16,18 +18,17 @@ if ( ! isset($mode)) {
 //Site mode
 switch ($mode) {
     case 'development':
-        $mode = Citagora\Web\App::DEVELOPMENT;
+        $mode = App::DEVELOPMENT;
     break;    
     case 'maintenance':
-        $mode = Citagora\Web\App::MAINTENANCE;
+        $mode = App::MAINTENANCE;
     break;
     case 'production': default:
-        $mode = Citagora\Web\App::PRODUCTION;
+        $mode = App::PRODUCTION;
     break;
 }
 
 //Run it
-$app = new Citagora\Web\App($mode);
-$app->run();
+$app = App::main($mode);
 
 /* EOF: index.php */

@@ -1,16 +1,43 @@
 #!/usr/bin/env php
 <?php
 
-die("\nFail: Not implemented yet.\n");
+namespace Citaograsetup;
 
 //Check prerequisites
+exec('curl --help', $eout);
+if (strpos($eout[0], "Usage:") === false) {
+    die("Citagora requires the CURL application for setup\n\n");
+}
 
 //Check configuration
+if ( ! is_readable(__DIR__ . '/config/config.yml')) {
+    die("You must copy config/config.yml.dist to config/config.yml, and adjust the settings\n\n");
+}
 
 //If composer.phar not found, download it to temporary location
+$checkCmds = array(
+    // 'composer.phar',                    //global
+    __DIR__ . '/composer.phar',           //local
+    'php ' . __DIR__  .'/composer.phar' //local w/o permissions
+);
+
+$composerCmd = false;
+foreach($checkCmds as $cmd) {
+    $out = $cmd;
+    if (strpos($cmd, "Composer version") !== false) {
+        $composerCmd = $cmd;
+    }
+} 
+
+if ( ! $composerCmd) {
+    passthru("curl -sS https://getcomposer.org/installer | php");
+    $composerCmd = 'php ' . __DIR__ . '/composer.phar';
+}
 
 //Passthru composer.phar install
+passthru($composerCmd . ' install');
 
 //Print out any final instructions
+echo "\n\nAll done\n\n";
 
 /* EOF: setup.php */

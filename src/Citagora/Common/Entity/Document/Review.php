@@ -17,7 +17,7 @@ class Review extends Entity
      *              (keys are categories, values are human-readable)
      */
     private $ratingCategories = array(
-        'overall'     => 'Overall'
+        'overall'     => 'Overall',
         'readabilty'  => 'Readability',
         'accuracy'    => 'Accuracy',
         'originality' => 'Originality'

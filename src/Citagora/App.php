@@ -30,7 +30,7 @@ abstract class App extends SilexApplication
     {
         $className = get_called_class();
         $that = new $className($mode);
-        $that->run();
+        $that->exec();
     }
 
     // --------------------------------------------------------------
@@ -62,6 +62,13 @@ abstract class App extends SilexApplication
         //Load common libraries
         $this->loadCommonLibraries();       
     }
+
+    // --------------------------------------------------------------
+
+    /**
+     * Run the application
+     */
+    abstract public function exec();
 
     // --------------------------------------------------------------
 

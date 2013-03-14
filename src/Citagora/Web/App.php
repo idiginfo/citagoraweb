@@ -14,7 +14,7 @@ use RuntimeException, Exception;
 
 class App extends CitagoraApp
 {
-    public function run()
+    public function exec()
     {
         //Load Libraries
         $this->loadWebLibraries();
