@@ -103,7 +103,7 @@ class DummyRecs extends Type\Base
 
     // --------------------------------------------------------------
 
-    public function mapRecord($sourceRecord, Document $document, DocumentFactory $df)
+    protected function mapFields($sourceRecord, Document $document, DocumentFactory $df)
     {
        //Source to Document
         $mappings = array(
@@ -144,7 +144,17 @@ class DummyRecs extends Type\Base
 
         //Send it back
         return $document;
-    }    
+    }
+
+    // --------------------------------------------------------------
+
+    /**
+     * No unmapped fields
+     */
+    protected function getUnmappedFields($sourceRecord)
+    {
+        return array();
+    } 
 }
 
 /* EOF: DummyRecs.php */

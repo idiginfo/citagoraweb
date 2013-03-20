@@ -178,7 +178,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
+                    "name": "Jonathan H. Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/"
                 },
@@ -249,7 +249,7 @@
                     "homepage": "http://avalanche123.com"
                 },
                 {
-                    "name": "Jonathan Wage",
+                    "name": "Jonathan H. Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/"
                 },
@@ -1836,12 +1836,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/padraic/mockery.git",
-                "reference": "1174be6aed7b3c1e048834f14902ce796b6483c2"
+                "reference": "e01c03dfa2f12086c3bbd69e9ca19e4953c6c7d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/1174be6aed7b3c1e048834f14902ce796b6483c2",
-                "reference": "1174be6aed7b3c1e048834f14902ce796b6483c2",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/e01c03dfa2f12086c3bbd69e9ca19e4953c6c7d9",
+                "reference": "e01c03dfa2f12086c3bbd69e9ca19e4953c6c7d9",
                 "shasum": ""
             },
             "require": {
@@ -1881,7 +1881,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2013-03-11 13:49:28"
+            "time": "2013-03-19 17:42:50"
         },
         {
             "name": "raveren/kint",
@@ -1889,12 +1889,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/raveren/kint.git",
-                "reference": "654e6692406279e42e13e4510017fe433b1f85aa"
+                "reference": "39b2fdda4af931f55f35c5eb3e1d5d58cf61deae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/raveren/kint/zipball/654e6692406279e42e13e4510017fe433b1f85aa",
-                "reference": "654e6692406279e42e13e4510017fe433b1f85aa",
+                "url": "https://api.github.com/repos/raveren/kint/zipball/39b2fdda4af931f55f35c5eb3e1d5d58cf61deae",
+                "reference": "39b2fdda4af931f55f35c5eb3e1d5d58cf61deae",
                 "shasum": ""
             },
             "require": {
@@ -1927,7 +1927,7 @@
                 "kint",
                 "php"
             ],
-            "time": "2013-03-06 19:02:43"
+            "time": "2013-03-20 07:42:41"
         }
     ],
     "aliases": [
